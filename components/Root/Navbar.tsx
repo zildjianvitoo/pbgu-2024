@@ -118,7 +118,7 @@ export default function Navbar() {
                 variant="outline"
                 className="flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary hover:bg-primary hover:text-background"
               >
-                Daftar
+                Login
                 <LogIn size={20} />
               </Button>
             </Link>

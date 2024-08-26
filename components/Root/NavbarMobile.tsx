@@ -61,9 +61,11 @@ export default function NavbarMobile({ links }: Props) {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-4">
-              <Button className="rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
-                Daftar
-              </Button>
+              <Link href={"/login"}>
+                <Button className="rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         </SheetHeader>
