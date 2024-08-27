@@ -61,14 +61,15 @@ export default function Navbar() {
         { "bg-stone-50 shadow-sm": isScrolled }
       )}
     >
-      <figure className="relative h-12 w-40 lg:h-14 lg:w-48">
+      <Link href={"/"} className="relative">
         <Image
-          src="/images/logo-pln-hp.png"
+          src="/images/logo-ibgu.png"
           alt="Logo"
-          fill
+          width={60}
+          height={60}
           className="object-contain object-center lg:object-bottom"
         />
-      </figure>
+      </Link>
       <div className="block lg:hidden">
         <NavbarMobile links={links} />
       </div>

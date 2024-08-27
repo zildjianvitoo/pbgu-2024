@@ -16,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link
+          rel="shortcut icon"
+          href="/images/logo-ibgu.png"
+          type="image/x-icon"
+        />
       </head>
 
       <body className={`${montserrat.className} ${nexaScript.variable}`}>
