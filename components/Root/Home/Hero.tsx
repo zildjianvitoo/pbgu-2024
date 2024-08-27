@@ -13,7 +13,7 @@ export default function Hero({}: Props) {
         fill
         className="absolute -z-20 object-cover"
       />
-      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/70 " />
+      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/60 " />
       <div className="container  z-20 flex flex-col justify-center max-sm:mt-16 items-center m-auto">
         <h1 className="text-4xl lg:text-5xl xl:text-7xl text-white text-center font-bold font-nexaScript">
           Pemilihan Bujang Gadis{" "}
