@@ -1,12 +1,40 @@
 import { Button } from "@/components/ui/button";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {};
 
 export default function Hero({}: Props) {
+  const words1 = [
+    {
+      text: "Pemilihan",
+    },
+    {
+      text: "Bujang",
+    },
+    {
+      text: "Gadis",
+    },
+  ];
+
+  const words2 = [
+    {
+      text: "Universitas",
+      className: "text-primary  mt-2",
+    },
+    {
+      text: "Sriwijaya",
+      className: "text-primary  mt-2",
+    },
+    {
+      text: "2024",
+      className: "text-secondary ",
+    },
+  ];
+
   return (
-    <section className="relative min-h-screen overflow-hidden py-40 md:py-64">
+    <section className="relative h-screen overflow-hidden py-40 md:py-64">
       <Image
         src="/images/hero.svg"
         alt="gambar hero"
@@ -16,10 +44,11 @@ export default function Hero({}: Props) {
       <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/60 " />
       <div className="container  z-20 flex flex-col justify-center max-sm:mt-16 items-center m-auto">
         <h1 className="text-4xl lg:text-5xl xl:text-7xl text-white text-center font-bold font-nexaScript">
-          Pemilihan Bujang Gadis{" "}
-          <span className="text-primary block mt-2">
-            Universitas Sriwijaya <span className="text-secondary">2024</span>
-          </span>
+          <TypewriterEffect words={words1} cursorClassName="bg-white" />
+          <TypewriterEffect words={words2} />
+          {/* <span className="">
+            <span className=""></span>
+          </span> */}
         </h1>
         <h3 className="font-medium text-xl  mt-3 mb-5 text-white text-center">
           Segerakan daftarkan diri anda menjadi salah satu bagian dari kami!

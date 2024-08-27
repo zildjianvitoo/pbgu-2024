@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} ${nexaScript.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
