@@ -117,7 +117,7 @@ export default function Navbar() {
             <Link href="/login">
               <Button
                 variant="outline"
-                className="flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary hover:bg-primary hover:text-background"
+                className="flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary hover:bg-primary hover:text-background text-white"
               >
                 Login
                 <LogIn size={20} />
