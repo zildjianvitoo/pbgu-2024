@@ -22,7 +22,7 @@ export default function RegisterPage() {
         />
 
         <Image
-          src={"/images/hero.svg"}
+          src={"/images/hero-image.jpeg"}
           alt="Register Image"
           fill
           className="-z-10 object-cover object-center brightness-[50%]"
@@ -36,7 +36,7 @@ export default function RegisterPage() {
           <div className="grid size-8 place-items-center rounded-full bg-white shadow-lg">
             <ArrowLeft size={20} />
           </div>
-          <div className="text-lg font-semibold mt-1">Back</div>
+          <div className="mt-1 text-lg font-semibold">Back</div>
         </Link>
         <header className="mt-2">
           <h1 className="text-4xl font-bold text-primary drop-shadow-[0_2px_1px_#00000032]">

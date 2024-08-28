@@ -36,10 +36,11 @@ export default function Hero({}: Props) {
   return (
     <section className="relative h-screen overflow-hidden py-40 md:py-64">
       <Image
-        src="/images/hero.svg"
+        src="/images/hero-image.jpeg"
         alt="gambar hero"
         fill
         className="absolute -z-20 object-cover"
+        loading="eager"
       />
       <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/60" />
       <div className="container z-20 m-auto flex flex-col items-center justify-center max-sm:mt-16">
