@@ -29,6 +29,7 @@ const links = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [afterHero, setAfterHero] = useState(false);
   const pathname = usePathname();
   const { data } = useSession();
   const router = useRouter();
@@ -41,14 +42,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 1) {
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      if (scrollPosition > 1) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      if (scrollPosition > viewportHeight - 10) {
+        setIsScrolled(false);
+        setAfterHero(true);
+      } else {
+        setAfterHero(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -57,19 +69,22 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed left-0 top-0 z-50 flex w-full items-center glass-nav justify-between px-6 py-3 transition lg:px-24 lg:py-5",
-        { "bg-stone-50 shadow-sm": isScrolled }
+        "fixed left-0 top-0 z-50 flex w-full items-center justify-between px-6 py-3 transition lg:px-24 lg:py-2",
+        { "glass-nav bg-stone-50 shadow-sm": isScrolled },
+        { "bg-white shadow-sm": afterHero },
       )}
     >
-      <Link href={"/"} className="relative">
+      <Link href={"/"} className="relative size-14 lg:size-[72px]">
         <Image
           src="/images/logo-ibgu.png"
           alt="Logo"
-          width={60}
-          height={60}
+          fill
           className="object-contain object-center lg:object-bottom"
         />
       </Link>
+      <p className="font-nexaScript text-3xl text-primary lg:hidden">
+        IBG Unsri
+      </p>
       <div className="block lg:hidden">
         <NavbarMobile links={links} />
       </div>
@@ -80,14 +95,15 @@ export default function Navbar() {
             key={link.name}
             href={link.path}
             className={cn(
-              "border-b-2 border-transparent text-lg text-white/80 transition hover:border-primary",
+              "border-b-2 border-transparent text-xl text-white/80 transition hover:border-primary",
+              { "text-foreground": afterHero },
               pathname === link.path
-                ? "font-bold text-primary"
-                : "font-medium ",
+                ? "font-medium text-primary"
+                : "font-medium",
               pathname !== "/" &&
                 pathname !== link.path &&
                 !isScrolled &&
-                "text-white"
+                "text-white",
             )}
           >
             {link.name}
@@ -117,7 +133,10 @@ export default function Navbar() {
             <Link href="/login">
               <Button
                 variant="outline"
-                className="flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary hover:bg-primary hover:text-background text-white"
+                className={cn(
+                  "flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary text-white hover:bg-primary hover:text-background",
+                  { "bg-primary": afterHero },
+                )}
               >
                 Login
                 <LogIn size={20} />

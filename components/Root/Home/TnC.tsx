@@ -25,35 +25,33 @@ export default function TnC() {
   return (
     <section
       id="syarat-dan-ketentuan"
-      className="px-6 py-3 lg:px-24 lg:py-5 "
-      //   bg-
-      //   #F7F3F5
+      className="bg-primary/5 px-6 py-12 lg:px-24 lg:py-20"
     >
       <div className="flex flex-col py-6 lg:py-10">
-        <h5 className=" text-xl font-semibold text-secondary">Registrasi</h5>
-        <h1 className="text-black   text-3xl lg:text-4xl  font-bold">
+        <h5 className="text-xl font-semibold text-secondary">Registrasi</h5>
+        <h1 className="text-3xl font-bold text-black lg:text-4xl">
           Syarat dan Berkas <br />{" "}
-          <span className=" text-transparent bg-clip-text bg-gradient-to-br from-primary to-yellow-700">
+          <span className="bg-gradient-to-br from-primary to-yellow-700 bg-clip-text text-transparent">
             Pemilihan Bujang Gadis UNSRI
           </span>{" "}
           2024
         </h1>
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 mt-6 ">
-          <div className="flex flex-1 flex-col gap-2 ">
-            <h3 className="font-semibold text-secondary text-xl md:text-2xl">
+        <div className="mt-12 flex flex-col gap-6 lg:flex-row lg:gap-8">
+          <div className="flex flex-1 flex-col gap-2">
+            <h3 className="text-xl font-semibold text-secondary md:text-2xl">
               Persyaratan Umum
             </h3>
-            <ol className=" list-decimal ml-5 text-lg font-medium">
+            <ol className="ml-5 list-decimal text-lg font-medium">
               {terms.map((term) => (
                 <li key={term}>{term}</li>
               ))}
             </ol>
           </div>
           <div className="flex flex-1 flex-col gap-2">
-            <h3 className="font-semibold text-secondary text-xl md:text-2xl">
+            <h3 className="text-xl font-semibold text-secondary md:text-2xl">
               Lampiran Berkas
             </h3>
-            <ol className="flex-1 list-decimal ml-5 text-lg font-medium">
+            <ol className="ml-5 flex-1 list-decimal text-lg font-medium">
               {attachments.map((attachment) => (
                 <li key={attachment}>{attachment}</li>
               ))}
