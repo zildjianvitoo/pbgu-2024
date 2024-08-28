@@ -71,3 +71,22 @@ model News {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
+
+model UserGeneralInfo {
+    id           String   @id @unique @default(cuid())
+    fullname     String
+    alias        String
+    nim          String
+    major        String
+    birth        String
+    age          String
+    gender       String
+    address      String
+    phone_number String
+    email        String
+    line         String
+    facebook     String
+    instagram    String
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
