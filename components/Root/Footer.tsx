@@ -41,19 +41,19 @@ const categoryLink = [
 
 const socialMediaLinks = [
   {
-    link: "/",
+    link: "https://www.instagram.com/bgunsri",
     Icon: RiInstagramFill,
   },
   {
-    link: "/product",
+    link: "#",
     Icon: RiFacebookFill,
   },
   {
-    link: "/categories",
+    link: "#",
     Icon: RiTwitterXFill,
   },
   {
-    link: "/categories",
+    link: "#",
     Icon: RiWhatsappFill,
   },
 ];
@@ -96,10 +96,10 @@ export default function Footer() {
             </div>
 
             <ul className="flex gap-2 md:gap-4">
-              {socialMediaLinks.map((link) => (
+              {socialMediaLinks.map((link, index) => (
                 <a
                   href={link.link}
-                  key={link.link}
+                  key={index}
                   className="grid size-10 place-items-center rounded-full border text-primary-foreground duration-200 hover:opacity-75"
                 >
                   <link.Icon className="size-6" />

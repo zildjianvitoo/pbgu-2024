@@ -11,9 +11,10 @@ const terms = [
 ];
 
 const attachments = [
-  "Formulir Pendaftaran PBGU 2024 yang bisa diunduh di link pada bio Instagram@bgunsri.",
+  "Formulir Pendaftaran PBGU 2024 yang bisa diunduh di link pada bio Instagram @bgunsri.",
   "Fotokopi KPM (Kartu Pengenal Mahasiswa) atau KPM Sementara (bagi mahasiswa baru).",
   "Pas foto berwarna terbaru ukuran 3x4 sebanyak 1 Lembar ditempel di formulir.",
+  "Foto full body dan close up ukuran 4R (kualitas foto studio)",
   "Fotokopi KHS semester terakhir atau SKHUN (bagi mahasiswa baru).",
   "Fotokopi Sertifikat (bila ada).",
   "Membayar uang pendaftaran Rp 100.000.",
