@@ -34,7 +34,7 @@ export default function NavbarMobile({ links }: Props) {
           <SheetTitle className="flex w-full items-center justify-center gap-3 pt-6">
             <figure className="relative h-12 w-40">
               <Image
-                src="/images/logo-pln-hp.png"
+                src="/images/logo-ibgu.png"
                 fill
                 className="object-contain object-center"
                 alt="logo"
@@ -52,7 +52,7 @@ export default function NavbarMobile({ links }: Props) {
                     href={link.path}
                     className={cn(
                       "text-start text-xl text-primary",
-                      pathname === link.path && "font-semibold underline"
+                      pathname === link.path && "font-semibold underline",
                     )}
                   >
                     {link.name}
@@ -62,7 +62,7 @@ export default function NavbarMobile({ links }: Props) {
             </div>
             <div className="mt-8 flex flex-col gap-4">
               <Link href={"/login"}>
-                <Button className="rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
+                <Button className="w-full rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
                   Login
                 </Button>
               </Link>

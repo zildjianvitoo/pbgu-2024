@@ -62,7 +62,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="bottom-0 left-0 rounded-t-[40px] border-t bg-primary/90 pb-4 pt-12"
+      className="bottom-0 left-0 rounded-t-[40px] border-t bg-primary pb-4 pt-12"
     >
       <div className="flex flex-col gap-6 px-6 lg:px-24">
         <div className="relative mx-auto flex w-full flex-col gap-6 lg:flex-row">
@@ -148,7 +148,7 @@ export default function Footer() {
         <hr />
         <div className="flex w-full justify-between">
           <small className="text-base font-medium text-primary-foreground">
-            &copy; Copyright 2024 PLN Haleyora Power . All rights reserved.
+            &copy; Copyright 2024 Team Pake Nanya . All rights reserved.
           </small>
           <small className="cursor-pointer text-base font-medium text-primary-foreground transition hover:opacity-80">
             Terms and Conditions

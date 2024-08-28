@@ -29,7 +29,7 @@ export default function Hero({}: Props) {
     },
     {
       text: "2024",
-      className: "text-secondary ",
+      className: "text-primary ",
     },
   ];
 

@@ -29,9 +29,9 @@ export default function TnC() {
     >
       <div className="flex flex-col py-6 lg:py-10">
         <h5 className="text-xl font-semibold text-secondary">Registrasi</h5>
-        <h1 className="text-3xl font-bold text-black lg:text-4xl">
+        <h1 className="text-3xl font-bold text-black md:text-4xl lg:text-5xl">
           Syarat dan Berkas <br />{" "}
-          <span className="bg-gradient-to-br from-primary to-yellow-700 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-br from-primary to-red-900/60 bg-clip-text text-transparent">
             Pemilihan Bujang Gadis UNSRI
           </span>{" "}
           2024
