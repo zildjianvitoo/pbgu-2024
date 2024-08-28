@@ -112,7 +112,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           {data?.user ? (
             <>
-              <Link href="/dashboard">
+              <Link href="/dashboard/data-diri">
                 <Button
                   variant="outline"
                   className="rounded-full border-2 border-primary bg-transparent px-9 text-primary hover:bg-primary hover:text-background"
