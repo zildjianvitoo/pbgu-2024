@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/provider/Providers";
 import { montserrat, nexaScript } from "@/public/fonts";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Pemilihan Bujang Gadis UNSRI",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} ${nexaScript.variable}`}>
+        <Toaster richColors position="top-right" theme="light" />
         <Providers>
           <main>{children}</main>
         </Providers>

@@ -29,6 +29,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createUser } from "@/lib/network/user";
+import { CreateUserType } from "@/lib/types/user";
 // import { createUser } from "@/lib/network/user";
 
 export const registerSchema = z.object({
@@ -47,6 +50,7 @@ export const registerSchema = z.object({
 export default function RegisterForm() {
   const [isShow, setIsShow] = useState(false);
   const router = useRouter();
+  const query = useQueryClient();
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -58,7 +62,22 @@ export default function RegisterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof registerSchema>) {}
+  const { mutate: onCreateUser } = useMutation({
+    mutationFn: (values: CreateUserType) => createUser(values),
+    onSuccess: () => {
+      query.invalidateQueries({ queryKey: ["users"] });
+      toast.success("Account Created!");
+      router.replace("/login");
+    },
+    onError: (error) => {
+      toast.error("Something went wrong!");
+      console.error(error);
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof registerSchema>) {
+    onCreateUser(values);
+  }
 
   return (
     <Form {...form}>

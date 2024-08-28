@@ -41,29 +41,29 @@ export default function Hero({}: Props) {
         fill
         className="absolute -z-20 object-cover"
       />
-      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/60 " />
-      <div className="container  z-20 flex flex-col justify-center max-sm:mt-16 items-center m-auto">
-        <h1 className="text-4xl lg:text-5xl xl:text-7xl text-white text-center font-bold font-nexaScript">
+      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/60" />
+      <div className="container z-20 m-auto flex flex-col items-center justify-center max-sm:mt-16">
+        <h1 className="text-center font-nexaScript text-4xl font-bold text-white lg:text-5xl xl:text-7xl">
           <TypewriterEffect words={words1} cursorClassName="bg-white" />
           <TypewriterEffect words={words2} />
           {/* <span className="">
             <span className=""></span>
           </span> */}
         </h1>
-        <h3 className="font-medium text-xl  mt-3 mb-5 text-white text-center">
+        <h3 className="mb-5 mt-3 text-center text-xl font-medium text-white">
           Segerakan daftarkan diri anda menjadi salah satu bagian dari kami!
         </h3>
-        <div className="flex gap-3 mt-3 ">
+        <div className="mt-3 flex gap-5">
           <Link href={"/tentang-bgu"}>
             <Button
               variant={"ghost"}
-              className="font-medium text-lg md:text-xl h-12 border border-primary text-white hover:bg-primary hover:text-white"
+              className="h-12 rounded-full border border-primary text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
             >
               Tentang BGU
             </Button>
           </Link>
           <Link href={"/daftar"}>
-            <Button className="font-medium text-lg md:text-xl h-12">
+            <Button className="h-12 rounded-full text-lg font-medium md:text-xl">
               Daftar Sekarang!
             </Button>
           </Link>

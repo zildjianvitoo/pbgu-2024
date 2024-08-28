@@ -51,8 +51,8 @@ export default function LoginForm() {
       });
 
       if (response?.ok) {
-        toast.success("Selamat Datang di ELSA!");
-        router.back();
+        toast.success("Login Berhasil!");
+        router.replace("/");
       } else {
         toast.error("Email atau password salah!");
       }
