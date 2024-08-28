@@ -11,60 +11,50 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { CreateUserGeneralInfoType } from "@/lib/types/user-general-info";
-import { createUserGeneralInfo } from "@/lib/network/user-general-info";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { CreateUserPersonalInfoType } from "@/lib/types/user-personal-info";
+import { createUserPersonalInfo } from "@/lib/network/user-personal-info";
 
-const generalSchema = z.object({
-  fullname: z.string().min(1),
-  alias: z.string().min(1),
-  nim: z.string().min(1),
-  major: z.string().min(1),
-  birth: z.string().min(1),
-  age: z.string().min(1),
-  gender: z.string().min(1),
-  address: z.string().min(1),
-  phone_number: z.string().min(1),
-  email: z.string().min(1),
-  line: z.string().min(1),
-  facebook: z.string().min(1),
-  instagram: z.string().min(1),
+const personalSchema = z.object({
+  height: z.string().min(1),
+  weight: z.string().min(1),
+  foreign_language: z.string().min(1),
+  hobby: z.string().min(1),
+  father: z.string().min(1),
+  mother: z.string().min(1),
+  parents_job: z.string().min(1),
+  parents_phone_number: z.string().min(1),
+  parents_address: z.string().min(1),
 });
 
 export default function PersonalInformation() {
   const query = useQueryClient();
 
-  const form = useForm<z.infer<typeof generalSchema>>({
-    resolver: zodResolver(generalSchema),
+  const form = useForm<z.infer<typeof personalSchema>>({
+    resolver: zodResolver(personalSchema),
     defaultValues: {
-      fullname: "",
-      alias: "",
-      nim: "",
-      major: "",
-      birth: "",
-      age: "",
-      gender: "",
-      address: "",
-      phone_number: "",
-      email: "",
-      line: "",
-      facebook: "",
-      instagram: "",
+      height: "",
+      weight: "",
+      foreign_language: "",
+      hobby: "",
+      father: "",
+      mother: "",
+      parents_job: "",
+      parents_phone_number: "",
+      parents_address: "",
     },
   });
 
-  const { mutate: onCreateUserGeneralInfo } = useMutation({
-    mutationFn: (values: CreateUserGeneralInfoType) =>
-      createUserGeneralInfo(values),
+  const { mutate: onCreateUserPersonalInfo } = useMutation({
+    mutationFn: (values: CreateUserPersonalInfoType) =>
+      createUserPersonalInfo(values),
     onSuccess: () => {
-      query.invalidateQueries({ queryKey: ["user-general-infos"] });
-      toast.success("User General Information Added!");
+      query.invalidateQueries({ queryKey: ["user-personal-infos"] });
+      toast.success("Berhasil Memodifikasi Informasi Pribadi!");
     },
     onError: (error) => {
       toast.error("Something went wrong!");
@@ -72,8 +62,8 @@ export default function PersonalInformation() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof generalSchema>) {
-    onCreateUserGeneralInfo({ ...values });
+  async function onSubmit(values: z.infer<typeof personalSchema>) {
+    onCreateUserPersonalInfo({ ...values });
   }
 
   return (
@@ -83,7 +73,9 @@ export default function PersonalInformation() {
         className="flex flex-col gap-6 rounded-xl bg-white p-6"
       >
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold text-primary">Data Pribadi</h2>
+          <h2 className="text-3xl font-semibold text-primary">
+            Data Pribadi Peserta
+          </h2>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
             corporis nisi iste?
@@ -93,15 +85,12 @@ export default function PersonalInformation() {
         <div className="flex w-full gap-6">
           <FormField
             control={form.control}
-            name="fullname"
+            name="height"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Nama Lengkap</FormLabel>
+                <FormLabel className="font-semibold">Tinggi Badan</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Isi dengan Nama Lengkap anda"
-                    {...field}
-                  />
+                  <Input placeholder="Tinggi Badan anda (cm)" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,33 +98,30 @@ export default function PersonalInformation() {
           />
           <FormField
             control={form.control}
-            name="alias"
+            name="weight"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold">Berat Badan</FormLabel>
+                <FormControl>
+                  <Input placeholder="Berat Badan anda (Kg)" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex w-full gap-6">
+          <FormField
+            control={form.control}
+            name="foreign_language"
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">
-                  Alias / Nama Panggilan
+                  Bahasa Asing yang di kuasai
                 </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Isi dengan Nama Panggilan atau Alias anda"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex w-full gap-6">
-          <FormField
-            control={form.control}
-            name="nim"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">NIM</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Isi NIM perkuliahan anda di UNSRI"
+                    placeholder="Bahasa Asing yang anda kuasai (opsional)"
                     {...field}
                   />
                 </FormControl>
@@ -145,12 +131,12 @@ export default function PersonalInformation() {
           />
           <FormField
             control={form.control}
-            name="major"
+            name="hobby"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Prodi/Jurusan</FormLabel>
+                <FormLabel className="font-semibold">Hobby</FormLabel>
                 <FormControl>
-                  <Input placeholder="Isi Prodi dan Jurusan anda" {...field} />
+                  <Input placeholder="Daftar Hobby anda" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -160,17 +146,14 @@ export default function PersonalInformation() {
         <div className="flex w-full gap-6">
           <FormField
             control={form.control}
-            name="birth"
+            name="father"
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">
-                  Tempat / Tanggal Lahir
+                  Nama Ayah Kandung
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Isi Tempat / Tanggal Lahir anda"
-                    {...field}
-                  />
+                  <Input placeholder="Nama Ayah Kandung anda" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -178,99 +161,14 @@ export default function PersonalInformation() {
           />
           <FormField
             control={form.control}
-            name="age"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Usia</FormLabel>
-                <FormControl>
-                  <Input placeholder="Usia anda saat mendaftar" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex w-full gap-6">
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Jenis Kelamin</FormLabel>
-                <FormControl>
-                  <Input placeholder="Jenis Kelamin anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Alamat</FormLabel>
-                <FormControl>
-                  <Input placeholder="Alamat tempat tinggal anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <Separator />
-        <div className="flex w-full gap-6">
-          <FormField
-            control={form.control}
-            name="phone_number"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">Nomor Telepon</FormLabel>
-                <FormControl>
-                  <Input placeholder="Nomor Telepon/Whatsapp anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">E-mail</FormLabel>
-                <FormControl>
-                  <Input placeholder="Email aktif anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex w-full gap-6">
-          <FormField
-            control={form.control}
-            name="line"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">ID Line</FormLabel>
-                <FormControl>
-                  <Input placeholder="ID Line anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="facebook"
+            name="mother"
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">
-                  Username Facebook
+                  Nama Ibu Kandung
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Username Akun Facebook anda" {...field} />
+                  <Input placeholder="Nama Ibu Kandung anda" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -280,15 +178,30 @@ export default function PersonalInformation() {
         <div className="flex w-full gap-6">
           <FormField
             control={form.control}
-            name="instagram"
+            name="parents_job"
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">
-                  Username Instagram
+                  Pekerjaan Orang Tua
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Pekerjaan Ibu/Ayah anda" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="parents_phone_number"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold">
+                  Nomor Telepon Orang Tua
                 </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Username Akun Instagram anda"
+                    placeholder="Nomor telepon salah satu dari kedua orang tua anda"
                     {...field}
                   />
                 </FormControl>
@@ -297,6 +210,24 @@ export default function PersonalInformation() {
             )}
           />
         </div>
+
+        <FormField
+          control={form.control}
+          name="parents_address"
+          render={({ field }) => (
+            <FormItem className="flex-1">
+              <FormLabel className="font-semibold">Alamat Orang Tua</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Alamat tempat tinggal orang tua anda"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Separator />
         <div className="flex items-center justify-between">
           <p className="flex-1 font-medium">

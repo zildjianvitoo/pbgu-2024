@@ -83,7 +83,7 @@ export default function GeneralInformation() {
         className="flex flex-col gap-6 rounded-xl bg-white p-6"
       >
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold text-primary">Data Pribadi</h2>
+          <h2 className="text-3xl font-semibold text-primary">Data Umum Peserta</h2>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
             corporis nisi iste?
