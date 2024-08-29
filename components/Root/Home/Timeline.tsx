@@ -6,8 +6,8 @@ const timelineData = [
   {
     title: "Registration",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
-        1 September <span className="text-secondary">s/d</span>
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
+        1 September <span className="text-[#d0ab44]">s/d</span>
         <br /> 14 Oktober
       </p>
     ),
@@ -15,8 +15,8 @@ const timelineData = [
   {
     title: "Pra Semifinal",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
-        23 Oktober <span className="text-secondary">s/d</span>
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
+        23 Oktober <span className="text-[#d0ab44]">s/d</span>
         <br /> 25 Oktober
       </p>
     ),
@@ -24,7 +24,7 @@ const timelineData = [
   {
     title: "Grand Semifinal",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
         26 Oktober
       </p>
     ),
@@ -32,8 +32,8 @@ const timelineData = [
   {
     title: "Pra Karantina",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
-        29 Oktober <span className="text-secondary">s/d</span>
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
+        29 Oktober <span className="text-[#d0ab44]">s/d</span>
         <br /> 31 Oktober
       </p>
     ),
@@ -41,8 +41,8 @@ const timelineData = [
   {
     title: "Karantina",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
-        1 November <span className="text-secondary">s/d</span>
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
+        1 November <span className="text-[#d0ab44]">s/d</span>
         <br /> 7 November
       </p>
     ),
@@ -50,7 +50,7 @@ const timelineData = [
   {
     title: "Grand Final",
     content: (
-      <p className="text-xl font-bold text-primary md:text-end lg:text-2xl">
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
         8 November
       </p>
     ),
@@ -86,7 +86,7 @@ export default function Timeline() {
         <div className="flex-[2] space-y-6 lg:mt-32">
           <h2 className="text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
             Timeline{" "}
-            <span className="text-primary">
+            <span className="text-secondary">
               Agenda <br />
               PBGU
             </span>

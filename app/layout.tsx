@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo-ibgu.png" sizes="any" />
+      </head>
       <body className={`${montserrat.className} ${nexaScript.variable}`}>
         <Toaster richColors position="top-right" theme="light" />
         <Providers>

@@ -7,7 +7,8 @@ export default function About({}: Props) {
     <section className="relative flex min-h-screen flex-col items-center gap-y-6 overflow-hidden px-6 py-20 md:py-36 lg:flex-row lg:gap-y-0 lg:px-24">
       <div className="order-2 flex-1 space-y-6 lg:order-1">
         <h2 className="text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
-          Perkenalkan Kami Dari <span className="text-primary">IBG UNSRI!</span>
+          Perkenalkan Kami Dari{" "}
+          <span className="text-secondary">IBG UNSRI!</span>
         </h2>
         <p className="md:text-lg">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga,

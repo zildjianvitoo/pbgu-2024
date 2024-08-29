@@ -27,21 +27,31 @@ export default function NavbarMobile({ links }: Props) {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu size={28} className="text-primary" />
+        <Menu size={28} className="text-secondary" />
       </SheetTrigger>
       <SheetContent side={"left"} className="bg-background">
         <SheetHeader>
           <SheetTitle className="flex w-full items-center justify-center gap-3 pt-6">
-            <figure className="relative h-12 w-40">
-              <Image
-                src="/images/logo-ibgu.png"
-                fill
-                className="object-contain object-center"
-                alt="logo"
-              />
-            </figure>
+            <div className="flex gap-2">
+              <figure className="relative h-12 w-40">
+                <Image
+                  src="/images/logo-ibgu.png"
+                  fill
+                  className="object-contain object-center"
+                  alt="logo ibgu"
+                />
+              </figure>
+              <figure className="relative h-12 w-40">
+                <Image
+                  src="/images/logo-unsri.png"
+                  fill
+                  className="object-contain object-center"
+                  alt="logo unsri"
+                />
+              </figure>
+            </div>
           </SheetTitle>
-          <SheetDescription className="font-semi text-primary">
+          <SheetDescription className="font-semi text-secondary">
             Pemilihan Bujang Gadis Unsri
           </SheetDescription>
           <div className="flex flex-col pt-6">
@@ -51,7 +61,7 @@ export default function NavbarMobile({ links }: Props) {
                   <Link
                     href={link.path}
                     className={cn(
-                      "text-start text-xl text-primary",
+                      "text-start text-xl text-secondary",
                       pathname === link.path && "font-semibold underline",
                     )}
                   >

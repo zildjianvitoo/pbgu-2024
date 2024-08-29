@@ -74,15 +74,25 @@ export default function Navbar() {
         { "bg-white shadow-sm": afterHero },
       )}
     >
-      <Link href={"/"} className="relative size-14 lg:size-[72px]">
-        <Image
-          src="/images/logo-ibgu.png"
-          alt="Logo"
-          fill
-          className="object-contain object-center lg:object-bottom"
-        />
-      </Link>
-      <p className="font-nexaScript text-3xl text-primary lg:hidden">
+      <div className="flex items-center gap-2">
+        <Link href={"/"} className="relative size-14 lg:size-[72px]">
+          <Image
+            src="/images/logo-unsri.png"
+            alt="Logo UNSRI"
+            fill
+            className="object-contain object-center lg:object-bottom"
+          />
+        </Link>
+        <Link href={"/"} className="relative size-14 lg:size-[72px]">
+          <Image
+            src="/images/logo-ibgu.png"
+            alt="Logo IBGU"
+            fill
+            className="object-contain object-center lg:object-bottom"
+          />
+        </Link>
+      </div>
+      <p className="font-nexaScript text-3xl text-secondary lg:hidden">
         IBG Unsri
       </p>
       <div className="block lg:hidden">
@@ -95,10 +105,10 @@ export default function Navbar() {
             key={link.name}
             href={link.path}
             className={cn(
-              "border-b-2 border-transparent text-xl text-white/80 transition hover:border-primary",
+              "border-b-2 border-transparent text-xl text-white/80 transition hover:border-secondary",
               { "text-foreground": afterHero },
               pathname === link.path
-                ? "font-medium text-primary"
+                ? "font-medium text-secondary"
                 : "font-medium",
               pathname !== "/" &&
                 pathname !== link.path &&
@@ -134,8 +144,8 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className={cn(
-                  "flex items-center gap-3 rounded-full border-2 border-primary bg-transparent px-9 text-base text-primary text-white hover:bg-primary hover:text-background",
-                  { "bg-primary": afterHero },
+                  "flex items-center gap-3 rounded-full border-2 border-white bg-transparent px-9 text-base text-primary text-white hover:bg-primary hover:text-background",
+                  { "border-primary bg-primary": afterHero },
                 )}
               >
                 Login
