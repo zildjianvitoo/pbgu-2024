@@ -98,7 +98,7 @@ export default function Hero({}: Props) {
           Segerakan daftarkan diri anda menjadi salah satu bagian dari kami!
         </h3> */}
 
-        <div className="mt-3 flex gap-5">
+        {/* <div className="mt-3 flex gap-5">
           <Link href={"/tentang-bgu"}>
             <Button
               variant={"ghost"}
@@ -112,7 +112,7 @@ export default function Hero({}: Props) {
               Daftar Sekarang!
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );
