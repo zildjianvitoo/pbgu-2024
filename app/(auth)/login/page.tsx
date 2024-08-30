@@ -7,11 +7,11 @@ export default function LoginPage() {
   return (
     <section
       id="login"
-      className="relative h-screen w-full overflow-hidden lg:flex"
+      className="relative flex h-screen w-full overflow-hidden px-3 sm:px-5 lg:px-0"
     >
-      <section
+      <div
         id="login-form"
-        className="m-auto flex-[1] px-8 sm:px-32 lg:px-24"
+        className="m-auto flex-[1] rounded-lg bg-white px-8 py-8 sm:px-16 lg:px-20 xl:px-24"
       >
         <Link href="/" className="mb-2 flex items-center gap-2">
           <div className="grid size-8 place-items-center rounded-full bg-white shadow-lg">
@@ -38,8 +38,8 @@ export default function LoginPage() {
             </Link>
           </span>
         </div>
-      </section>
-      <section
+      </div>
+      <div
         id="img-container"
         className="absolute left-0 top-0 -z-10 h-full w-full flex-[2] lg:relative lg:block"
       >
@@ -48,7 +48,7 @@ export default function LoginPage() {
           alt="Logo IBGU"
           width={160}
           height={80}
-          className="absolute right-10 top-10 z-20 object-cover object-center"
+          className="absolute right-10 top-10 z-20 hidden object-cover object-center lg:block"
         />
 
         <Image
@@ -57,7 +57,7 @@ export default function LoginPage() {
           fill
           className="-z-10 object-cover object-center brightness-[50%]"
         />
-      </section>
+      </div>
     </section>
   );
 }

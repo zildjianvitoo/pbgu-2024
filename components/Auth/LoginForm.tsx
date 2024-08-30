@@ -20,12 +20,11 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import "@/lib/zodCustomError";
 
 export const loginSchema = z.object({
-  email: z.string().email({
-    message: "Enter a valid email",
-  }),
-  password: z.string(),
+  email: z.string().email().min(1),
+  password: z.string().min(1),
 });
 
 export default function LoginForm() {
@@ -49,6 +48,7 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
+      console.log(response?.status);
 
       if (response?.ok) {
         toast.success("Login Berhasil!");

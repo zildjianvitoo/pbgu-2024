@@ -32,17 +32,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "@/lib/network/user";
 import { CreateUserType } from "@/lib/types/user";
 // import { createUser } from "@/lib/network/user";
+import "@/lib/zodCustomError";
 
 export const registerSchema = z.object({
-  name: z.string().min(1, {
-    message: "Nama tidak boleh kosong",
-  }),
-  email: z.string().email({
-    message: "Masukkan email yang valid",
-  }),
-  gender: z.string().min(1, {
-    message: "Gender tidak boleh kosong",
-  }),
+  name: z.string().min(1),
+  email: z.string().email().min(1),
+  gender: z.string().min(1),
   password: z.string().min(1),
 });
 
