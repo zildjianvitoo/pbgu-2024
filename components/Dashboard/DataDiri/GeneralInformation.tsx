@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { Pencil, Upload, XCircle } from "lucide-react";
-import Image from "next/image";
+import "@/lib/zodCustomError";
 import { cn } from "@/lib/utils";
 
 const generalSchema = z.object({

@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { CreateUserInformalEducationType } from "@/lib/types/user-informal-education";
 import { createUserInformalEducation } from "@/lib/network/user-informal-education";
 import { useSession } from "next-auth/react";
+import "@/lib/zodCustomError";
 
 const formalEducationSchema = z.object({
   userId: z.string().min(1),

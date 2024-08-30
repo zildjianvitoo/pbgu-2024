@@ -26,6 +26,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Pencil } from "lucide-react";
+import "@/lib/zodCustomError";
 
 const personalSchema = z.object({
   userId: z.string().min(1),

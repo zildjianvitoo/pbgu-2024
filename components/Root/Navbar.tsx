@@ -19,11 +19,11 @@ const links = [
   },
   {
     name: "Tentang BGU",
-    path: "/tentang-bgu",
+    path: "#",
   },
   {
     name: "Kegiatan",
-    path: "/kegiatan",
+    path: "#",
   },
 ];
 
@@ -125,7 +125,10 @@ export default function Navbar() {
               <Link href="/dashboard/data-diri">
                 <Button
                   variant="outline"
-                  className="rounded-full border-2 border-white bg-transparent px-9 text-white hover:bg-primary hover:text-background"
+                  className={cn(
+                    "rounded-full border-2 border-white bg-transparent px-9 text-white hover:bg-primary hover:text-background",
+                    { "border-primary text-primary": afterHero },
+                  )}
                 >
                   Dashboard
                 </Button>
@@ -134,7 +137,10 @@ export default function Navbar() {
               <Button
                 onClick={handleLogout}
                 variant="outline"
-                className="rounded-full border-2 border-white bg-transparent p-4 text-white hover:bg-primary hover:text-background"
+                className={cn(
+                  "rounded-full border-2 border-white bg-transparent p-4 text-white hover:bg-primary hover:text-background",
+                  { "border-primary text-primary": afterHero },
+                )}
               >
                 <LogOut />
               </Button>
