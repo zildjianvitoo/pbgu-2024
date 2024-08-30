@@ -1,5 +1,9 @@
+import { UserType } from "./user";
+
 export interface UserGeneralInfoType {
   id: string;
+  userId: string;
+  User: UserType;
   fullname: string;
   alias: string;
   nim: string;
@@ -18,6 +22,7 @@ export interface UserGeneralInfoType {
 }
 
 export interface CreateUserGeneralInfoType {
+  userId: string;
   fullname: string;
   alias: string;
   nim: string;

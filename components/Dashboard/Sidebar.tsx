@@ -36,7 +36,7 @@ const userLink = [
   },
   {
     name: "Unduh Formulir",
-    url: "/dashboard/prestasi",
+    url: "/dashboard/unduk-file",
     Icon: FileDown,
   },
 ];
@@ -65,12 +65,12 @@ export default function Sidebar() {
               fill
             />
           </Link>
-          <p className="text-3xl font-bold text-primary-foreground">
+          <p className="text-2xl font-bold text-primary-foreground lg:text-3xl">
             IBG Unsri
           </p>
           <X
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden"
+            className="text-background lg:hidden"
             size={24}
             strokeWidth={1.8}
           />
@@ -120,7 +120,7 @@ export default function Sidebar() {
       {!isOpen && (
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="fixed top-4 z-50 grid size-8 place-items-center rounded-e-lg bg-white text-background lg:hidden"
+          className="fixed top-4 z-50 grid size-8 place-items-center rounded-e-lg bg-white text-primary lg:hidden"
         >
           <ChevronRight size={24} strokeWidth={1.8} />
         </div>

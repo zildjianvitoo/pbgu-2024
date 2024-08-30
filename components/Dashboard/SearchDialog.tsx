@@ -1,6 +1,11 @@
 "use client";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import Link from "next/link";
@@ -10,16 +15,16 @@ export default function SearchDialog() {
   const [search, setSearch] = useState("");
   const [pages] = useState([
     {
-      name: "Dashboard",
-      url: "/",
+      name: "Data Diri",
+      url: "/dashboard/data-diri",
     },
     {
-      name: "Asset Management",
-      url: "/dashboard/asset-management",
+      name: "Pendidikan",
+      url: "/dashboard/pendidikan",
     },
     {
-      name: "Build Electrical Products",
-      url: "/dashboard/build-electrical-installation",
+      name: "Prestasi",
+      url: "/dashboard/prestasi",
     },
   ]);
 
@@ -54,21 +59,22 @@ export default function SearchDialog() {
           <hr />
           <div className="flex h-72 flex-col overflow-y-scroll px-8 py-4">
             {filteredSection?.map((section) => (
-              <Link
-                key={section.name}
-                href={section.url}
-                className="group pt-2 duration-300 hover:rounded-lg hover:bg-gray-100"
-              >
-                <DialogTrigger className="flex flex-col items-start">
-                  <div className="translate-x-2 font-semibold">
-                    {section.name}
+              <DialogClose key={section.name}>
+                <Link
+                  href={section.url}
+                  className="group pt-2 duration-300 hover:rounded-lg hover:bg-gray-100"
+                >
+                  <div className="flex flex-col items-start">
+                    <div className="translate-x-2 font-semibold">
+                      {section.name}
+                    </div>
+                    <div className="translate-x-2 text-sm text-slate-500">
+                      {section.url}
+                    </div>
                   </div>
-                  <div className="translate-x-2 text-sm text-slate-500">
-                    {section.url}
-                  </div>
-                </DialogTrigger>
-                <hr className="mt-2 group-hover:opacity-0" />
-              </Link>
+                  <hr className="mt-2 group-hover:opacity-0" />
+                </Link>
+              </DialogClose>
             ))}
           </div>
         </DialogContent>

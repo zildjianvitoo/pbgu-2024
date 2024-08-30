@@ -1,6 +1,5 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { IoMailOutline } from "react-icons/io5";
 import { PiLockKeyThin } from "react-icons/pi";

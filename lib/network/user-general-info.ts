@@ -11,6 +11,13 @@ export async function getAllUserGeneralInfos() {
   return data;
 }
 
+export async function getUserGeneralInfoByUserId(userId: string) {
+  const { data } = await axiosInstance.get<UserGeneralInfoType>(
+    "/user-general-infos/users/" + userId,
+  );
+  return data;
+}
+
 export async function getUserGeneralInfoById(id: string) {
   const { data } = await axiosInstance.get<UserGeneralInfoType>(
     "/user-general-infos/" + id,

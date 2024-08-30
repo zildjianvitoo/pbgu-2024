@@ -1,5 +1,9 @@
+import { UserType } from "./user";
+
 export interface UserFormalEducationType {
   id: string;
+  userId: string;
+  User: UserType;
   elementary: string;
   elementary_in: string;
   elementary_out: string;
@@ -14,6 +18,7 @@ export interface UserFormalEducationType {
 }
 
 export interface CreateUserFormalEducationType {
+  userId: string;
   elementary: string;
   elementary_in: string;
   elementary_out: string;

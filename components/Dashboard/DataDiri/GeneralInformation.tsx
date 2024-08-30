@@ -11,17 +11,20 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { CreateUserGeneralInfoType } from "@/lib/types/user-general-info";
-import { createUserGeneralInfo } from "@/lib/network/user-general-info";
+import {
+  createUserGeneralInfo,
+  getUserGeneralInfoByUserId,
+} from "@/lib/network/user-general-info";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 
 const generalSchema = z.object({
+  userId: z.string().min(1),
   fullname: z.string().min(1),
   alias: z.string().min(1),
   nim: z.string().min(1),
@@ -38,24 +41,32 @@ const generalSchema = z.object({
 });
 
 export default function GeneralInformation() {
+  const { data: session } = useSession();
+  const userId = session?.user.id || "";
   const query = useQueryClient();
+
+  const { data: userGeneralInfo } = useQuery({
+    queryFn: () => getUserGeneralInfoByUserId(userId),
+    queryKey: ["user-general-infos", userId],
+  });
 
   const form = useForm<z.infer<typeof generalSchema>>({
     resolver: zodResolver(generalSchema),
-    defaultValues: {
-      fullname: "",
-      alias: "",
-      nim: "",
-      major: "",
-      birth: "",
-      age: "",
-      gender: "",
-      address: "",
-      phone_number: "",
-      email: "",
-      line: "",
-      facebook: "",
-      instagram: "",
+    values: {
+      userId: userId,
+      fullname: userGeneralInfo?.fullname || "",
+      alias: userGeneralInfo?.alias || "",
+      nim: userGeneralInfo?.nim || "",
+      major: userGeneralInfo?.major || "",
+      birth: userGeneralInfo?.birth || "",
+      age: userGeneralInfo?.age || "",
+      gender: userGeneralInfo?.gender || "",
+      address: userGeneralInfo?.address || "",
+      phone_number: userGeneralInfo?.phone_number || "",
+      email: userGeneralInfo?.email || "",
+      line: userGeneralInfo?.line || "",
+      facebook: userGeneralInfo?.facebook || "",
+      instagram: userGeneralInfo?.instagram || "",
     },
   });
 
@@ -63,7 +74,7 @@ export default function GeneralInformation() {
     mutationFn: (values: CreateUserGeneralInfoType) =>
       createUserGeneralInfo(values),
     onSuccess: () => {
-      query.invalidateQueries({ queryKey: ["user-general-infos"] });
+      query.invalidateQueries({ queryKey: ["user-general-infos", userId] });
       toast.success("User General Information Added!");
     },
     onError: (error) => {
@@ -83,14 +94,16 @@ export default function GeneralInformation() {
         className="flex flex-col gap-6 rounded-xl bg-white p-6"
       >
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold text-primary">Data Umum Peserta</h2>
-          <p>
+          <h2 className="text-2xl font-semibold text-primary lg:text-3xl">
+            Data Umum Peserta
+          </h2>
+          <p className="text-sm lg:text-base">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
             corporis nisi iste?
           </p>
         </div>
 
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="fullname"
@@ -126,7 +139,7 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="nim"
@@ -157,7 +170,7 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="birth"
@@ -190,7 +203,7 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="gender"
@@ -219,7 +232,7 @@ export default function GeneralInformation() {
           />
         </div>
         <Separator />
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="phone_number"
@@ -247,7 +260,7 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="line"
@@ -277,7 +290,7 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <div className="flex w-full gap-6">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
           <FormField
             control={form.control}
             name="instagram"
@@ -298,8 +311,8 @@ export default function GeneralInformation() {
           />
         </div>
         <Separator />
-        <div className="flex items-center justify-between">
-          <p className="flex-1 font-medium">
+        <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
+          <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
             <span className="text-xl text-red-500">*</span>Silahkan konfirmasi
             data sebelum melanjutkan.
             <br /> Pastikan data yang anda isikan sudah benar!

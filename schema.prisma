@@ -1,92 +1,180 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
-    id                String  @id @default(cuid())
-    userId            String  @map("user_id")
-    type              String
-    provider          String
-    providerAccountId String  @map("provider_account_id")
-    refresh_token     String?
-    access_token      String?
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String?
-    session_state     String?
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
 
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
-    @@map("accounts")
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique @map("session_token")
-    userId       String   @map("user_id")
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@map("sessions")
+  @@map("sessions")
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime? @map("email_verified")
-    password      String
-    image         String?
-    role          String    @default("user")
-    accounts      Account[]
-    sessions      Session[]
-    createdAt     DateTime  @default(now())
-    updatedAt     DateTime  @updatedAt
+  id                           String                         @id @default(cuid())
+  name                         String?
+  email                        String?                        @unique
+  emailVerified                DateTime?                      @map("email_verified")
+  password                     String
+  image                        String?
+  role                         String                         @default("user")
+  accounts                     Account[]
+  sessions                     Session[]
+  createdAt                    DateTime                       @default(now())
+  updatedAt                    DateTime                       @updatedAt
+  UserGeneralInfo              UserGeneralInfo?
+  UserPersonalInfo             UserPersonalInfo?
+  UserFormalEducation          UserFormalEducation?
+  UserInformalEducation        UserInformalEducation[]
+  UserCompetence               UserCompetence[]
+  UserOrganizationalExperience UserOrganizationalExperience[]
+  UserAcheivement              UserAcheivement[]
 
-    @@map("users")
+  @@map("users")
 }
 
 model VerificationToken {
-    identifier String
-    token      String
-    expires    DateTime
+  identifier String
+  token      String
+  expires    DateTime
 
-    @@unique([identifier, token])
-    @@map("verificationtokens")
+  @@unique([identifier, token])
+  @@map("verificationtokens")
 }
 
 model News {
-    id        String   @id @unique @default(cuid())
-    name      String
-    slug      String
-    image     String
-    content   String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @unique @default(cuid())
+  name      String
+  slug      String
+  image     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model UserGeneralInfo {
-    id           String   @id @unique @default(cuid())
-    fullname     String
-    alias        String
-    nim          String
-    major        String
-    birth        String
-    age          String
-    gender       String
-    address      String
-    phone_number String
-    email        String
-    line         String
-    facebook     String
-    instagram    String
-    createdAt    DateTime @default(now())
-    updatedAt    DateTime @updatedAt
+  id           String   @id @unique @default(cuid())
+  userId       String   @unique
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullname     String
+  alias        String
+  nim          String
+  major        String
+  birth        String
+  age          String
+  gender       String
+  address      String
+  phone_number String
+  email        String
+  line         String
+  facebook     String
+  instagram    String
+  picture      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model UserPersonalInfo {
+  id                   String   @id @unique @default(cuid())
+  userId               String   @unique
+  User                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  height               String
+  weight               String
+  foreign_language     String
+  hobby                String
+  father               String
+  mother               String
+  parents_job          String
+  parents_phone_number String
+  parents_address      String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model UserFormalEducation {
+  id             String   @id @unique @default(cuid())
+  userId         String   @unique
+  User           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  elementary     String
+  elementary_in  String
+  elementary_out String
+  junior         String
+  junior_in      String
+  junior_out     String
+  senior         String
+  senior_in      String
+  senior_out     String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model UserInformalEducation {
+  id          String   @id @unique @default(cuid())
+  userId      String
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String
+  institution String
+  year_start  String
+  year_end    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UserCompetence {
+  id        String   @id @unique @default(cuid())
+  userId    String
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  field     String
+  skill     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserOrganizationalExperience {
+  id           String   @id @unique @default(cuid())
+  userId       String
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization String
+  position     String
+  period       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model UserAcheivement {
+  id          String   @id @unique @default(cuid())
+  userId      String
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement String
+  instance    String
+  year        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

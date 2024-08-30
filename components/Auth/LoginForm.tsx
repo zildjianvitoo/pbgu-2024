@@ -52,7 +52,7 @@ export default function LoginForm() {
 
       if (response?.ok) {
         toast.success("Login Berhasil!");
-        router.replace("/");
+        router.replace("/dashboard/data-diri");
       } else {
         toast.error("Email atau password salah!");
       }

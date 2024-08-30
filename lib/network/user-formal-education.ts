@@ -11,6 +11,13 @@ export async function getAllUserFormalEducations() {
   return data;
 }
 
+export async function getUserFormalEducationByUserId(userId: string) {
+  const { data } = await axiosInstance.get<UserFormalEducationType>(
+    "/user-formal-educations/users/" + userId,
+  );
+  return data;
+}
+
 export async function getUserFormalEducationById(id: string) {
   const { data } = await axiosInstance.get<UserFormalEducationType>(
     "/user-formal-educations/" + id,

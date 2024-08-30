@@ -11,6 +11,13 @@ export async function getAllUserPersonalInfos() {
   return data;
 }
 
+export async function getUserPersonalInfoByUserId(userId: string) {
+  const { data } = await axiosInstance.get<UserPersonalInfoType>(
+    "/user-personal-infos/users/" + userId,
+  );
+  return data;
+}
+
 export async function getUserPersonalInfoById(id: string) {
   const { data } = await axiosInstance.get<UserPersonalInfoType>(
     "/user-personal-infos/" + id,

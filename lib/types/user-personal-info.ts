@@ -1,5 +1,9 @@
+import { UserType } from "./user";
+
 export interface UserPersonalInfoType {
   id: string;
+  userId: string;
+  User: UserType;
   height: string;
   weight: string;
   foreign_language: string;
@@ -14,6 +18,7 @@ export interface UserPersonalInfoType {
 }
 
 export interface CreateUserPersonalInfoType {
+  userId: string;
   height: string;
   weight: string;
   foreign_language: string;
