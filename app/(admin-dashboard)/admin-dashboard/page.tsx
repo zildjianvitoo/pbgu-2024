@@ -1,3 +1,4 @@
+"use client";
 import { BarChart2 } from "lucide-react";
 
 import RegistrantTable from "@/components/AdminDashboard/RegistrantTable";
@@ -5,9 +6,13 @@ import RegistrantTable from "@/components/AdminDashboard/RegistrantTable";
 import { getAllUsers } from "@/lib/network/user";
 import { registrantColumn } from "@/lib/columns/registrant-column";
 import { getAllUserGeneralInfos } from "@/lib/network/user-general-info";
+import { useQuery } from "@tanstack/react-query";
 
-export default async function Dashboard() {
-  const data = await getAllUserGeneralInfos();
+export default function Dashboard() {
+  const { data: userGeneralInfo } = useQuery({
+    queryFn: () => getAllUserGeneralInfos(),
+    queryKey: ["user-general-infos"],
+  });
 
   return (
     <section className="flex w-full flex-col gap-4 py-6 lg:gap-6">
@@ -22,7 +27,9 @@ export default async function Dashboard() {
         <div className="box-shadow flex flex-[1] flex-col items-center justify-center gap-2 rounded-md bg-white p-6">
           <div className="relative grid aspect-square w-52 place-items-center rounded-full bg-primary">
             <div className="flex aspect-square w-44 flex-col items-center justify-center gap-2 rounded-full bg-white">
-              <p className="text-4xl font-bold text-primary">{data.length}</p>
+              <p className="text-4xl font-bold text-primary">
+                {userGeneralInfo?.length || 0}
+              </p>
               <p className="flex gap-1 text-xl font-medium text-secondary">
                 <BarChart2 />
                 Total Data
@@ -40,7 +47,10 @@ export default async function Dashboard() {
         </div> */}
       </div>
 
-      <RegistrantTable columns={registrantColumn} data={data || []} />
+      <RegistrantTable
+        columns={registrantColumn}
+        data={userGeneralInfo || []}
+      />
     </section>
   );
 }
