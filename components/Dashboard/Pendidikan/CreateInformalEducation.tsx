@@ -52,6 +52,7 @@ export default function CreateInformalEducation() {
       queryClient.invalidateQueries({
         queryKey: ["user-informal-educations", userId],
       });
+      form.reset();
     },
     onError: (error) => {
       toast.error("Terjadi Kesalahan Pada Server!");

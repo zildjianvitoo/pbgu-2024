@@ -54,7 +54,8 @@ export async function updateUserGeneralInfo(
   values: CreateUserGeneralInfoType,
 ) {
   // const formData = new FormData();
-
+  console.log(values);
+  console.log("INI IDDD", id);
   // formData.append("userId", values.userId);
   // formData.append("fullname", values.fullname);
   // formData.append("alias", values.alias);

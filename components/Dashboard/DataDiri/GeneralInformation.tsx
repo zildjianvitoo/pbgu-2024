@@ -18,6 +18,7 @@ import { CreateUserGeneralInfoType } from "@/lib/types/user-general-info";
 import {
   createUserGeneralInfo,
   getUserGeneralInfoByUserId,
+  updateUserGeneralInfo,
 } from "@/lib/network/user-general-info";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,13 @@ import { useState } from "react";
 import { Pencil, Upload, XCircle } from "lucide-react";
 import "@/lib/zodCustomError";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const generalSchema = z.object({
   userId: z.string().min(1),
@@ -34,11 +42,14 @@ const generalSchema = z.object({
   nim: z.string().min(1),
   major: z.string().min(1),
   birth: z.string().min(1),
-  age: z.string().min(1),
+  age: z.string().min(1).regex(/^\d+$/, "Hanya angka yang diperbolehkan"),
   gender: z.string().min(1),
   address: z.string().min(1),
-  phone_number: z.string().min(1),
-  email: z.string().min(1),
+  phone_number: z
+    .string()
+    .min(1)
+    .regex(/^\d+$/, "Hanya angka yang diperbolehkan"),
+  email: z.string().min(1).email(),
   line: z.string().min(1),
   facebook: z.string().min(1),
   instagram: z.string().min(1),
@@ -58,7 +69,7 @@ export default function GeneralInformation() {
   const form = useForm<z.infer<typeof generalSchema>>({
     resolver: zodResolver(generalSchema),
     values: {
-      userId: userId,
+      userId,
       fullname: userGeneralInfo?.fullname || "",
       alias: userGeneralInfo?.alias || "",
       nim: userGeneralInfo?.nim || "",
@@ -80,7 +91,22 @@ export default function GeneralInformation() {
       createUserGeneralInfo(values),
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["user-general-infos", userId] });
-      toast.success("User General Information Added!");
+      setIsUpdating(false);
+      toast.success("Data umum berhasil ditambah!");
+    },
+    onError: (error) => {
+      toast.error("Something went wrong!");
+      console.error(error);
+    },
+  });
+
+  const { mutate: onUpdateUserGeneralInfo } = useMutation({
+    mutationFn: (values: CreateUserGeneralInfoType) =>
+      updateUserGeneralInfo(userGeneralInfo?.id!, values),
+    onSuccess: () => {
+      query.invalidateQueries({ queryKey: ["user-general-infos", userId] });
+      setIsUpdating(false);
+      toast.success("Data umum berhasil diupdate!");
     },
     onError: (error) => {
       toast.error("Something went wrong!");
@@ -89,7 +115,11 @@ export default function GeneralInformation() {
   });
 
   async function onSubmit(values: z.infer<typeof generalSchema>) {
-    onCreateUserGeneralInfo(values);
+    if (userGeneralInfo?.createdAt) {
+      onUpdateUserGeneralInfo(values);
+    } else {
+      onCreateUserGeneralInfo(values);
+    }
   }
 
   return (
@@ -253,14 +283,23 @@ export default function GeneralInformation() {
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Jenis Kelamin</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={!isUpdating}
-                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
-                    placeholder="Jenis Kelamin anda"
-                    {...field}
-                  />
-                </FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger
+                      disabled={!isUpdating}
+                      className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    >
+                      <SelectValue placeholder="Pilih jenis kelamin" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="!border-foreground disabled:border-foreground/5 disabled:opacity-100">
+                    <SelectItem value="Laki-laki">Laki-laki</SelectItem>
+                    <SelectItem value="Perempuan">Perempuan</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

@@ -49,6 +49,7 @@ export default function CreateOrganizationalExperience() {
         queryKey: ["user-organizational-experiences", userId],
       });
       toast.success("Berhasil Menambahkan Data Pengalaman Organisasi!");
+      form.reset();
     },
     onError: (error) => {
       toast.error("Terjadi Kesalahan Pada Server!");

@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const userId = params.userId;
-    const result = await prisma.userAcheivement.findMany({
+    const result = await prisma.userOrganizationalExperience.findMany({
       where: {
         userId: userId,
       },

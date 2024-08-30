@@ -23,7 +23,7 @@ export interface UserGeneralInfoType {
 }
 
 export interface CreateUserGeneralInfoType {
-  userId: string;
+  userId?: string;
   fullname: string;
   alias: string;
   nim: string;

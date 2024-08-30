@@ -30,14 +30,17 @@ import "@/lib/zodCustomError";
 
 const personalSchema = z.object({
   userId: z.string().min(1),
-  height: z.string().min(1),
-  weight: z.string().min(1),
+  height: z.string().min(1).regex(/^\d+$/, "Hanya angka yang diperbolehkan"),
+  weight: z.string().min(1).regex(/^\d+$/, "Hanya angka yang diperbolehkan"),
   foreign_language: z.string().min(1),
   hobby: z.string().min(1),
   father: z.string().min(1),
   mother: z.string().min(1),
   parents_job: z.string().min(1),
-  parents_phone_number: z.string().min(1),
+  parents_phone_number: z
+    .string()
+    .min(1)
+    .regex(/^\d+$/, "Hanya angka yang diperbolehkan"),
   parents_address: z.string().min(1),
 });
 
@@ -332,7 +335,12 @@ export default function PersonalInformation() {
                 konfirmasi data sebelum melanjutkan.
                 <br /> Pastikan data yang anda isikan sudah benar!
               </p>
-              <Button className="flex-1">Simpan Data</Button>
+              <Button
+                disabled={form.formState.isSubmitting}
+                className="flex-1 disabled:opacity-80"
+              >
+                Simpan Data
+              </Button>
             </div>
           </>
         )}

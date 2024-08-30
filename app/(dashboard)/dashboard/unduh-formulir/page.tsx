@@ -83,6 +83,7 @@ export default function UnduhFormulir() {
                     achievements={userAchievements}
                   />
                 }
+                fileName="Formulir Pendaftaran PBGU 2024"
                 className="flex items-center gap-3"
               >
                 <Download />

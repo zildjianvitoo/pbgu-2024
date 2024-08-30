@@ -45,6 +45,7 @@ export default function CreateCompetence() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user-competences", userId] });
       toast.success("Berhasil Menambahkan Data Kemampuan dan Kompet,ensi!");
+      form.reset();
     },
     onError: (error) => {
       toast.error("Terjadi Kesalahan Pada Server!");

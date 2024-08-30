@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#FFF",
     fontSize: 12,
-    paddingVertical: 24,
+    paddingTop: 24,
     paddingHorizontal: 0,
   },
   head: {
@@ -132,6 +132,7 @@ export default function ParticipantFile({
     organizationalExperiences &&
     achievements
   ) {
+    console.log(organizationalExperiences);
     return (
       <Document>
         <Page wrap={false} size="A4" style={styles.page}>
@@ -151,8 +152,7 @@ export default function ParticipantFile({
               </Text>
               <Text style={styles.subHeader}>Contact Person:</Text>
               <Text style={styles.subHeader}>
-                M. Rifqi Satria (085783780173) / Venadya Fabellira
-                (082184377040)
+                M. Sultan Asfari (081377748943) / Shafira Junisar (085720116361)
               </Text>
             </View>
             <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
@@ -180,7 +180,7 @@ export default function ParticipantFile({
             <Text style={styles.header}>
               PEMILIHAN BUJANG GADIS UNIVERSITAS SRIWIJAYA
             </Text>
-            <Text style={styles.header}>TAHUN 2023</Text>
+            <Text style={styles.header}>TAHUN 2024</Text>
           </View>
           <View
             style={{
@@ -378,8 +378,7 @@ export default function ParticipantFile({
               </Text>
               <Text style={styles.subHeader}>Contact Person:</Text>
               <Text style={styles.subHeader}>
-                M. Rifqi Satria (085783780173) / Venadya Fabellira
-                (082184377040)
+                M. Sultan Asfari (081377748943) / Shafira Junisar (085720116361)
               </Text>
             </View>
             <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
@@ -701,8 +700,7 @@ export default function ParticipantFile({
               </Text>
               <Text style={styles.subHeader}>Contact Person:</Text>
               <Text style={styles.subHeader}>
-                M. Rifqi Satria (085783780173) / Venadya Fabellira
-                (082184377040)
+                M. Sultan Asfari (081377748943) / Shafira Junisar (085720116361)
               </Text>
             </View>
             <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
