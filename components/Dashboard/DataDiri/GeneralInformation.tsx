@@ -22,6 +22,10 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { Pencil, Upload, XCircle } from "lucide-react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const generalSchema = z.object({
   userId: z.string().min(1),
@@ -41,6 +45,7 @@ const generalSchema = z.object({
 });
 
 export default function GeneralInformation() {
+  const [isUpdating, setIsUpdating] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const query = useQueryClient();
@@ -84,23 +89,44 @@ export default function GeneralInformation() {
   });
 
   async function onSubmit(values: z.infer<typeof generalSchema>) {
-    onCreateUserGeneralInfo({ ...values });
+    onCreateUserGeneralInfo(values);
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-6 rounded-xl bg-white p-6"
+        className={cn(
+          "flex flex-col gap-6 rounded-xl bg-white p-6 outline outline-transparent",
+          {
+            "outline-primary": isUpdating,
+          },
+        )}
       >
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-primary lg:text-3xl">
-            Data Umum Peserta
-          </h2>
-          <p className="text-sm lg:text-base">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-            corporis nisi iste?
-          </p>
+        <div className="flex flex-col justify-between gap-y-6 lg:flex-row lg:items-center lg:gap-y-0">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-semibold text-primary lg:text-3xl">
+              Data Umum Peserta
+            </h2>
+            <p className="text-sm lg:text-base">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
+              corporis nisi iste?
+            </p>
+          </div>
+          {isUpdating ? (
+            <div className="flex h-10 items-center gap-3 rounded-lg border-2 border-dashed border-primary bg-primary/10 px-4 py-2 text-primary">
+              <Pencil />
+              Sedang Mengisi Data
+            </div>
+          ) : (
+            <Button
+              onClick={() => setIsUpdating(true)}
+              className="flex items-center gap-3"
+            >
+              <Pencil />
+              {userGeneralInfo ? "Modifikasi Data" : "Isi Data"}
+            </Button>
+          )}
         </div>
 
         <div className="flex w-full flex-col gap-6 lg:flex-row">
@@ -112,6 +138,8 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Nama Lengkap</FormLabel>
                 <FormControl>
                   <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi dengan Nama Lengkap anda"
                     {...field}
                   />
@@ -130,6 +158,8 @@ export default function GeneralInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi dengan Nama Panggilan atau Alias anda"
                     {...field}
                   />
@@ -148,6 +178,8 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">NIM</FormLabel>
                 <FormControl>
                   <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi NIM perkuliahan anda di UNSRI"
                     {...field}
                   />
@@ -163,7 +195,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Prodi/Jurusan</FormLabel>
                 <FormControl>
-                  <Input placeholder="Isi Prodi dan Jurusan anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Isi Prodi dan Jurusan anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -181,6 +218,8 @@ export default function GeneralInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi Tempat / Tanggal Lahir anda"
                     {...field}
                   />
@@ -196,7 +235,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Usia</FormLabel>
                 <FormControl>
-                  <Input placeholder="Usia anda saat mendaftar" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Usia anda saat mendaftar"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -211,7 +255,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Jenis Kelamin</FormLabel>
                 <FormControl>
-                  <Input placeholder="Jenis Kelamin anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Jenis Kelamin anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -224,7 +273,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Alamat</FormLabel>
                 <FormControl>
-                  <Input placeholder="Alamat tempat tinggal anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Alamat tempat tinggal anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -240,7 +294,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">Nomor Telepon</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nomor Telepon/Whatsapp anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Nomor Telepon/Whatsapp anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -253,7 +312,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">E-mail</FormLabel>
                 <FormControl>
-                  <Input placeholder="Email aktif anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Email aktif anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -268,7 +332,12 @@ export default function GeneralInformation() {
               <FormItem className="flex-1">
                 <FormLabel className="font-semibold">ID Line</FormLabel>
                 <FormControl>
-                  <Input placeholder="ID Line anda" {...field} />
+                  <Input
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="ID Line anda"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -283,25 +352,10 @@ export default function GeneralInformation() {
                   Username Facebook
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Username Akun Facebook anda" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex w-full flex-col gap-6 lg:flex-row">
-          <FormField
-            control={form.control}
-            name="instagram"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="font-semibold">
-                  Username Instagram
-                </FormLabel>
-                <FormControl>
                   <Input
-                    placeholder="Username Akun Instagram anda"
+                    disabled={!isUpdating}
+                    className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                    placeholder="Username Akun Facebook anda"
                     {...field}
                   />
                 </FormControl>
@@ -310,16 +364,90 @@ export default function GeneralInformation() {
             )}
           />
         </div>
-        <Separator />
-        <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
-          <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
-            <span className="text-xl text-red-500">*</span>Silahkan konfirmasi
-            data sebelum melanjutkan.
-            <br /> Pastikan data yang anda isikan sudah benar!
-          </p>
-          <Button className="flex-1">Simpan Data</Button>
-        </div>
+
+        <FormField
+          control={form.control}
+          name="instagram"
+          render={({ field }) => (
+            <FormItem className="flex-1">
+              <FormLabel className="font-semibold">
+                Username Instagram
+              </FormLabel>
+              <FormControl>
+                <Input
+                  disabled={!isUpdating}
+                  className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
+                  placeholder="Username Akun Instagram anda"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {isUpdating && (
+          <>
+            <Separator />
+            <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
+              <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
+                <span className="text-xl text-red-500">*</span>Silahkan
+                konfirmasi data sebelum melanjutkan.
+                <br /> Pastikan data yang anda isikan sudah benar!
+              </p>
+              <Button className="flex-1">Simpan Data</Button>
+            </div>
+          </>
+        )}
       </form>
     </Form>
   );
 }
+
+// <div className="flex h-72 flex-[1] flex-col gap-6 rounded-md bg-white p-6">
+//   {pictureUrl ? (
+//     <div className="relative flex h-full w-full flex-col items-center rounded-md border-[3px] border-dashed">
+//       <div className="relative aspect-[3/4] w-2/3 items-center justify-center border-2 p-1">
+//         <Image
+//           src={pictureUrl}
+//           fill
+//           className="object-cover object-center"
+//           alt="Foto Peserta"
+//         />
+//       </div>
+//       <div
+//         onClick={removePicture}
+//         className="flex w-full cursor-pointer items-center justify-end gap-2 p-2 text-red-400"
+//       >
+//         <XCircle size={18} />
+//         <span className="text-lg font-medium">Hapus Foto</span>
+//       </div>
+//     </div>
+//   ) : (
+//     <div className="relative flex h-full w-full flex-col items-center justify-center rounded-md border-[3px] border-dashed py-12">
+//       <h2 className="text-xl font-medium">Foto Peserta (3 x 4)</h2>
+//       <div className="mt-8 flex size-12 items-center justify-center rounded-md bg-muted text-muted-foreground">
+//         <Upload size={28} strokeWidth={1.75} />
+//       </div>
+//       <div className="mt-8 flex flex-col items-center gap-2 text-center">
+//         <Button
+//           type="button"
+//           className="max-w-fit bg-sky-100 text-primary"
+//         >
+//           Upload Foto Anda
+//           <FormLabel className="absolute left-0 top-0 h-full w-full border opacity-0">
+//             SMTH
+//           </FormLabel>
+//           <FormControl>
+//             <Input
+//               disabled={!isUpdating}
+//               className="absolute left-0 top-0 border-foreground opacity-0 disabled:border-foreground/5 disabled:opacity-100"
+//               type="file"
+//               onChange={handlePicture}
+//             />
+//           </FormControl>
+//         </Button>
+//       </div>
+//     </div>
+//   )}
+// </div>;

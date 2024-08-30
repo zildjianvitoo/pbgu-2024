@@ -18,8 +18,6 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    console.log(data);
-
     const result = await prisma.userFormalEducation.create({
       data,
     });

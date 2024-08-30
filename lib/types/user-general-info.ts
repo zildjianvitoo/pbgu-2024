@@ -17,6 +17,7 @@ export interface UserGeneralInfoType {
   line: string;
   facebook: string;
   instagram: string;
+  picture?: string | File;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -36,4 +37,5 @@ export interface CreateUserGeneralInfoType {
   line: string;
   facebook: string;
   instagram: string;
+  picture?: string | File;
 }
