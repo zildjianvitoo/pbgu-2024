@@ -119,11 +119,12 @@ export default function Sidebar() {
                     : "hover:bg-background hover:text-primary",
                 )}
               >
-                <div className={`"justify-center flex items-center gap-5`}>
+                <div
+                  onClick={handleLogout}
+                  className={`"justify-center flex items-center gap-5`}
+                >
                   <LogOut strokeWidth={1.8} size={24} />
-                  <div onClick={handleLogout} className="text-xl">
-                    Log Out
-                  </div>
+                  <div className="text-xl">Log Out</div>
                 </div>
               </Link>
             </div>
