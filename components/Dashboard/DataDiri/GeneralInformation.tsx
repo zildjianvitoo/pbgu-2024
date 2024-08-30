@@ -98,8 +98,7 @@ export default function GeneralInformation() {
             Data Umum Peserta
           </h2>
           <p className="text-sm lg:text-base">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-            corporis nisi iste?
+            Isi data umum mengenai diri Kamu
           </p>
         </div>
 

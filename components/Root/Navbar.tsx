@@ -35,9 +35,9 @@ export default function Navbar() {
   const router = useRouter();
 
   function handleLogout() {
-    router.push("/");
     signOut();
-    toast.success("Logged Out successfully!");
+    router.push("/");
+    toast.success("Log Out berhasil!");
   }
 
   useEffect(() => {
@@ -125,7 +125,7 @@ export default function Navbar() {
               <Link href="/dashboard/data-diri">
                 <Button
                   variant="outline"
-                  className="rounded-full border-2 border-primary bg-transparent px-9 text-primary hover:bg-primary hover:text-background"
+                  className="rounded-full border-2 border-white bg-transparent px-9 text-white hover:bg-primary hover:text-background"
                 >
                   Dashboard
                 </Button>
@@ -134,7 +134,7 @@ export default function Navbar() {
               <Button
                 onClick={handleLogout}
                 variant="outline"
-                className="rounded-full border-2 border-primary bg-transparent p-4 text-primary hover:bg-primary hover:text-background"
+                className="rounded-full border-2 border-white bg-transparent p-4 text-white hover:bg-primary hover:text-background"
               >
                 <LogOut />
               </Button>

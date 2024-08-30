@@ -121,8 +121,7 @@ export default function PersonalInformation() {
               Data Pribadi Peserta
             </h2>
             <p className="text-sm lg:text-base">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-              corporis nisi iste?
+              Isi data pribadi mengenai diri Kamu
             </p>
           </div>
           {isUpdating ? (
