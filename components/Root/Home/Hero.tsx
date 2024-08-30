@@ -78,7 +78,7 @@ export default function Hero({}: Props) {
       <div className="absolute bottom-[27%] z-10 hidden h-full w-full bg-gradient-to-t from-black to-transparent to-[10%] lg:block" />
       {/* <div className="absolute left-0 top-0 -z-10 h-full w-full bg-primary object-cover" /> */}
       <div className="absolute bottom-0 left-0 z-10 hidden h-[27%] w-full bg-black lg:block" />
-      <figure className="relative z-[5] mx-auto flex w-fit items-center justify-center md:bottom-24 lg:bottom-[55%]">
+      <figure className="relative z-[5] mx-auto flex w-fit items-center justify-center md:bottom-24 lg:bottom-44 xl:bottom-52">
         <Image
           src={"/images/bgu23.png"}
           alt="bgu 23"
