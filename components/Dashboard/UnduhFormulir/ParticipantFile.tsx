@@ -475,7 +475,7 @@ export default function ParticipantFile({
               }}
             >
               <View style={{ ...styles.tableHeader, width: "10%" }}>
-                <Text>2</Text>
+                <Text>3</Text>
               </View>
               <View style={{ ...styles.tableData, width: "40%" }}>
                 <Text>{formalEducation.senior}</Text>
