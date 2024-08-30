@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingTop: 24,
     paddingHorizontal: 0,
+    minHeight: "100%",
   },
   head: {
     display: "flex",
@@ -361,7 +362,7 @@ export default function ParticipantFile({
             </View>
           </View>
         </Page>
-        <Page wrap={false} size="A4" style={styles.page}>
+        <Page size="A4" style={styles.page}>
           <View style={styles.head}>
             <Image style={styles.unsri} src="/images/logo-unsri.png" />
             <View
@@ -631,59 +632,68 @@ export default function ParticipantFile({
           <View
             style={{
               width: "100%",
-              height: 5,
-              backgroundColor: "yellow",
-              marginTop: 24,
-            }}
-          />
-          <View
-            style={{
-              width: "100%",
-              height: 80,
-              backgroundColor: "orange",
-              paddingHorizontal: 48,
+              position: "absolute",
+              bottom: 0,
+              left: 0,
             }}
           >
             <View
               style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 6,
-                marginTop: 12,
-                alignItems: "center",
+                width: "100%",
+                height: 5,
+                backgroundColor: "yellow",
+                marginTop: 24,
               }}
-            >
-              <Image
-                style={{
-                  width: 18,
-                  height: 18,
-                }}
-                src="/images/insta-icon.png"
-              />
-              <Text>: @bgunsri</Text>
-            </View>
+            />
             <View
               style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 6,
-                marginTop: 12,
-                alignItems: "center",
+                width: "100%",
+                height: 80,
+                backgroundColor: "orange",
+                paddingHorizontal: 48,
               }}
             >
-              <Image
+              <View
                 style={{
-                  width: 18,
-                  height: 18,
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 6,
+                  marginTop: 12,
+                  alignItems: "center",
                 }}
-                src="/images/mail-icon.png"
-              />
+              >
+                <Image
+                  style={{
+                    width: 18,
+                    height: 18,
+                  }}
+                  src="/images/insta-icon.png"
+                />
+                <Text>: @bgunsri</Text>
+              </View>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 6,
+                  marginTop: 12,
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  style={{
+                    width: 18,
+                    height: 18,
+                  }}
+                  src="/images/mail-icon.png"
+                />
 
-              <Text>: bgu.unsri@gmail.com</Text>
+                <Text>: bgu.unsri@gmail.com</Text>
+              </View>
             </View>
           </View>
         </Page>
-        <Page wrap={false} size="A4" style={styles.page}>
+        <Page size="A4" style={styles.page}>
           <View style={styles.head}>
             <Image style={styles.unsri} src="/images/logo-unsri.png" />
             <View
@@ -776,55 +786,64 @@ export default function ParticipantFile({
           <View
             style={{
               width: "100%",
-              height: 5,
-              backgroundColor: "yellow",
-              marginTop: 24,
-            }}
-          />
-          <View
-            style={{
-              width: "100%",
-              height: 80,
-              backgroundColor: "orange",
-              paddingHorizontal: 48,
+              position: "absolute",
+              bottom: 0,
+              left: 0,
             }}
           >
             <View
               style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 6,
-                marginTop: 12,
-                alignItems: "center",
+                width: "100%",
+                height: 5,
+                backgroundColor: "yellow",
+                marginTop: 24,
               }}
-            >
-              <Image
-                style={{
-                  width: 18,
-                  height: 18,
-                }}
-                src="/images/insta-icon.png"
-              />
-              <Text>: @bgunsri</Text>
-            </View>
+            />
             <View
               style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 6,
-                marginTop: 12,
-                alignItems: "center",
+                width: "100%",
+                height: 80,
+                backgroundColor: "orange",
+                paddingHorizontal: 48,
               }}
             >
-              <Image
+              <View
                 style={{
-                  width: 18,
-                  height: 18,
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 6,
+                  marginTop: 12,
+                  alignItems: "center",
                 }}
-                src="/images/mail-icon.png"
-              />
+              >
+                <Image
+                  style={{
+                    width: 18,
+                    height: 18,
+                  }}
+                  src="/images/insta-icon.png"
+                />
+                <Text>: @bgunsri</Text>
+              </View>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 6,
+                  marginTop: 12,
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  style={{
+                    width: 18,
+                    height: 18,
+                  }}
+                  src="/images/mail-icon.png"
+                />
 
-              <Text>: bgu.unsri@gmail.com</Text>
+                <Text>: bgu.unsri@gmail.com</Text>
+              </View>
             </View>
           </View>
         </Page>
