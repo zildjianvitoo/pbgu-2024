@@ -48,13 +48,13 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
-      console.log(response?.status);
+      console.log(response?.error);
 
-      if (response?.ok) {
+      if (response?.error) {
+        toast.error("Email atau password salah!");
+      } else {
         toast.success("Login Berhasil!");
         router.push("/dashboard/data-diri");
-      } else {
-        toast.error("Email atau password salah!");
       }
     } catch (error) {
       console.log(error);

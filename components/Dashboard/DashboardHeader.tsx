@@ -27,7 +27,7 @@ export default function DashboardHeader({
     toast.success("Logged Out berhasil!");
   }
   return (
-    <div className="flex w-full flex-col gap-4 px-4 py-6 lg:flex-row lg:items-end lg:justify-between lg:gap-6 lg:p-6">
+    <div className="flex w-full flex-col gap-4 px-4 py-6 max-md:px-10 lg:flex-row lg:items-end lg:justify-between lg:gap-6 lg:p-6">
       <div className="flex items-center gap-5">
         {!title && (
           <figure className="relative size-14 overflow-hidden rounded-full border-2">

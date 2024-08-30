@@ -9,7 +9,7 @@ import { getUserGeneralInfoByUserId } from "@/lib/network/user-general-info";
 import { getUserInformalEducationsByUserId } from "@/lib/network/user-informal-education";
 import { getUserOrganizationalExperiencesByUserId } from "@/lib/network/user-organizational-experience";
 import { getUserPersonalInfoByUserId } from "@/lib/network/user-personal-info";
-import { pdf } from "@react-pdf/renderer";
+import { pdf, PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { useQuery } from "@tanstack/react-query";
 import { saveAs } from "file-saver";
 
@@ -55,22 +55,6 @@ export default function UnduhFormulir() {
     queryKey: ["user-achievements", userId],
   });
 
-  const downloadPdf = async () => {
-    const fileName = "test.pdf";
-    const blob = await pdf(
-      <ParticipantFile
-        generalInfo={userGeneralInfo}
-        personalInfo={userPersonalInfo}
-        formalEducation={userFormalEducation}
-        informalEducations={userInformalEducations}
-        competences={userCompetences}
-        organizationalExperiences={userOrganizationalExperiences}
-        achievements={userAchievements}
-      />,
-    ).toBlob();
-    saveAs(blob, fileName);
-  };
-
   if (
     userPersonalInfo &&
     userFormalEducation &&
@@ -86,12 +70,38 @@ export default function UnduhFormulir() {
             Formulir Data Peserta PBGU
           </h1>
           <div className="relative mt-4 flex justify-end gap-6 lg:mt-0 lg:justify-start">
-            <Button onClick={downloadPdf} className="flex items-center gap-3">
-              <Download />
-              Unduh File
+            <Button>
+              <PDFDownloadLink
+                document={
+                  <ParticipantFile
+                    generalInfo={userGeneralInfo}
+                    personalInfo={userPersonalInfo}
+                    formalEducation={userFormalEducation}
+                    informalEducations={userInformalEducations}
+                    competences={userCompetences}
+                    organizationalExperiences={userOrganizationalExperiences}
+                    achievements={userAchievements}
+                  />
+                }
+                className="flex items-center gap-3"
+              >
+                <Download />
+                Unduh File
+              </PDFDownloadLink>
             </Button>
           </div>
         </div>
+        <PDFViewer className="min-h-screen">
+          <ParticipantFile
+            generalInfo={userGeneralInfo}
+            personalInfo={userPersonalInfo}
+            formalEducation={userFormalEducation}
+            informalEducations={userInformalEducations}
+            competences={userCompetences}
+            organizationalExperiences={userOrganizationalExperiences}
+            achievements={userAchievements}
+          />
+        </PDFViewer>
       </section>
     );
   } else {

@@ -16,9 +16,26 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
+Font.register({
+  family: "Times New Roman",
+  fonts: [
+    {
+      src: "/fonts/times new roman.ttf", // Regular
+    },
+    {
+      src: "/fonts/times new roman bold.ttf",
+      fontWeight: "bold", // Bold
+    },
+    {
+      src: "/fonts/times new roman italic.ttf",
+      fontStyle: "italic", // Italic
+    },
+  ],
+});
+
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Times-Roman",
+    fontFamily: "Times New Roman",
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#FFF",
@@ -33,21 +50,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   header: {
-    fontFamily: "Times-Roman",
+    fontFamily: "Times New Roman",
     fontSize: 12,
     textAlign: "center",
     paddingBottom: 8,
     fontWeight: 800,
   },
   subHeader: {
-    fontFamily: "Times-Roman",
+    fontFamily: "Times New Roman",
     fontSize: 10,
     textAlign: "center",
     paddingBottom: 6,
     fontWeight: 800,
   },
   text: {
-    fontFamily: "Times-Roman",
+    fontFamily: "Times New Roman",
     fontSize: 12,
     textAlign: "center",
     paddingBottom: 8,
@@ -57,14 +74,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   label: {
-    fontFamily: "Times-Roman",
+    fontFamily: "Times New Roman",
     fontSize: 12,
     paddingBottom: 8,
-    width: "36%",
+    width: "45%",
   },
   unsri: {
     width: 96,
     height: 86,
+    objectFit: "cover",
   },
   pbgu: {
     width: 96,
