@@ -66,7 +66,7 @@ export default function RegisterForm() {
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["users"] });
       toast.success("Account Created!");
-      router.replace("/login");
+      router.push("/login");
     },
     onError: (error) => {
       toast.error("Something went wrong!");
@@ -200,7 +200,7 @@ export default function RegisterForm() {
               form.formState.isSubmitting ? "bg-green-300" : "bg-primary"
             }`}
           >
-            {form.formState.isSubmitting ? "Submitting..." : "Login"}
+            {form.formState.isSubmitting ? "Submitting..." : "Daftar"}
           </button>
         </div>
       </form>

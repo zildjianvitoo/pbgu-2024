@@ -122,8 +122,7 @@ export default function FormalEducation() {
               Data Pendidikan Formal
             </h2>
             <p className="text-sm lg:text-base">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-              corporis nisi iste?
+              Isi data pendidikan formal Kamu
             </p>
           </div>
           {isUpdating ? (

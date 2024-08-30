@@ -13,10 +13,13 @@ import {
   SquareUserRound,
   X,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 import { useState } from "react";
+import { toast } from "sonner";
 
 const userLink = [
   {
@@ -44,6 +47,14 @@ const userLink = [
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const router = useRouter();
+
+  function handleLogout() {
+    signOut();
+    router.push("/");
+    toast.success("Logged Out berhasil!");
+  }
 
   return (
     <>
@@ -110,7 +121,9 @@ export default function Sidebar() {
               >
                 <div className={`"justify-center flex items-center gap-5`}>
                   <LogOut strokeWidth={1.8} size={24} />
-                  <div className="text-xl">Log Out</div>
+                  <div onClick={handleLogout} className="text-xl">
+                    Log Out
+                  </div>
                 </div>
               </Link>
             </div>

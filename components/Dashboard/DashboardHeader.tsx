@@ -24,7 +24,7 @@ export default function DashboardHeader({
   function handleLogout() {
     router.push("/");
     signOut();
-    toast.success("Logged Out successfully!");
+    toast.success("Logged Out berhasil!");
   }
   return (
     <div className="flex w-full flex-col gap-4 px-4 py-6 lg:flex-row lg:items-end lg:justify-between lg:gap-6 lg:p-6">
