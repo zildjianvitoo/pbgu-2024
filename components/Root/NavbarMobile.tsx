@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 type Props = {
   links: {
@@ -23,6 +24,7 @@ type Props = {
 
 export default function NavbarMobile({ links }: Props) {
   const pathname = usePathname();
+  const { data } = useSession();
 
   return (
     <Sheet>
@@ -71,11 +73,19 @@ export default function NavbarMobile({ links }: Props) {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-4">
-              <Link href={"/login"}>
-                <Button className="w-full rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
-                  Login
-                </Button>
-              </Link>
+              {data?.user ? (
+                <Link href={"/dashboard/data-diri"}>
+                  <Button className="w-full rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
+                    Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <Link href={"/login"}>
+                  <Button className="w-full rounded-md border border-transparent bg-primary px-9 text-background hover:border-primary hover:bg-transparent hover:text-primary">
+                    Login
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </SheetHeader>
