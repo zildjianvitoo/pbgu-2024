@@ -87,7 +87,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="size-6" strokeWidth={1.8} />
-                <p className="text-lg">bgu.unsri@gmail.con</p>
+                <p className="text-lg">bgu.unsri@gmail.com</p>
               </div>
               {/* <div className="flex items-center gap-3">
                 <Phone className="size-6" strokeWidth={1.8} />
