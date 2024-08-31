@@ -23,10 +23,11 @@ export default function About({}: Props) {
       <div className="order-1 flex flex-1 justify-center lg:order-2 lg:justify-end">
         <figure className="relative h-56 w-72 lg:h-[320px] lg:w-[480px]">
           <Image
-            src="/images/logo-ibgu.png"
+            src="/images/logo-ibgu-old.png"
             fill
             alt="About Image"
             className="object-contain object-center"
+            quality={100}
           />
         </figure>
       </div>

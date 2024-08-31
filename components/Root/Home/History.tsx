@@ -8,7 +8,7 @@ export default function History() {
       <div className="flex flex-[2] justify-center">
         <figure className="relative h-56 w-72 lg:h-[320px] lg:w-[480px]">
           <Image
-            src="/images/logo-ibgu.png"
+            src="/images/logo-ibgu-old.png"
             fill
             alt="About Image"
             quality={100}
