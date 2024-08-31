@@ -92,14 +92,15 @@ export default function Timeline() {
             </span>
           </h2>
           <p className="md:text-lg">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-            tenetur sequi at corporis atque beatae nulla explicabo saepe!. Lorem
-            ipsum, dolor sit amet consectetur adipisicing elit. Perferendis at
-            nihil quia.
+            Acara Pemilihan Bujang Gadis UNSRI 2024 bertujuan untuk menemukan
+            dan menghargai mahasiswa-mahasiswa berbakat dan berprestasi di
+            Universitas Sriwijaya. Selama acara ini, peserta akan menunjukkan
+            kemampuan mereka dalam berbagai bidang, termasuk penampilan,
+            keterampilan komunikasi, dan pengetahuan umum.
           </p>
           <p className="md:text-lg">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-            tenetur sequi at corporis atque beatae nulla explicabo saepe!
+            Jangan lewatkan kesempatan untuk mendukung dan merayakan pencapaian
+            mahasiswa unggulan UNSRI!
           </p>
         </div>
 
