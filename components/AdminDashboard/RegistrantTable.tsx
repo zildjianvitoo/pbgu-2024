@@ -19,8 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CirclePlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Pagination from "./Pagination";
 
@@ -53,7 +51,7 @@ export default function UserListTable<TData, TValue>({
   });
 
   return (
-    <div className="box-shadow w-full rounded-md bg-white">
+    <div className="w-full rounded-md bg-white">
       <div className="p-4 lg:p-6">
         <div className="flex flex-col items-center justify-between md:flex-row">
           <h2 className="text-lg">Tabel Daftar Pendaftar</h2>
