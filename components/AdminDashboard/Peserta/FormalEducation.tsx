@@ -35,7 +35,7 @@ export default function FormalEducation({
             <div className="flex-[2]">
               <Input
                 disabled
-                value={formalEducation.elementary}
+                value={formalEducation?.elementary}
                 className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                 placeholder="Nama Sekolah Dasar anda"
               />
@@ -45,7 +45,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.elementary_in}
+                  value={formalEducation?.elementary_in}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Masuk SD"
                 />
@@ -54,7 +54,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.elementary_out}
+                  value={formalEducation?.elementary_out}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Lulus SD"
                 />
@@ -70,7 +70,7 @@ export default function FormalEducation({
             <div className="flex-[2]">
               <Input
                 disabled
-                value={formalEducation.junior}
+                value={formalEducation?.junior}
                 className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                 placeholder="Nama Sekolah Mengah Pertama (SMP)"
               />
@@ -80,7 +80,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.junior_in}
+                  value={formalEducation?.junior_in}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Masuk SMP"
                 />
@@ -89,7 +89,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.junior_out}
+                  value={formalEducation?.junior_out}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Lulus SMP"
                 />
@@ -105,7 +105,7 @@ export default function FormalEducation({
             <div className="flex-[2]">
               <Input
                 disabled
-                value={formalEducation.senior}
+                value={formalEducation?.senior}
                 className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                 placeholder="Nama Sekolah Mengah Atas (SMA)"
               />
@@ -115,7 +115,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.senior_in}
+                  value={formalEducation?.senior_in}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Masuk SMA"
                 />
@@ -124,7 +124,7 @@ export default function FormalEducation({
               <div className="flex-[1]">
                 <Input
                   disabled
-                  value={formalEducation.senior_out}
+                  value={formalEducation?.senior_out}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Tahun Lulus SMA"
                 />

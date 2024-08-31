@@ -2,14 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import TableSorter from "@/components/AdminDashboard/TableSorter";
-// import "date-fns";
-import { UserType } from "@/lib/types/user";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Divide, EllipsisVerticalIcon, Eye, Pencil } from "lucide-react";
+
 import Link from "next/link";
 import { UserGeneralInfoType } from "../types/user-general-info";
 import { Button } from "@/components/ui/button";

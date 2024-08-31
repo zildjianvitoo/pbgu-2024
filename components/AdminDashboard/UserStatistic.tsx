@@ -1,4 +1,3 @@
-import { PlaneLanding, PlaneTakeoff, UsersRound, Vote } from "lucide-react";
 import { Label, Pie, PieChart } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,12 +18,12 @@ const chartConfig = {
     label: "Total Peserta",
     color: "hsl(var(--chart-1))",
   },
-  "Calon Bujang": {
-    label: "Calon Bujang",
+  "Peserta Bujang": {
+    label: "Peserta Bujang",
     color: "hsl(var(--chart-2))",
   },
-  "Calon Gadis": {
-    label: "Calon Gadis",
+  "Peserta Gadis": {
+    label: "Peserta Gadis",
     color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig;
@@ -50,13 +49,13 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
       Icon: FaPeopleGroup,
     },
     {
-      service: "Calon Bujang",
+      service: "Peserta Bujang",
       total: totalMale,
       fill: "hsl(var(--chart-2))",
       Icon: FaMale,
     },
     {
-      service: "Calon Gadis",
+      service: "Peserta Gadis",
       total: totalFemale,
       fill: "hsl(var(--chart-4))",
       Icon: FaFemale,
@@ -104,7 +103,7 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Orang Telayani
+                          Total Pendaftar
                         </tspan>
                       </text>
                     );

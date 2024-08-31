@@ -48,7 +48,6 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
-      console.log(response?.error);
 
       if (response?.error) {
         toast.error("Email atau password salah!");

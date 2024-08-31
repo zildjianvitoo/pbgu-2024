@@ -27,7 +27,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Nama Lengkap</p>
           <Input
             disabled
-            value={generalInfo.fullname}
+            value={generalInfo?.fullname}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
           />
         </div>
@@ -36,7 +36,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Alias / Nama Panggilan</p>
           <Input
             disabled
-            value={generalInfo.alias}
+            value={generalInfo?.alias}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
           />
         </div>
@@ -46,7 +46,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">NIM</p>
           <Input
             disabled
-            value={generalInfo.nim}
+            value={generalInfo?.nim}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Isi NIM perkuliahan anda di UNSRI"
           />
@@ -56,7 +56,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Prodi/Jurusan</p>
           <Input
             disabled
-            value={generalInfo.major}
+            value={generalInfo?.major}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Isi Prodi dan Jurusan anda"
           />
@@ -67,7 +67,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Tempat / Tanggal Lahir</p>
           <Input
             disabled
-            value={generalInfo.birth}
+            value={generalInfo?.birth}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Isi Tempat / Tanggal Lahir anda"
           />
@@ -77,7 +77,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Usia</p>
           <Input
             disabled
-            value={generalInfo.age}
+            value={generalInfo?.age}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Usia anda saat mendaftar"
           />
@@ -88,7 +88,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Jenis Kelamin</p>
           <Input
             disabled
-            value={generalInfo.gender}
+            value={generalInfo?.gender}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Usia anda saat mendaftar"
           />
@@ -98,7 +98,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Alamat</p>
           <Input
             disabled
-            value={generalInfo.address}
+            value={generalInfo?.address}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Alamat tempat tinggal anda"
           />
@@ -110,7 +110,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Nomor Telepon</p>
           <Input
             disabled
-            value={generalInfo.phone_number}
+            value={generalInfo?.phone_number}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Nomor Telepon/Whatsapp anda"
           />
@@ -120,7 +120,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">E-mail</p>
           <Input
             disabled
-            value={generalInfo.email}
+            value={generalInfo?.email}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Email aktif anda"
           />
@@ -131,7 +131,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">ID Line</p>
           <Input
             disabled
-            value={generalInfo.line}
+            value={generalInfo?.line}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="ID Line anda"
           />
@@ -141,7 +141,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
           <p className="font-semibold">Username Facebook</p>
           <Input
             disabled
-            value={generalInfo.facebook}
+            value={generalInfo?.facebook}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Username Akun Facebook anda"
           />
@@ -152,7 +152,7 @@ export default function GeneralInfo({ generalInfo }: GeneralInfoProps) {
         <p className="font-semibold">Username Instagram</p>
         <Input
           disabled
-          value={generalInfo.instagram}
+          value={generalInfo?.instagram}
           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
           placeholder="Username Akun Instagram anda"
         />

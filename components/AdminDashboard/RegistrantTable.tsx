@@ -4,10 +4,12 @@ import { useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
+  PaginationState,
   SortingState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -21,6 +23,7 @@ import {
 } from "@/components/ui/table";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Pagination from "./Pagination";
+import { Input } from "../ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,13 +36,19 @@ export default function UserListTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
+  // Filter data berdasarkan input pencarian
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    manualPagination: true,
-
+    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -47,15 +56,26 @@ export default function UserListTable<TData, TValue>({
     state: {
       sorting,
       columnFilters,
+      pagination,
     },
   });
+
+  const nameColumn = table.getColumn("name");
 
   return (
     <div className="w-full rounded-md bg-white">
       <div className="p-4 lg:p-6">
-        <div className="flex flex-col items-center justify-between md:flex-row">
-          <h2 className="text-lg">Tabel Daftar Pendaftar</h2>
-          <div className="flex flex-col justify-end gap-4 lg:flex-row"></div>
+        <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center md:gap-0">
+          <h2 className="w-full text-lg">Tabel Daftar Pendaftar</h2>
+          <div className="flex flex-col justify-end gap-4 md:w-full lg:flex-row">
+            <Input
+              className="border-shadow h-10 w-full rounded md:w-56"
+              onChange={(e) => nameColumn?.setFilterValue(e.target.value)}
+              placeholder={`Cari berdasarkan nama...`}
+              type="text"
+              value={(nameColumn?.getFilterValue() ?? "") as string}
+            />
+          </div>
         </div>
       </div>
       <hr />

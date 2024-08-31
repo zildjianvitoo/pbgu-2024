@@ -27,7 +27,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.height}
+            value={personalInfo?.height}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Tinggi Badan anda (cm)"
           />
@@ -38,7 +38,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.weight}
+            value={personalInfo?.weight}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Berat Badan anda (Kg)"
           />
@@ -50,7 +50,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.foreign_language}
+            value={personalInfo?.foreign_language}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Bahasa Asing yang anda kuasai (opsional)"
           />
@@ -61,7 +61,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.hobby}
+            value={personalInfo?.hobby}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Daftar Hobby anda"
           />
@@ -73,7 +73,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.father}
+            value={personalInfo?.father}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Nama Ayah Kandung anda"
           />
@@ -84,7 +84,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.mother}
+            value={personalInfo?.mother}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Nama Ibu Kandung anda"
           />
@@ -96,7 +96,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.parents_job}
+            value={personalInfo?.parents_job}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Pekerjaan Ibu/Ayah anda"
           />
@@ -107,7 +107,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
           <Input
             disabled
-            value={personalInfo.parents_phone_number}
+            value={personalInfo?.parents_phone_number}
             className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
             placeholder="Nomor telepon salah satu dari kedua orang tua anda"
           />
@@ -119,7 +119,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
 
         <Input
           disabled
-          value={personalInfo.parents_address}
+          value={personalInfo?.parents_address}
           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
           placeholder="Alamat tempat tinggal orang tua anda"
         />

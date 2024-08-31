@@ -82,7 +82,7 @@ model News {
 model UserGeneralInfo {
   id           String   @id @unique @default(cuid())
   userId       String   @unique
-  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   fullname     String
   alias        String
   nim          String
