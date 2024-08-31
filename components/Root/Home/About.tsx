@@ -4,7 +4,10 @@ type Props = {};
 
 export default function About({}: Props) {
   return (
-    <section className="relative flex min-h-screen flex-col items-center gap-y-6 overflow-hidden px-6 py-20 md:py-36 md:pb-12 lg:flex-row lg:gap-y-0 lg:px-24">
+    <section
+      id="tentang-bgu"
+      className="relative flex flex-col items-center gap-y-6 overflow-hidden px-6 py-20 md:py-36 md:pb-12 lg:flex-row lg:gap-y-0 lg:px-24"
+    >
       <div className="order-2 flex-1 space-y-6 lg:order-1">
         <h2 className="text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
           Perkenalkan Kami Dari{" "}
@@ -20,7 +23,7 @@ export default function About({}: Props) {
       <div className="order-1 flex flex-1 justify-center lg:order-2 lg:justify-end">
         <figure className="relative h-56 w-72 lg:h-[320px] lg:w-[480px]">
           <Image
-            src="/images/icon-pbgu.png"
+            src="/images/logo-ibgu.png"
             fill
             alt="About Image"
             className="object-contain object-center"

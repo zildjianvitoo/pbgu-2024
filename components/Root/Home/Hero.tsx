@@ -58,8 +58,8 @@ export default function Hero({}: Props) {
           className="absolute bottom-[18%] z-[30] mx-auto"
           loading="eager"
         />
-        <div className="absolute bottom-[5%] z-[30] mx-auto flex gap-5 lg:bottom-[10%]">
-          <Link href={"/tentang-bgu"}>
+        <div className="absolute bottom-[5%] z-[30] mx-auto flex gap-5 sm:bottom-[8%] lg:bottom-[10%]">
+          <Link href={"/#tentang-bgu"}>
             <Button
               variant={"ghost"}
               className="h-12 rounded-full border border-[#f1f1f1] text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"

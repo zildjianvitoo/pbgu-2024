@@ -19,7 +19,7 @@ const links = [
   },
   {
     name: "Tentang BGU",
-    path: "#",
+    path: "/#tentang-bgu",
   },
   {
     name: "Kegiatan",

@@ -16,7 +16,7 @@ const resourcesLinks = [
   },
   {
     label: "Tentang BGU",
-    link: "/tentang",
+    link: "/#tentang-bgu",
   },
   {
     label: "Kegiatan",
