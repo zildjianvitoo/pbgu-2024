@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     fontFamily: "Times New Roman",
     fontSize: 12,
     paddingBottom: 8,
-    width: "45%",
+    width: "44%",
   },
   unsri: {
     width: 96,
@@ -86,19 +86,19 @@ const styles = StyleSheet.create({
     objectFit: "cover",
   },
   pbgu: {
-    width: 96,
+    width: 92,
     height: 86,
   },
   tableHeader: {
     textAlign: "center",
     fontWeight: 800,
-    paddingHorizontal: 12,
+    paddingHorizontal: 4,
     paddingVertical: 6,
     borderColor: "black",
     borderWidth: 1,
   },
   tableData: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 4,
     paddingVertical: 6,
     borderColor: "black",
     borderWidth: 1,
@@ -124,6 +124,17 @@ export default function ParticipantFile({
   organizationalExperiences,
   achievements,
 }: ParticipantFileProps) {
+  const papers = [
+    { files: "Formulir Pendaftaran" },
+    { files: "Pas Foto uk. 3x4" },
+    { files: "Fotokopi KPM" },
+    { files: "Foto Full Body" },
+    { files: "Foto Close Up" },
+    { files: "Fotokopi KHS/SKHUN" },
+    { files: "Fotokopi Sertifikat" },
+    { files: "Map Berwarna" },
+  ];
+
   if (
     generalInfo &&
     personalInfo &&
@@ -133,7 +144,6 @@ export default function ParticipantFile({
     organizationalExperiences &&
     achievements
   ) {
-    console.log(organizationalExperiences);
     return (
       <Document>
         <Page wrap={false} size="A4" style={styles.page}>
@@ -196,7 +206,11 @@ export default function ParticipantFile({
                 justifyContent: "space-between",
               }}
             >
-              <View>
+              <View
+                style={{
+                  width: "72%",
+                }}
+              >
                 <Text style={{ ...styles.label, fontWeight: 800 }}>
                   Informasi Umum
                 </Text>
@@ -248,63 +262,67 @@ export default function ParticipantFile({
               </View>
             </View>
 
-            <View style={{ ...styles.form, marginTop: 16 }}>
-              <Text style={styles.label}>Nomor Telepon</Text>
-              <Text>: {generalInfo.phone_number}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Email</Text>
-              <Text>: {generalInfo.email}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Line</Text>
-              <Text>: {generalInfo.line}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Facebook</Text>
-              <Text>: {generalInfo.facebook}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Instagram</Text>
-              <Text>: {generalInfo.instagram}</Text>
+            <View style={{ marginTop: 16, width: "72%" }}>
+              <View style={styles.form}>
+                <Text style={styles.label}>Nomor Telepon</Text>
+                <Text>: {generalInfo.phone_number}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Email</Text>
+                <Text>: {generalInfo.email}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Line</Text>
+                <Text>: {generalInfo.line}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Facebook</Text>
+                <Text>: {generalInfo.facebook}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Instagram</Text>
+                <Text>: {generalInfo.instagram}</Text>
+              </View>
             </View>
 
-            <Text style={{ ...styles.label, fontWeight: 800, marginTop: 16 }}>
-              Informasi Pribadi
-            </Text>
-            <View style={styles.form}>
-              <Text style={styles.label}>Tinggi/Berat Badan</Text>
-              <Text>
-                : {personalInfo.height} cm / {personalInfo.weight} kg
+            <View style={{ marginTop: 16, width: "72%" }}>
+              <Text style={{ ...styles.label, fontWeight: 800, marginTop: 16 }}>
+                Informasi Pribadi
               </Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Bahasa Asing yang Dikuasai</Text>
-              <Text>: {personalInfo.foreign_language}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Hobby</Text>
-              <Text>: {personalInfo.hobby}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Nama Ayah Kandung</Text>
-              <Text>: {personalInfo.father}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Nama Ibu Kandung</Text>
-              <Text>: {personalInfo.mother}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Pekerjaan Orang Tua</Text>
-              <Text>: {personalInfo.parents_job}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>No. Telepon</Text>
-              <Text>: {personalInfo.parents_phone_number}</Text>
-            </View>
-            <View style={styles.form}>
-              <Text style={styles.label}>Alamat Orang Tua</Text>
-              <Text>: {personalInfo.parents_address}</Text>
+              <View style={styles.form}>
+                <Text style={styles.label}>Tinggi/Berat Badan</Text>
+                <Text>
+                  : {personalInfo.height} cm / {personalInfo.weight} kg
+                </Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Bahasa Asing yang Dikuasai</Text>
+                <Text>: {personalInfo.foreign_language}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Hobby</Text>
+                <Text>: {personalInfo.hobby}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Nama Ayah Kandung</Text>
+                <Text>: {personalInfo.father}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Nama Ibu Kandung</Text>
+                <Text>: {personalInfo.mother}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Pekerjaan Orang Tua</Text>
+                <Text>: {personalInfo.parents_job}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>No. Telepon</Text>
+                <Text>: {personalInfo.parents_phone_number}</Text>
+              </View>
+              <View style={styles.form}>
+                <Text style={styles.label}>Alamat Orang Tua</Text>
+                <Text>: {personalInfo.parents_address}</Text>
+              </View>
             </View>
           </View>
           <View
@@ -420,10 +438,22 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableHeader, width: "40%" }}>
                 <Text>Nama Sekolah / Universitas</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Tahun Masuk</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Tahun Keluar</Text>
               </View>
             </View>
@@ -437,13 +467,30 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableHeader, width: "10%" }}>
                 <Text>1</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "40%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "40%",
+                }}
+              >
                 <Text>{formalEducation.elementary}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.elementary_in}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.elementary_out}</Text>
               </View>
             </View>
@@ -460,10 +507,22 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableData, width: "40%" }}>
                 <Text>{formalEducation.junior}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.junior_in}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.junior_out}</Text>
               </View>
             </View>
@@ -480,10 +539,22 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableData, width: "40%" }}>
                 <Text>{formalEducation.senior}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.senior_in}</Text>
               </View>
-              <View style={{ ...styles.tableData, width: "25%" }}>
+              <View
+                style={{
+                  ...styles.tableData,
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>{formalEducation.senior_out}</Text>
               </View>
             </View>
@@ -507,10 +578,22 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableHeader, width: "27%" }}>
                 <Text>Nama Lembaga</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "18%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "18%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Tahun Masuk</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "18%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "18%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Tahun Keluar</Text>
               </View>
             </View>
@@ -532,10 +615,22 @@ export default function ParticipantFile({
                 <View style={{ ...styles.tableData, width: "27%" }}>
                   <Text>{item.institution}</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "18%" }}>
+                <View
+                  style={{
+                    ...styles.tableData,
+                    width: "18%",
+                    textAlign: "center",
+                  }}
+                >
                   <Text>{item.year_start}</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "18%" }}>
+                <View
+                  style={{
+                    ...styles.tableData,
+                    width: "18%",
+                    textAlign: "center",
+                  }}
+                >
                   <Text>{item.year_end}</Text>
                 </View>
               </View>
@@ -601,7 +696,13 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableHeader, width: "30%" }}>
                 <Text>Posisi / Jabatan</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "20%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "20%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Periode</Text>
               </View>
             </View>
@@ -623,7 +724,13 @@ export default function ParticipantFile({
                 <View style={{ ...styles.tableData, width: "30%" }}>
                   <Text>{item.position}</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "20%" }}>
+                <View
+                  style={{
+                    ...styles.tableData,
+                    width: "20%",
+                    textAlign: "center",
+                  }}
+                >
                   <Text>{item.period}</Text>
                 </View>
               </View>
@@ -736,6 +843,12 @@ export default function ParticipantFile({
               width: "100%",
             }}
           >
+            <View
+              style={{
+                paddingHorizontal: 48,
+                width: "100%",
+              }}
+            ></View>
             <Text style={{ ...styles.label, fontWeight: 800 }}>
               Prestasi yang Pernah Diraih
             </Text>
@@ -755,7 +868,13 @@ export default function ParticipantFile({
               <View style={{ ...styles.tableHeader, width: "35%" }}>
                 <Text>Instansi Pemberi Penghargaan</Text>
               </View>
-              <View style={{ ...styles.tableHeader, width: "15%" }}>
+              <View
+                style={{
+                  ...styles.tableHeader,
+                  width: "20%",
+                  textAlign: "center",
+                }}
+              >
                 <Text>Tahun</Text>
               </View>
             </View>
@@ -777,11 +896,136 @@ export default function ParticipantFile({
                 <View style={{ ...styles.tableData, width: "35%" }}>
                   <Text>{item.instance}</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "15%" }}>
+                <View
+                  style={{
+                    ...styles.tableData,
+                    width: "20%",
+                    textAlign: "center",
+                  }}
+                >
                   <Text>{item.year}</Text>
                 </View>
               </View>
             ))}
+
+            <Text
+              style={{
+                ...styles.label,
+                fontWeight: 800,
+                marginTop: 24,
+                width: "100%",
+              }}
+            >
+              Motivasi mengikuti Pemilihan Bujang Gadis Unsri 2024
+            </Text>
+            <View
+              style={{
+                borderColor: "black",
+                borderWidth: 1,
+                width: "100%",
+                height: 130,
+              }}
+            />
+
+            <View
+              style={{
+                marginTop: 16,
+                display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "row",
+              }}
+            >
+              <View style={{ width: "50%" }}>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                  }}
+                >
+                  <View style={{ ...styles.tableHeader, width: "10%" }}>
+                    <Text>No</Text>
+                  </View>
+                  <View style={{ ...styles.tableHeader, width: "60%" }}>
+                    <Text>Berkas</Text>
+                  </View>
+                  <View style={{ ...styles.tableHeader, width: "15%" }}>
+                    <Text>Ada</Text>
+                  </View>
+                  <View style={{ ...styles.tableHeader, width: "15%" }}>
+                    <Text>Tidak</Text>
+                  </View>
+                </View>
+                {papers.map((item, index) => (
+                  <View
+                    key={item.files}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
+                  >
+                    <View style={{ ...styles.tableHeader, width: "10%" }}>
+                      <Text>{index + 1}</Text>
+                    </View>
+                    <View style={{ ...styles.tableData, width: "60%" }}>
+                      <Text>{item.files}</Text>
+                    </View>
+                    <View style={{ ...styles.tableData, width: "15%" }}></View>
+                    <View style={{ ...styles.tableData, width: "15%" }}></View>
+                  </View>
+                ))}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                  }}
+                >
+                  <View style={{ ...styles.tableHeader, width: "70%" }}>
+                    <Text>Nama Pemeriksa</Text>
+                  </View>
+                  <View style={{ ...styles.tableData, width: "30%" }}></View>
+                </View>
+              </View>
+              <View style={{ width: "40%" }}>
+                <Text>Tanda Tangan,</Text>
+                <View
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "flex-end",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View
+                    style={{
+                      borderColor: "black",
+                      borderBottomWidth: "1px",
+                      borderStyle: "dotted",
+                      width: "100%",
+                      height: 10,
+                    }}
+                  />
+                  <Text>2024</Text>
+                </View>
+                <View
+                  style={{
+                    borderColor: "black",
+                    borderBottomWidth: "1px",
+                    width: "100%",
+                    height: 80,
+                  }}
+                />
+                <Text
+                  style={{
+                    marginTop: 16,
+                  }}
+                >
+                  NIM.
+                </Text>
+              </View>
+            </View>
           </View>
           <View
             style={{
