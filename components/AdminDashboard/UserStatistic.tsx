@@ -68,7 +68,7 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
       <CardContent className="flex flex-col gap-6 p-0 lg:flex-row">
         <ChartContainer
           config={chartConfig}
-          className="box-shadow aspect-square max-h-[336px] flex-[5] rounded-lg px-2 py-2"
+          className="aspect-square max-h-[336px] flex-[5] rounded-lg bg-background px-2 py-2"
         >
           <PieChart>
             <ChartTooltip
@@ -115,7 +115,7 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
             <ChartLegend content={<ChartLegendContent nameKey="service" />} />
           </PieChart>
         </ChartContainer>
-        <div className="box-shadow grid flex-[12] grid-cols-1 gap-3 rounded-lg p-6 md:grid-cols-3">
+        <div className="grid flex-[12] grid-cols-1 gap-3 rounded-lg bg-background p-6 md:grid-cols-3">
           {chartData.map((item) => (
             <Card
               key={item.service}

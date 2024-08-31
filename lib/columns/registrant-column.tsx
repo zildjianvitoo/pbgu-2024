@@ -12,6 +12,7 @@ import {
 import { Divide, EllipsisVerticalIcon, Eye, Pencil } from "lucide-react";
 import Link from "next/link";
 import { UserGeneralInfoType } from "../types/user-general-info";
+import { Button } from "@/components/ui/button";
 
 export const registrantColumn: ColumnDef<UserGeneralInfoType>[] = [
   {
@@ -44,18 +45,11 @@ export const registrantColumn: ColumnDef<UserGeneralInfoType>[] = [
     accessorKey: "action",
     header: ({ column }) => <TableSorter column={column} header="ACT" />,
     cell: ({ row }) => (
-      <div className="relative max-w-fit">
-        <Popover>
-          <PopoverTrigger>
-            <EllipsisVerticalIcon strokeWidth={1.5} />
-          </PopoverTrigger>
-          <PopoverContent className="absolute -right-4 bottom-0 flex max-w-fit gap-3 px-3 py-1 text-primary">
-            <Link href={`/admin-dashboard/peserta/${row.original.id}`}>
-              <Eye size={20} className="cursor-pointer" />
-            </Link>
-          </PopoverContent>
-        </Popover>
-      </div>
+      <Link href={`/admin-dashboard/peserta/${row.original.User.id}`}>
+        <Button size="sm" className="rounded-full px-8 py-0.5">
+          Detail
+        </Button>
+      </Link>
     ),
   },
 ];

@@ -1,29 +1,28 @@
 "use client";
 
+import { Accordion } from "@/components/ui/accordion";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import {
-  BarChartBig,
-  BookCopy,
+  Award,
   ChevronRight,
-  CircleDashed,
+  FileDown,
+  GraduationCap,
   Home,
-  Lightbulb,
   ListChecks,
-  Newspaper,
-  User,
+  LogOut,
+  SquareUserRound,
   User2Icon,
   X,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
-import { ScrollArea } from "../ui/scroll-area";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+
 import { useState } from "react";
+import { toast } from "sonner";
 
 const sidebarLink = [
   {
@@ -53,97 +52,93 @@ const sidebarLink = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const pathname = usePathname();
+
+  const router = useRouter();
+
+  function handleLogout() {
+    signOut();
+    router.push("/");
+    toast.success("Behasil Log Out!");
+  }
 
   return (
     <>
       <aside
-        className={`box-shadow fixed z-50 min-h-screen w-[260px] overflow-hidden bg-primary p-4 text-white transition-all duration-500 ${isOpen ? "translate-x-0" : "max-lg:-translate-x-full"}`}
+        className={cn(
+          "box-shadow fixed z-50 min-h-screen w-[280px] overflow-hidden border-r bg-primary px-4 py-7 transition-all duration-500",
+          isOpen ? "translate-x-0" : "max-lg:-translate-x-full",
+        )}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex w-full items-center gap-4">
           <Link
-            href={"/admin-dashboard"}
-            className="mx-auto flex items-center justify-center gap-4"
+            href={"/dashboard"}
+            className="relative mt-2 flex size-12 items-center gap-4"
           >
             <Image
               src="/images/logo-ibgu.png"
-              width={100}
-              height={100}
-              alt="logo ibgu"
+              alt="Logo"
+              className="object-contain object-center"
+              fill
             />
           </Link>
+          <p className="text-2xl font-bold text-primary-foreground lg:text-3xl">
+            IBG Unsri
+          </p>
           <X
-            className="lg:hidden"
-            onClick={() => setIsOpen((prev) => !prev)}
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-background lg:hidden"
             size={24}
-            strokeWidth={1.5}
+            strokeWidth={1.8}
           />
         </div>
 
-        <ScrollArea className="mt-4 h-[85vh]">
+        <ScrollArea className="mt-8 h-[85vh]">
           <Accordion type="single" className="flex flex-col gap-2" collapsible>
             {sidebarLink.map((item) => (
               <div key={item.url}>
-                {item.children ? (
-                  <AccordionItem
-                    value={item.name}
-                    className="m-0 border-none p-0"
-                  >
-                    <AccordionTrigger
-                      key={item.url}
-                      className={`flex w-full items-center justify-between rounded-md px-2.5 py-2.5 duration-300 hover:bg-primary/80`}
-                    >
-                      <div
-                        className={`"justify-center flex items-center gap-3`}
-                      >
-                        <item.Icon strokeWidth={1.5} size={20} />
-                        <div>{item.name}</div>
-                      </div>
-                    </AccordionTrigger>
-
-                    <AccordionContent className="ml-2 mt-2 flex flex-col gap-2">
-                      {item.children.map((subitem, subitemIndex) => (
-                        <div key={subitemIndex}>
-                          <div className="w-full text-left">
-                            <Link
-                              key={subitem.url}
-                              href={subitem.url}
-                              className={`${pathname === subitem.url ? "bg-primary text-white shadow-md" : "group"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5`}
-                            >
-                              <div
-                                className={`"justify-center flex items-center gap-3`}
-                              >
-                                <CircleDashed strokeWidth={1.5} size={20} />
-                                <div className="group-hover:underline">
-                                  {subitem.name}
-                                </div>
-                              </div>
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                ) : (
-                  <Link
-                    key={item.url}
-                    href={item.url}
-                    className={`${pathname === item.url ? "bg-primary font-bold text-white" : "group"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5`}
-                  >
-                    <div className={`"justify-center flex items-center gap-3`}>
-                      <item.Icon strokeWidth={1.5} size={20} />
-                      <div className="group-hover:underline">{item.name}</div>
-                    </div>
-                  </Link>
-                )}
+                <Link
+                  key={item.url}
+                  href={item.url}
+                  className={cn(
+                    "mt-1 flex w-full items-center justify-between rounded-md px-5 py-2.5 text-background duration-300",
+                    pathname === item.url
+                      ? "bg-background text-primary shadow-sm"
+                      : "hover:bg-background hover:text-primary",
+                  )}
+                >
+                  <div className={`"justify-center flex items-center gap-5`}>
+                    <item.Icon strokeWidth={1.8} size={24} />
+                    <div className="text-xl">{item.name}</div>
+                  </div>
+                </Link>
               </div>
             ))}
+            <Separator className="opacity-70" />
+            <div>
+              <Link
+                href="/"
+                className={cn(
+                  "mt-1 flex w-full items-center justify-between rounded-md px-5 py-2.5 text-background duration-300",
+                  pathname === "/"
+                    ? "bg-background text-primary shadow-sm"
+                    : "hover:bg-background hover:text-primary",
+                )}
+              >
+                <div
+                  onClick={handleLogout}
+                  className={`"justify-center flex items-center gap-5`}
+                >
+                  <LogOut strokeWidth={1.8} size={24} />
+                  <div className="text-xl">Log Out</div>
+                </div>
+              </Link>
+            </div>
           </Accordion>
         </ScrollArea>
-      </aside>{" "}
+      </aside>
       {!isOpen && (
         <div
           onClick={() => setIsOpen(!isOpen)}
@@ -154,6 +149,4 @@ const Sidebar: React.FC = () => {
       )}
     </>
   );
-};
-
-export default Sidebar;
+}

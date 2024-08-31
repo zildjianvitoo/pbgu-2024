@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Table,
   TableBody,
@@ -8,25 +6,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  deleteUserInformalEducation,
-  getUserInformalEducationsByUserId,
-} from "@/lib/network/user-informal-education";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import DeleteModal from "../DeleteModal";
+import { UserInformalEducationType } from "@/lib/types/user-informal-education";
 
-export default function InformalEducationTable() {
-  const { data: session } = useSession();
-  const userId = session?.user.id || "";
+interface InformalEducationProps {
+  informalEducations: UserInformalEducationType[];
+}
 
-  const { data: userInformalEducations } = useQuery({
-    queryFn: () => getUserInformalEducationsByUserId(userId),
-    queryKey: ["user-informal-educations", userId],
-  });
+export default function InformalEducation({
+  informalEducations,
+}: InformalEducationProps) {
+  return (
+    <div className="flex flex-col gap-6 rounded-xl bg-white p-6">
+      <div className="space-y-2">
+        <h2 className="text-2xl font-semibold text-primary lg:text-3xl">
+          Data Pendidikan Non-Formal
+        </h2>
+      </div>
 
-  if (userInformalEducations) {
-    return (
       <Table className="border">
         <TableHeader>
           <TableRow>
@@ -43,26 +39,18 @@ export default function InformalEducationTable() {
             <TableHead className="font-semibold text-primary">
               Tahun Keluar
             </TableHead>
-            <TableHead className="font-semibold text-primary">Aksi</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {userInformalEducations?.length > 0 ? (
+          {informalEducations?.length > 0 ? (
             <>
-              {userInformalEducations.map((item, index) => (
+              {informalEducations.map((item, index) => (
                 <TableRow key={item.type}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{item.type}</TableCell>
                   <TableCell>{item.institution}</TableCell>
                   <TableCell>{item.year_start}</TableCell>
                   <TableCell>{item.year_end}</TableCell>
-                  <TableCell className="space-x-3">
-                    <DeleteModal
-                      deleteFunction={deleteUserInformalEducation}
-                      params={item.id}
-                      queryKey={["user-informal-educations", userId]}
-                    />
-                  </TableCell>
                 </TableRow>
               ))}
             </>
@@ -75,6 +63,6 @@ export default function InformalEducationTable() {
           )}
         </TableBody>
       </Table>
-    );
-  }
+    </div>
+  );
 }

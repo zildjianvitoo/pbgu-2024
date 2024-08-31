@@ -1,6 +1,5 @@
-// import NavbarDashboard from "@/components/Dashboard/NavbarDashboard";
 import Sidebar from "@/components/AdminDashboard/Sidebar";
-
+import DashboardHeader from "@/components/Dashboard/DashboardHeader";
 import React, { ReactNode } from "react";
 
 type Props = {
@@ -9,17 +8,15 @@ type Props = {
 
 export default function AdminDashboardLayout({ children }: Props) {
   return (
-    <div>
-      <section className="font-inter flex min-h-screen w-full bg-[#F8F7FA] lg:gap-12">
-        <div>
-          <Sidebar />
-        </div>
+    <section className="flex min-h-screen w-full overflow-hidden bg-primary/10 lg:gap-12">
+      <div>
+        <Sidebar />
+      </div>
 
-        <main className="w-full p-4 transition-all duration-500 lg:ml-[220px]">
-          {/* <NavbarDashboard handleOpen={handleOpen} /> */}
-          {children}
-        </main>
-      </section>
-    </div>
+      <main className="w-full lg:ml-[232px]">
+        <DashboardHeader />
+        <div className="px-4 py-3 lg:px-6">{children}</div>
+      </main>
+    </section>
   );
 }

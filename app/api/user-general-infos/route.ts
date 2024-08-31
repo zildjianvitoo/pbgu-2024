@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { fileUpload } from "@/lib/fileUpload";
 
 export async function GET(req: NextRequest) {
   try {
-    const result = await prisma.userGeneralInfo.findMany({});
+    const result = await prisma.userGeneralInfo.findMany({
+      include: { User: { select: { id: true } } },
+    });
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
