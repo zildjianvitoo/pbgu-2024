@@ -12,7 +12,7 @@ export default function Home({}: Props) {
   return (
     <>
       <Hero />
-      {/* <About /> */}
+      <About />
       <History />
       <TnC />
       <Timeline />

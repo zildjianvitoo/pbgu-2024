@@ -82,8 +82,8 @@ export default function Hero({}: Props) {
         <Image
           src={"/images/bgu23.png"}
           alt="bgu 23"
-          width={1200}
-          height={1000}
+          width={1000}
+          height={800}
           quality={100}
           loading="eager"
         />
