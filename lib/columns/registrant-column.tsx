@@ -18,26 +18,26 @@ export const registrantColumn: ColumnDef<UserGeneralInfoType>[] = [
     accessorKey: "id",
     accessorFn: (row) => row.id,
     header: ({ column }) => <TableSorter column={column} header="#" />,
-    cell: ({ getValue }) => (
-      <div className="ml-4 text-primary">{getValue() as string}</div>
-    ),
+    cell: ({ row }) => <div className="ml-4 text-primary">{row.index + 1}</div>,
   },
   {
     accessorKey: "name",
     accessorFn: (row) => row.fullname,
-    header: ({ column }) => <TableSorter column={column} header="JUDUL" />,
+    header: ({ column }) => <TableSorter column={column} header="NAMA" />,
     cell: ({ getValue }) => <div>{getValue() as string}</div>,
   },
   {
     accessorKey: "gender",
     accessorFn: (row) => row.gender,
-    header: ({ column }) => <TableSorter column={column} header="PEMBACA" />,
+    header: ({ column }) => (
+      <TableSorter column={column} header="JENIS KELAMIN" />
+    ),
     cell: ({ getValue }) => <div className="">{getValue() as string}</div>,
   },
   {
     accessorKey: "major",
     accessorFn: (row) => row.major,
-    header: ({ column }) => <TableSorter column={column} header="TANGGAL" />,
+    header: ({ column }) => <TableSorter column={column} header="JURUSAN" />,
     cell: ({ getValue }) => <div>{getValue() as string}</div>,
   },
   {

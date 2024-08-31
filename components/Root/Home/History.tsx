@@ -8,9 +8,10 @@ export default function History() {
       <div className="flex flex-[2] justify-center">
         <figure className="relative h-56 w-72 lg:h-[320px] lg:w-[480px]">
           <Image
-            src="/images/icon-pbgu.png"
+            src="/images/logo-ibgu.png"
             fill
             alt="About Image"
+            quality={100}
             className="object-contain object-center"
           />
         </figure>

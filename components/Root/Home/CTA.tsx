@@ -15,8 +15,8 @@ export default function Cta() {
             </span>
           </h2>
           <p>Ayo segera bergabung dengan kami</p>
-          <Link href="/dashboard/data-diri">
-            <Button size="lg" className="px-8 py-6 text-2xl">
+          <Link href="/daftar">
+            <Button size="lg" className="mt-3 px-8 py-6 text-2xl">
               Bergabung
             </Button>
           </Link>

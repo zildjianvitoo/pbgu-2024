@@ -9,6 +9,7 @@ import {
   ListChecks,
   Newspaper,
   User,
+  User2Icon,
   X,
 } from "lucide-react";
 import {
@@ -26,130 +27,28 @@ import { useState } from "react";
 const sidebarLink = [
   {
     name: "Dashboard",
-    url: "/dashboard",
+    url: "/admin-dashboard",
     Icon: Home,
   },
   {
-    name: "Akun",
-    url: "/dashboard/akun",
-    Icon: User,
-  },
-  {
-    name: "Layanan",
-    url: "/dashboard/layanan",
+    name: "Voting",
+    url: "/admin-dashboard/voting",
     Icon: ListChecks,
     children: [
       {
-        name: "Buku Tamu",
-        url: "/dashboard/layanan/buku-tamu",
+        name: "Voting",
+        url: "/admin-dashboard/voting",
       },
       {
-        name: "Pendaftaran",
-        url: "/dashboard/layanan/pendaftaran",
-      },
-      {
-        name: "Toko Online",
-        url: "/dashboard/layanan/toko-online",
+        name: "Voting",
+        url: "/admin-dashboard/voting",
       },
     ],
   },
   {
-    name: "Berita",
-    url: "/dashboard/berita",
-    Icon: Newspaper,
-  },
-  {
-    name: "Informasi Publik",
-    url: "/dashboard/informasi-publik",
-    Icon: BarChartBig,
-    children: [
-      {
-        name: "Data Penempatan",
-        url: "/dashboard/informasi-publik/data-penempatan",
-      },
-      {
-        name: "Data Perlindugan",
-        url: "/dashboard/informasi-publik/data-perlindungan",
-      },
-      {
-        name: "Data Pengaduan",
-        url: "/dashboard/informasi-publik/data-pengaduan",
-      },
-      {
-        name: "Data Demand & Supply",
-        url: "/dashboard/informasi-publik/data-demand-supply",
-      },
-      {
-        name: "Data P3MI",
-        url: "/dashboard/informasi-publik/data-p3mi",
-      },
-      {
-        name: "Informasi Loker",
-        url: "/dashboard/informasi-publik/info-loker",
-      },
-      {
-        name: "Sosialisasi",
-        url: "/dashboard/informasi-publik/sosialisasi",
-      },
-      {
-        name: "Pengumuman",
-        url: "/dashboard/informasi-publik/pengumuman",
-      },
-    ],
-  },
-  {
-    name: "Inovasi Kami",
-    url: "/dashboard/inovasi-kami",
-    Icon: Lightbulb,
-    children: [
-      {
-        name: "Balek Dusun",
-        url: "/dashboard/inovasi-kami/balek-dusun",
-      },
-      {
-        name: "Apo Lokak",
-        url: "/dashboard/inovasi-kami/apo-lokak",
-      },
-    ],
-  },
-  {
-    name: "Kategori Data",
-    url: "/dashboard/kategori",
-    Icon: BookCopy,
-    children: [
-      {
-        name: "Negara Penempatan",
-        url: "/dashboard/kategori/negara-penempatan",
-      },
-      {
-        name: "Asal Kota/Kabupaten",
-        url: "/dashboard/kategori/asal-kabupaten",
-      },
-      {
-        name: "Skema Penempatan",
-        url: "/dashboard/kategori/skema-penempatan",
-      },
-      {
-        name: "Posisi/Jabatan",
-        url: "/dashboard/kategori/posisi",
-      },
-      {
-        name: "Sektor Demand",
-        url: "/dashboard/kategori/sektor-demand-supply",
-      },
-      {
-        name: "Provinsi",
-        url: "/dashboard/kategori/provinsi",
-      },
-      {
-        name: "Alasan Kepulangan",
-        url: "/dashboard/kategori/alasan-kepulangan",
-      },
-      {
-        name: "Staff BP3MI",
-        url: "/dashboard/kategori/staff-bp3mi",
-      },
-    ],
+    name: "Finalis",
+    url: "/admin-dashboard/finalis",
+    Icon: User2Icon,
   },
 ];
 
@@ -193,7 +92,7 @@ const Sidebar: React.FC = () => {
                 >
                   <AccordionTrigger
                     key={item.url}
-                    className={`flex w-full items-center justify-between rounded-md px-2.5 py-2.5 duration-300 hover:bg-slate-100`}
+                    className={`flex w-full items-center justify-between rounded-md px-2.5 py-2.5 duration-300 hover:bg-primary/80`}
                   >
                     <div className={`"justify-center flex items-center gap-3`}>
                       <item.Icon strokeWidth={1.5} size={20} />
@@ -208,13 +107,15 @@ const Sidebar: React.FC = () => {
                           <Link
                             key={subitem.url}
                             href={subitem.url}
-                            className={`${pathname === subitem.url ? "bg-primary text-white shadow-md" : "hover:bg-slate-100"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5 duration-300`}
+                            className={`${pathname === subitem.url ? "bg-primary text-white shadow-md" : "group"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5`}
                           >
                             <div
                               className={`"justify-center flex items-center gap-3`}
                             >
                               <CircleDashed strokeWidth={1.5} size={20} />
-                              <div>{subitem.name}</div>
+                              <div className="group-hover:underline">
+                                {subitem.name}
+                              </div>
                             </div>
                           </Link>
                         </div>
@@ -226,11 +127,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   key={item.url}
                   href={item.url}
-                  className={`${pathname === item.url ? "bg-primary text-white shadow-md" : "hover:bg-slate-100"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5 duration-300`}
+                  className={`${pathname === item.url ? "bg-primary font-bold text-white" : "group"} mt-1 flex w-full items-center justify-between rounded-md px-2.5 py-2.5`}
                 >
                   <div className={`"justify-center flex items-center gap-3`}>
                     <item.Icon strokeWidth={1.5} size={20} />
-                    <div>{item.name}</div>
+                    <div className="group-hover:underline">{item.name}</div>
                   </div>
                 </Link>
               )}

@@ -10,7 +10,7 @@ type Props = {
 export default function AdminDashboardLayout({ children }: Props) {
   return (
     <div>
-      <section className="font-inter flex min-h-screen w-full border bg-[#F8F7FA] lg:gap-12">
+      <section className="font-inter flex min-h-screen w-full bg-[#F8F7FA] lg:gap-12">
         <div>
           <Sidebar />
         </div>
