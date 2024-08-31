@@ -1,6 +1,6 @@
 import About from "@/components/Root/Home/About";
 import Hero from "@/components/Root/Home/Hero";
-import HeroAnimate from "@/components/Root/Home/HeroAnimate";
+import History from "@/components/Root/Home/History";
 import Timeline from "@/components/Root/Home/Timeline";
 import TnC from "@/components/Root/Home/TnC";
 import React from "react";
@@ -12,6 +12,7 @@ export default function Home({}: Props) {
     <>
       <Hero />
       <About />
+      <History />
       <TnC />
       <Timeline />
     </>
