@@ -146,8 +146,8 @@ export default function RegisterForm() {
                   </div>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="bujang">Laki-laki</SelectItem>
-                  <SelectItem value="gadis">Perempuan</SelectItem>
+                  <SelectItem value="Laki-laki">Laki-laki</SelectItem>
+                  <SelectItem value="Perempuan">Perempuan</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
