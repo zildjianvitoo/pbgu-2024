@@ -53,7 +53,7 @@ export default function Sidebar() {
   function handleLogout() {
     signOut();
     router.push("/");
-    toast.success("Logged Out berhasil!");
+    toast.success("Behasil Log Out!");
   }
 
   return (

@@ -1,4 +1,5 @@
 import About from "@/components/Root/Home/About";
+import Cta from "@/components/Root/Home/CTA";
 import Hero from "@/components/Root/Home/Hero";
 import History from "@/components/Root/Home/History";
 import Timeline from "@/components/Root/Home/Timeline";
@@ -15,6 +16,7 @@ export default function Home({}: Props) {
       <History />
       <TnC />
       <Timeline />
+      <Cta />
     </>
   );
 }
