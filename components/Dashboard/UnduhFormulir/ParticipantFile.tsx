@@ -134,16 +134,7 @@ export default function ParticipantFile({
     { files: "Fotokopi Sertifikat" },
     { files: "Map Berwarna" },
   ];
-
-  if (
-    generalInfo &&
-    personalInfo &&
-    formalEducation &&
-    informalEducations &&
-    competences &&
-    organizationalExperiences &&
-    achievements
-  ) {
+  {
     return (
       <Document>
         <Page wrap size="A4" style={styles.page}>
@@ -220,35 +211,35 @@ export default function ParticipantFile({
                   </Text>
                   <View style={styles.form}>
                     <Text style={styles.label}>Nama Lengkap</Text>
-                    <Text>: {generalInfo.fullname}</Text>
+                    <Text>: {generalInfo?.fullname}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Panggilan</Text>
-                    <Text>: {generalInfo.alias}</Text>
+                    <Text>: {generalInfo?.alias}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>NIM</Text>
-                    <Text>: {generalInfo.nim}</Text>
+                    <Text>: {generalInfo?.nim}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Prodi/Jurusan</Text>
-                    <Text>: {generalInfo.major}</Text>
+                    <Text>: {generalInfo?.major}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Tempat, Tanggal Lahir</Text>
-                    <Text>: {generalInfo.birth}</Text>
+                    <Text>: {generalInfo?.birth}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Usia</Text>
-                    <Text>: {generalInfo.age} Tahun</Text>
+                    <Text>: {generalInfo?.age} Tahun</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Jenis Kelamin</Text>
-                    <Text>: {generalInfo.gender}</Text>
+                    <Text>: {generalInfo?.gender}</Text>
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Alamat Tempat Tinggal</Text>
-                    <Text>: {generalInfo.address}</Text>
+                    <Text>: {generalInfo?.address}</Text>
                   </View>
                 </View>
                 <View
@@ -269,23 +260,23 @@ export default function ParticipantFile({
               <View style={{ marginTop: 10, width: "72%" }}>
                 <View style={styles.form}>
                   <Text style={styles.label}>Nomor Telepon</Text>
-                  <Text>: {generalInfo.phone_number}</Text>
+                  <Text>: {generalInfo?.phone_number}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Email</Text>
-                  <Text>: {generalInfo.email}</Text>
+                  <Text>: {generalInfo?.email}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Line</Text>
-                  <Text>: {generalInfo.line}</Text>
+                  <Text>: {generalInfo?.line}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Facebook</Text>
-                  <Text>: {generalInfo.facebook}</Text>
+                  <Text>: {generalInfo?.facebook}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Instagram</Text>
-                  <Text>: {generalInfo.instagram}</Text>
+                  <Text>: {generalInfo?.instagram}</Text>
                 </View>
               </View>
 
@@ -296,36 +287,36 @@ export default function ParticipantFile({
                 <View style={styles.form}>
                   <Text style={styles.label}>Tinggi/Berat Badan</Text>
                   <Text>
-                    : {personalInfo.height} cm / {personalInfo.weight} kg
+                    : {personalInfo?.height} cm / {personalInfo?.weight} kg
                   </Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Bahasa Asing yang Dikuasai</Text>
-                  <Text>: {personalInfo.foreign_language}</Text>
+                  <Text>: {personalInfo?.foreign_language}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Hobby</Text>
-                  <Text>: {personalInfo.hobby}</Text>
+                  <Text>: {personalInfo?.hobby}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Nama Ayah Kandung</Text>
-                  <Text>: {personalInfo.father}</Text>
+                  <Text>: {personalInfo?.father}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Nama Ibu Kandung</Text>
-                  <Text>: {personalInfo.mother}</Text>
+                  <Text>: {personalInfo?.mother}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Pekerjaan Orang Tua</Text>
-                  <Text>: {personalInfo.parents_job}</Text>
+                  <Text>: {personalInfo?.parents_job}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>No. Telepon</Text>
-                  <Text>: {personalInfo.parents_phone_number}</Text>
+                  <Text>: {personalInfo?.parents_phone_number}</Text>
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Alamat Orang Tua</Text>
-                  <Text>: {personalInfo.parents_address}</Text>
+                  <Text>: {personalInfo?.parents_address}</Text>
                 </View>
               </View>
             </View>
@@ -490,7 +481,7 @@ export default function ParticipantFile({
                     width: "40%",
                   }}
                 >
-                  <Text>{formalEducation.elementary}</Text>
+                  <Text>{formalEducation?.elementary}</Text>
                 </View>
                 <View
                   style={{
@@ -499,7 +490,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.elementary_in}</Text>
+                  <Text>{formalEducation?.elementary_in}</Text>
                 </View>
                 <View
                   style={{
@@ -508,7 +499,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.elementary_out}</Text>
+                  <Text>{formalEducation?.elementary_out}</Text>
                 </View>
               </View>
               <View
@@ -522,7 +513,7 @@ export default function ParticipantFile({
                   <Text>2</Text>
                 </View>
                 <View style={{ ...styles.tableData, width: "40%" }}>
-                  <Text>{formalEducation.junior}</Text>
+                  <Text>{formalEducation?.junior}</Text>
                 </View>
                 <View
                   style={{
@@ -531,7 +522,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.junior_in}</Text>
+                  <Text>{formalEducation?.junior_in}</Text>
                 </View>
                 <View
                   style={{
@@ -540,7 +531,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.junior_out}</Text>
+                  <Text>{formalEducation?.junior_out}</Text>
                 </View>
               </View>
               <View
@@ -554,7 +545,7 @@ export default function ParticipantFile({
                   <Text>3</Text>
                 </View>
                 <View style={{ ...styles.tableData, width: "40%" }}>
-                  <Text>{formalEducation.senior}</Text>
+                  <Text>{formalEducation?.senior}</Text>
                 </View>
                 <View
                   style={{
@@ -563,7 +554,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.senior_in}</Text>
+                  <Text>{formalEducation?.senior_in}</Text>
                 </View>
                 <View
                   style={{
@@ -572,7 +563,7 @@ export default function ParticipantFile({
                     textAlign: "center",
                   }}
                 >
-                  <Text>{formalEducation.senior_out}</Text>
+                  <Text>{formalEducation?.senior_out}</Text>
                 </View>
               </View>
 
@@ -614,7 +605,7 @@ export default function ParticipantFile({
                   <Text>Tahun Keluar</Text>
                 </View>
               </View>
-              {informalEducations.map((item, index) => (
+              {informalEducations?.map((item, index) => (
                 <View
                   key={item.id}
                   style={{
@@ -673,7 +664,7 @@ export default function ParticipantFile({
                   <Text>Keahlian / Bakat</Text>
                 </View>
               </View>
-              {competences.map((item, index) => (
+              {competences?.map((item, index) => (
                 <View
                   key={item.id}
                   style={{
@@ -726,7 +717,7 @@ export default function ParticipantFile({
                     <Text>Periode</Text>
                   </View>
                 </View>
-                {organizationalExperiences.map((item, index) => (
+                {organizationalExperiences?.map((item, index) => (
                   <View
                     break
                     key={item.id}
@@ -906,7 +897,7 @@ export default function ParticipantFile({
                   <Text>Tahun</Text>
                 </View>
               </View>
-              {achievements.map((item, index) => (
+              {achievements?.map((item, index) => (
                 <View
                   key={item.id}
                   style={{
@@ -1151,6 +1142,4 @@ export default function ParticipantFile({
       </Document>
     );
   }
-
-  return null;
 }

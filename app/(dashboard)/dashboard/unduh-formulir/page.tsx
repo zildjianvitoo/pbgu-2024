@@ -116,21 +116,18 @@ export default function UnduhFormulir() {
           )}
         </div>
       </div>
-      {!isLoading ? (
-        <PDFViewer className="min-h-screen">
-          <ParticipantFile
-            generalInfo={userGeneralInfo}
-            personalInfo={userPersonalInfo}
-            formalEducation={userFormalEducation}
-            informalEducations={userInformalEducations}
-            competences={userCompetences}
-            organizationalExperiences={userOrganizationalExperiences}
-            achievements={userAchievements}
-          />
-        </PDFViewer>
-      ) : (
-        ""
-      )}
+
+      <PDFViewer className="min-h-screen">
+        <ParticipantFile
+          generalInfo={userGeneralInfo}
+          personalInfo={userPersonalInfo}
+          formalEducation={userFormalEducation}
+          informalEducations={userInformalEducations}
+          competences={userCompetences}
+          organizationalExperiences={userOrganizationalExperiences}
+          achievements={userAchievements}
+        />
+      </PDFViewer>
     </section>
   );
 }
