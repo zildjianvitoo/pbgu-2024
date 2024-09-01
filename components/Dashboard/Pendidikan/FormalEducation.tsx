@@ -44,7 +44,6 @@ const formSchema = z.object({
 });
 
 export default function FormalEducation() {
-  const [isUpdating, setIsUpdating] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const query = useQueryClient();
@@ -74,7 +73,6 @@ export default function FormalEducation() {
     mutationFn: (values: CreateUserFormalEducationType) =>
       createUserFormalEducation(values),
     onSuccess: () => {
-      setIsUpdating(false);
       query.invalidateQueries({ queryKey: ["user-formal-educations", userId] });
       toast.success("Berhasil Menambahkan Data Pendidikan Formal!");
     },
@@ -88,7 +86,6 @@ export default function FormalEducation() {
     mutationFn: (values: CreateUserFormalEducationType) =>
       updateUserFormalEducation(userFormalEducation!.id, values),
     onSuccess: () => {
-      setIsUpdating(false);
       query.invalidateQueries({ queryKey: ["user-formal-educations", userId] });
       toast.success("Berhasil Memodifikasi Data Pendidikan Formal!");
     },
@@ -112,9 +109,6 @@ export default function FormalEducation() {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
           "flex flex-col gap-6 rounded-xl bg-white p-6 outline outline-transparent",
-          {
-            "outline-primary": isUpdating,
-          },
         )}
       >
         <div className="flex flex-col justify-between gap-y-6 lg:flex-row lg:items-center lg:gap-y-0">
@@ -126,20 +120,6 @@ export default function FormalEducation() {
               Isi data pendidikan formal Kamu
             </p>
           </div>
-          {isUpdating ? (
-            <div className="flex h-10 items-center gap-3 rounded-lg border-2 border-dashed border-primary bg-primary/10 px-4 py-2 text-primary">
-              <Pencil />
-              Sedang Mengisi Data
-            </div>
-          ) : (
-            <Button
-              onClick={() => setIsUpdating(true)}
-              className="flex items-center gap-3"
-            >
-              <Pencil />
-              {userFormalEducation ? "Modifikasi Data" : "Isi Data"}
-            </Button>
-          )}
         </div>
 
         <div className="space-y-6">
@@ -155,7 +135,6 @@ export default function FormalEducation() {
                   <FormItem className="flex-[2]">
                     <FormControl>
                       <Input
-                        disabled={!isUpdating}
                         className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                         placeholder="Nama Sekolah Dasar anda"
                         {...field}
@@ -173,7 +152,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Masuk SD"
                           {...field}
@@ -190,7 +168,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Lulus SD"
                           {...field}
@@ -215,7 +192,6 @@ export default function FormalEducation() {
                   <FormItem className="flex-[2]">
                     <FormControl>
                       <Input
-                        disabled={!isUpdating}
                         className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                         placeholder="Nama Sekolah Mengah Pertama (SMP)"
                         {...field}
@@ -233,7 +209,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Masuk SMP"
                           {...field}
@@ -250,7 +225,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Lulus SMP"
                           {...field}
@@ -275,7 +249,6 @@ export default function FormalEducation() {
                   <FormItem className="flex-[2]">
                     <FormControl>
                       <Input
-                        disabled={!isUpdating}
                         className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                         placeholder="Nama Sekolah Mengah Atas (SMA)"
                         {...field}
@@ -293,7 +266,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Masuk SMA"
                           {...field}
@@ -310,7 +282,6 @@ export default function FormalEducation() {
                     <FormItem className="flex-[1]">
                       <FormControl>
                         <Input
-                          disabled={!isUpdating}
                           className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                           placeholder="Tahun Lulus SMA"
                           {...field}
@@ -325,19 +296,17 @@ export default function FormalEducation() {
           </div>
         </div>
 
-        {isUpdating && (
-          <>
-            <Separator />
-            <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
-              <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
-                <span className="text-xl text-red-500">*</span>Silahkan
-                konfirmasi data sebelum melanjutkan.
-                <br /> Pastikan data yang anda isikan sudah benar!
-              </p>
-              <Button className="flex-1">Simpan Data</Button>
-            </div>
-          </>
-        )}
+        <Separator />
+        <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
+          <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
+            <span className="text-xl text-red-500">*</span>Silahkan konfirmasi
+            data sebelum melanjutkan.
+            <br /> Pastikan data yang anda isikan sudah benar!
+          </p>
+          <Button className="flex-1">
+            {userFormalEducation ? "Modifikasi Data" : "Tambahkan Data"}
+          </Button>
+        </div>
       </form>
     </Form>
   );

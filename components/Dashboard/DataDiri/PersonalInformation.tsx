@@ -45,7 +45,6 @@ const personalSchema = z.object({
 });
 
 export default function PersonalInformation() {
-  const [isUpdating, setIsUpdating] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const query = useQueryClient();
@@ -75,7 +74,6 @@ export default function PersonalInformation() {
     mutationFn: (values: CreateUserPersonalInfoType) =>
       createUserPersonalInfo(values),
     onSuccess: () => {
-      setIsUpdating(false);
       query.invalidateQueries({ queryKey: ["user-personal-infos", userId] });
       toast.success("Berhasil Menambahkan Informasi Pribadi!");
     },
@@ -90,7 +88,6 @@ export default function PersonalInformation() {
       updateUserPersonalInfo(userPersonalInfo!.id, values),
 
     onSuccess: () => {
-      setIsUpdating(false);
       query.invalidateQueries({ queryKey: ["user-personal-infos", userId] });
       toast.success("Berhasil Memodifikasi Informasi Pribadi!");
     },
@@ -114,9 +111,6 @@ export default function PersonalInformation() {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
           "flex flex-col gap-6 rounded-xl bg-white p-6 outline outline-transparent",
-          {
-            "outline-primary": isUpdating,
-          },
         )}
       >
         <div className="flex flex-col justify-between gap-y-6 lg:flex-row lg:items-center lg:gap-y-0">
@@ -128,20 +122,6 @@ export default function PersonalInformation() {
               Isi data pribadi mengenai diri Kamu
             </p>
           </div>
-          {isUpdating ? (
-            <div className="flex h-10 items-center gap-3 rounded-lg border-2 border-dashed border-primary bg-primary/10 px-4 py-2 text-primary">
-              <Pencil />
-              Sedang Mengisi Data
-            </div>
-          ) : (
-            <Button
-              onClick={() => setIsUpdating(true)}
-              className="flex items-center gap-3"
-            >
-              <Pencil />
-              {userPersonalInfo ? "Modifikasi Data" : "Isi Data"}
-            </Button>
-          )}
         </div>
 
         <div className="flex w-full flex-col gap-6 lg:flex-row">
@@ -153,7 +133,6 @@ export default function PersonalInformation() {
                 <FormLabel className="font-semibold">Tinggi Badan</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Tinggi Badan anda (cm)"
                     {...field}
@@ -171,7 +150,6 @@ export default function PersonalInformation() {
                 <FormLabel className="font-semibold">Berat Badan</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Berat Badan anda (Kg)"
                     {...field}
@@ -193,7 +171,6 @@ export default function PersonalInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Bahasa Asing yang anda kuasai (opsional)"
                     {...field}
@@ -211,7 +188,6 @@ export default function PersonalInformation() {
                 <FormLabel className="font-semibold">Hobby</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Daftar Hobby anda"
                     {...field}
@@ -233,7 +209,6 @@ export default function PersonalInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Nama Ayah Kandung anda"
                     {...field}
@@ -253,7 +228,6 @@ export default function PersonalInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Nama Ibu Kandung anda"
                     {...field}
@@ -275,7 +249,6 @@ export default function PersonalInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Pekerjaan Ibu/Ayah anda"
                     {...field}
@@ -295,7 +268,6 @@ export default function PersonalInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Nomor telepon salah satu dari kedua orang tua anda"
                     {...field}
@@ -315,7 +287,6 @@ export default function PersonalInformation() {
               <FormLabel className="font-semibold">Alamat Orang Tua</FormLabel>
               <FormControl>
                 <Input
-                  disabled={!isUpdating}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Alamat tempat tinggal orang tua anda"
                   {...field}
@@ -326,24 +297,20 @@ export default function PersonalInformation() {
           )}
         />
 
-        {isUpdating && (
-          <>
-            <Separator />
-            <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
-              <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
-                <span className="text-xl text-red-500">*</span>Silahkan
-                konfirmasi data sebelum melanjutkan.
-                <br /> Pastikan data yang anda isikan sudah benar!
-              </p>
-              <Button
-                disabled={form.formState.isSubmitting}
-                className="flex-1 disabled:opacity-80"
-              >
-                Simpan Data
-              </Button>
-            </div>
-          </>
-        )}
+        <Separator />
+        <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
+          <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
+            <span className="text-xl text-red-500">*</span>Silahkan konfirmasi
+            data sebelum melanjutkan.
+            <br /> Pastikan data yang anda isikan sudah benar!
+          </p>
+          <Button
+            disabled={form.formState.isSubmitting}
+            className="flex-1 disabled:opacity-80"
+          >
+            {userPersonalInfo ? "Modifikasi Data" : "Tambahkan Data"}
+          </Button>
+        </div>
       </form>
     </Form>
   );

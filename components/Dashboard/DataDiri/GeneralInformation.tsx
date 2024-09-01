@@ -23,8 +23,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
-import { Pencil, Upload, XCircle } from "lucide-react";
 import "@/lib/zodCustomError";
 import { cn } from "@/lib/utils";
 import {
@@ -56,7 +54,6 @@ const generalSchema = z.object({
 });
 
 export default function GeneralInformation() {
-  const [isUpdating, setIsUpdating] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const query = useQueryClient();
@@ -91,7 +88,6 @@ export default function GeneralInformation() {
       createUserGeneralInfo(values),
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["user-general-infos", userId] });
-      setIsUpdating(false);
       toast.success("Data umum berhasil ditambah!");
     },
     onError: (error) => {
@@ -105,7 +101,6 @@ export default function GeneralInformation() {
       updateUserGeneralInfo(userGeneralInfo?.id!, values),
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["user-general-infos", userId] });
-      setIsUpdating(false);
       toast.success("Data umum berhasil diupdate!");
     },
     onError: (error) => {
@@ -128,9 +123,6 @@ export default function GeneralInformation() {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
           "flex flex-col gap-6 rounded-xl bg-white p-6 outline outline-transparent",
-          {
-            "outline-primary": isUpdating,
-          },
         )}
       >
         <div className="flex flex-col justify-between gap-y-6 lg:flex-row lg:items-center lg:gap-y-0">
@@ -142,20 +134,6 @@ export default function GeneralInformation() {
               Isi data umum mengenai diri Kamu
             </p>
           </div>
-          {isUpdating ? (
-            <div className="flex h-10 items-center gap-3 rounded-lg border-2 border-dashed border-primary bg-primary/10 px-4 py-2 text-primary">
-              <Pencil />
-              Sedang Mengisi Data
-            </div>
-          ) : (
-            <Button
-              onClick={() => setIsUpdating(true)}
-              className="flex items-center gap-3"
-            >
-              <Pencil />
-              {userGeneralInfo ? "Modifikasi Data" : "Isi Data"}
-            </Button>
-          )}
         </div>
 
         <div className="flex w-full flex-col gap-6 lg:flex-row">
@@ -167,7 +145,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Nama Lengkap</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi dengan Nama Lengkap anda"
                     {...field}
@@ -187,7 +164,6 @@ export default function GeneralInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi dengan Nama Panggilan atau Alias anda"
                     {...field}
@@ -207,7 +183,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">NIM</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi NIM perkuliahan anda di UNSRI"
                     {...field}
@@ -225,7 +200,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Prodi/Jurusan</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi Prodi dan Jurusan anda"
                     {...field}
@@ -247,7 +221,6 @@ export default function GeneralInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Isi Tempat / Tanggal Lahir anda"
                     {...field}
@@ -265,7 +238,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Usia</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Usia anda saat mendaftar"
                     {...field}
@@ -288,10 +260,7 @@ export default function GeneralInformation() {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger
-                      disabled={!isUpdating}
-                      className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
-                    >
+                    <SelectTrigger className="border-foreground disabled:border-foreground/5 disabled:opacity-100">
                       <SelectValue placeholder="Pilih jenis kelamin" />
                     </SelectTrigger>
                   </FormControl>
@@ -312,7 +281,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Alamat</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Alamat tempat tinggal anda"
                     {...field}
@@ -333,7 +301,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Nomor Telepon</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Nomor Telepon/Whatsapp anda"
                     {...field}
@@ -351,7 +318,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">E-mail</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Email aktif anda"
                     {...field}
@@ -371,7 +337,6 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">ID Line</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="ID Line anda"
                     {...field}
@@ -391,7 +356,6 @@ export default function GeneralInformation() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    disabled={!isUpdating}
                     className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                     placeholder="Username Akun Facebook anda"
                     {...field}
@@ -413,7 +377,6 @@ export default function GeneralInformation() {
               </FormLabel>
               <FormControl>
                 <Input
-                  disabled={!isUpdating}
                   className="border-foreground disabled:border-foreground/5 disabled:opacity-100"
                   placeholder="Username Akun Instagram anda"
                   {...field}
@@ -424,19 +387,17 @@ export default function GeneralInformation() {
           )}
         />
 
-        {isUpdating && (
-          <>
-            <Separator />
-            <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
-              <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
-                <span className="text-xl text-red-500">*</span>Silahkan
-                konfirmasi data sebelum melanjutkan.
-                <br /> Pastikan data yang anda isikan sudah benar!
-              </p>
-              <Button className="flex-1">Simpan Data</Button>
-            </div>
-          </>
-        )}
+        <Separator />
+        <div className="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:gap-y-0">
+          <p className="flex-1 text-center text-xs font-medium lg:text-start lg:text-base">
+            <span className="text-xl text-red-500">*</span>Silahkan konfirmasi
+            data sebelum melanjutkan.
+            <br /> Pastikan data yang anda isikan sudah benar!
+          </p>
+          <Button className="flex-1">
+            {userGeneralInfo ? "Modifikasi Data" : "Tambahkan Data"}
+          </Button>
+        </div>
       </form>
     </Form>
   );
@@ -478,7 +439,7 @@ export default function GeneralInformation() {
 //           </FormLabel>
 //           <FormControl>
 //             <Input
-//               disabled={!isUpdating}
+//
 //               className="absolute left-0 top-0 border-foreground opacity-0 disabled:border-foreground/5 disabled:opacity-100"
 //               type="file"
 //               onChange={handlePicture}
