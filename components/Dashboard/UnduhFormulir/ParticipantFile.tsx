@@ -827,7 +827,7 @@ export default function ParticipantFile({
         <Page size="A4" style={styles.page}>
           <View style={{ maxHeight: "100%", minHeight: "100%" }}>
             <View fixed style={{ flexDirection: "column" }}>
-              <View style={{ ...styles.head, paddingBottom: 24 }}>
+              <View style={{ ...styles.head }}>
                 <Image style={styles.unsri} src="/images/logo-unsri.png" />
                 <View
                   style={{
