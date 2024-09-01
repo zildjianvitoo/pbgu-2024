@@ -73,10 +73,7 @@ export default function Sidebar() {
         )}
       >
         <div className="flex w-full items-center gap-4">
-          <Link
-            href={"/dashboard"}
-            className="relative flex size-12 items-center gap-4"
-          >
+          <Link href={"/"} className="relative flex size-12 items-center gap-4">
             <Image
               src="/images/logo-ibgu.png"
               alt="Logo"
@@ -84,9 +81,12 @@ export default function Sidebar() {
               fill
             />
           </Link>
-          <p className="text-2xl font-bold text-primary-foreground lg:text-3xl">
+          <Link
+            href={"/"}
+            className="text-2xl font-bold text-primary-foreground lg:text-3xl"
+          >
             IBGU
-          </p>
+          </Link>
           <X
             onClick={() => setIsOpen(!isOpen)}
             className="text-background lg:hidden"
@@ -100,6 +100,7 @@ export default function Sidebar() {
             {sidebarLink.map((item) => (
               <div key={item.url}>
                 <Link
+                  onClick={() => setIsOpen(false)}
                   key={item.url}
                   href={item.url}
                   className={cn(

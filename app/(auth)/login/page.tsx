@@ -7,11 +7,11 @@ export default function LoginPage() {
   return (
     <section
       id="login"
-      className="relative flex h-screen w-full overflow-hidden px-3 sm:px-5 lg:px-0"
+      className="relative flex h-screen w-full overflow-hidden sm:px-5 lg:px-0"
     >
       <div
         id="login-form"
-        className="m-auto flex-[1] rounded-lg bg-white px-8 py-8 sm:px-16 lg:px-20 xl:px-24"
+        className="m-auto flex h-screen flex-[1] flex-col justify-center bg-white px-6 py-8 sm:px-16 lg:h-auto lg:justify-normal lg:rounded-lg lg:px-20 xl:px-24"
       >
         <Link href="/" className="mb-2 flex items-center gap-2">
           <div className="grid size-8 place-items-center rounded-full bg-white shadow-lg">

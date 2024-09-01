@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaTransgender } from "react-icons/fa";
-
 import { toast } from "sonner";
 import { User } from "lucide-react";
 import {
@@ -31,8 +30,8 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "@/lib/network/user";
 import { CreateUserType } from "@/lib/types/user";
-// import { createUser } from "@/lib/network/user";
 import "@/lib/zodCustomError";
+import { AxiosError } from "axios";
 
 export const registerSchema = z.object({
   name: z.string().min(1),
@@ -40,6 +39,9 @@ export const registerSchema = z.object({
   gender: z.string().min(1),
   password: z.string().min(1),
 });
+interface ErrorResponse {
+  error: string;
+}
 
 export default function RegisterForm() {
   const [isShow, setIsShow] = useState(false);
@@ -60,12 +62,16 @@ export default function RegisterForm() {
     mutationFn: (values: CreateUserType) => createUser(values),
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["users"] });
-      toast.success("Account Created!");
+      toast.success("Akun Berhasil Terdaftar!");
       router.push("/login");
     },
-    onError: (error) => {
-      toast.error("Something went wrong!");
-      console.error(error);
+    onError: (error: AxiosError<ErrorResponse>) => {
+      console.log(error);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error("Terjadi Kessalahan Pada Server!");
+      }
     },
   });
 

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     if (isRegistered) {
       return NextResponse.json(
-        { error: "An account with this email already exists!" },
+        { error: "Email anda sudah terdaftar!" },
         { status: 409 },
       );
     }
