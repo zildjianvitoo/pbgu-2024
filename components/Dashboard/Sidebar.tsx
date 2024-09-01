@@ -110,10 +110,9 @@ export default function Sidebar() {
             ))}
             <Separator className="opacity-70" />
             <div>
-              <Link
-                href="/"
+              <div
                 className={cn(
-                  "mt-1 flex w-full items-center justify-between rounded-md px-5 py-2.5 text-background duration-300",
+                  "mt-1 flex w-full cursor-pointer items-center justify-between rounded-md px-5 py-2.5 text-background duration-300",
                   pathname === "/"
                     ? "bg-background text-primary shadow-sm"
                     : "hover:bg-background hover:text-primary",
@@ -121,12 +120,12 @@ export default function Sidebar() {
               >
                 <div
                   onClick={handleLogout}
-                  className={`"justify-center flex items-center gap-5`}
+                  className={`"justify-center flex cursor-pointer items-center gap-5`}
                 >
                   <LogOut strokeWidth={1.8} size={24} />
                   <div className="text-xl">Log Out</div>
                 </div>
-              </Link>
+              </div>
             </div>
           </Accordion>
         </ScrollArea>
