@@ -43,12 +43,6 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
 
   const chartData = [
     {
-      service: "Total Peserta",
-      total: totalUser,
-      fill: "hsl(var(--chart-1))",
-      Icon: FaPeopleGroup,
-    },
-    {
       service: "Peserta Bujang",
       total: totalMale,
       fill: "hsl(var(--chart-2))",
@@ -115,6 +109,26 @@ export function UserStatistic({ userGeneralInfo }: UserStatisticProps) {
           </PieChart>
         </ChartContainer>
         <div className="grid flex-[12] grid-cols-1 gap-3 rounded-lg bg-background p-6 md:grid-cols-3">
+          <Card
+            key={"Total Peserta"}
+            className="group cursor-pointer border-2 border-primary transition-all duration-300 hover:scale-105 hover:text-white"
+            style={{
+              color: "hsl(var(--chart-1))",
+              borderColor: "hsl(var(--chart-1))",
+            }}
+          >
+            <CardHeader className="h-full items-center justify-center space-y-3">
+              <FaPeopleGroup className="size-16" />
+
+              <CardTitle className="text-center text-xl font-normal md:text-2xl">
+                Total Peserta
+              </CardTitle>
+
+              <p className="text-center text-xl font-bold md:text-2xl">
+                {totalUser} ({Math.floor((totalUser * 100) / totalUser)}%)
+              </p>
+            </CardHeader>
+          </Card>
           {chartData.map((item) => (
             <Card
               key={item.service}

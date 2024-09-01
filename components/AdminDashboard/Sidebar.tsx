@@ -58,8 +58,8 @@ export default function Sidebar() {
 
   const router = useRouter();
 
-  function handleLogout() {
-    signOut();
+  async function handleLogout() {
+    await signOut();
     router.push("/");
     toast.success("Behasil Log Out!");
   }
@@ -75,7 +75,7 @@ export default function Sidebar() {
         <div className="flex w-full items-center gap-4">
           <Link
             href={"/dashboard"}
-            className="relative mt-2 flex size-12 items-center gap-4"
+            className="relative flex size-12 items-center gap-4"
           >
             <Image
               src="/images/logo-ibgu.png"

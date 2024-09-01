@@ -34,8 +34,8 @@ export default function Navbar() {
   const { data } = useSession();
   const router = useRouter();
 
-  function handleLogout() {
-    signOut();
+  async function handleLogout() {
+    await signOut();
     router.push("/");
     toast.success("Log Out berhasil!");
   }

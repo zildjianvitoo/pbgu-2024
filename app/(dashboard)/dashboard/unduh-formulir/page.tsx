@@ -1,5 +1,6 @@
 "use client";
 
+import DialogConfirm from "@/components/Dashboard/DialogConfirm";
 import ParticipantFile from "@/components/Dashboard/UnduhFormulir/ParticipantFile";
 import { Button } from "@/components/ui/button";
 import { getUserAchievementsByUserId } from "@/lib/network/user-achievement";
@@ -65,6 +66,7 @@ export default function UnduhFormulir() {
   ) {
     return (
       <section className="flex w-full flex-col gap-4 pb-6 lg:gap-6">
+        <DialogConfirm />
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-semibold text-primary">
             Formulir Data Peserta PBGU

@@ -21,8 +21,8 @@ export default function DashboardHeader({
   const username = session?.user.name;
   const userImage = session?.user.image;
 
-  function handleLogout() {
-    signOut();
+  async function handleLogout() {
+    await signOut();
     router.push("/");
     toast.success("Behasil Log Out!");
   }
