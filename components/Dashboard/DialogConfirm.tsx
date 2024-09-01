@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -22,8 +24,8 @@ interface DialogConfirmProps {
   userGeneralInfo: UserGeneralInfoType;
   userPersonalInfo: UserPersonalInfoType;
   userFormalEducation: UserFormalEducationType;
-  userInformalEducations: UserInformalEducation[];
-  userCompetences: UserCompetenceType[];
+  userInformalEducations?: UserInformalEducation[];
+  userCompetences?: UserCompetenceType[];
   userOrganizationalExperiences: UserOrganizationalExperienceType[];
   userAchievements: UserAchievementType[];
 }
@@ -100,7 +102,7 @@ export default function DialogConfirm({
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="data-pendidikan-nonformal"
-                checked={userInformalEducations && true}
+                checked={userInformalEducations?.length! > 0 && true}
                 disabled
               />
               <label
@@ -113,7 +115,7 @@ export default function DialogConfirm({
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="data-pencapaian"
-                checked={userCompetences && true}
+                checked={userCompetences?.length! > 0 && true}
                 disabled
               />
               <label
@@ -126,7 +128,7 @@ export default function DialogConfirm({
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="data-pengalaman-organisasi"
-                checked={userOrganizationalExperiences && true}
+                checked={userOrganizationalExperiences.length > 0 && true}
                 disabled
               />
               <label
@@ -139,7 +141,7 @@ export default function DialogConfirm({
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="data-prestasi"
-                checked={userAchievements && true}
+                checked={userAchievements.length > 0 && true}
                 disabled
               />
               <label

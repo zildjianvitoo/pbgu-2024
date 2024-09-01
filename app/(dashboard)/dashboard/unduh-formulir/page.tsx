@@ -76,9 +76,9 @@ export default function UnduhFormulir() {
           userGeneralInfo={userGeneralInfo!}
           userPersonalInfo={userPersonalInfo!}
           userFormalEducation={userFormalEducation!}
-          userInformalEducations={userInformalEducations!}
+          userInformalEducations={userInformalEducations}
           userAchievements={userAchievements!}
-          userCompetences={userCompetences!}
+          userCompetences={userCompetences}
           userOrganizationalExperiences={userOrganizationalExperiences!}
         />
       )}
@@ -116,7 +116,7 @@ export default function UnduhFormulir() {
           )}
         </div>
       </div>
-      {!isLoading && (
+      {!isLoading ? (
         <PDFViewer className="min-h-screen">
           <ParticipantFile
             generalInfo={userGeneralInfo}
@@ -128,6 +128,8 @@ export default function UnduhFormulir() {
             achievements={userAchievements}
           />
         </PDFViewer>
+      ) : (
+        ""
       )}
     </section>
   );

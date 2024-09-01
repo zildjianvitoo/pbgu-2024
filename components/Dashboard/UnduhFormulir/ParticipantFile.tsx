@@ -1148,17 +1148,9 @@ export default function ParticipantFile({
             </View>
           </View>
         </Page>
-        {/* <Page wrap={false} size="A4" style={styles.page}>
-        <View>
-          <Text>Section #2</Text>
-        </View>
-      </Page>{" "}
-      <Page wrap={false} size="A4" style={styles.page}>
-        <View>
-          <Text>Section #3</Text>
-        </View>
-      </Page> */}
       </Document>
     );
   }
+
+  return null;
 }
