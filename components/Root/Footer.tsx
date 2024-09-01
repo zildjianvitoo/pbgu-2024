@@ -71,14 +71,12 @@ export default function Footer() {
               <figure className="relative size-16">
                 <Image
                   src="/images/logo-ibgu.png"
-                  alt="Logo PLN HP"
+                  alt="Logo IBGU"
                   fill
                   className="object-contain"
                 />
               </figure>
-              <p className="text-4xl font-bold text-primary-foreground">
-                IBG Unsri
-              </p>
+              <p className="text-4xl font-bold text-primary-foreground">IBGU</p>
             </div>
             <div className="space-y-3 text-primary-foreground">
               <div className="flex items-center gap-3">
@@ -148,7 +146,7 @@ export default function Footer() {
         <hr />
         <div className="flex w-full justify-between">
           <small className="text-base font-medium text-primary-foreground">
-            &copy; Copyright 2024 Team Pake Nanya . All rights reserved.
+            &copy; Copyright 2024 Team MindSync . All rights reserved.
           </small>
           <small className="cursor-pointer text-base font-medium text-primary-foreground transition hover:opacity-80">
             Terms and Conditions

@@ -16,6 +16,7 @@ const attachments = [
   "Pas foto berwarna terbaru ukuran 3x4 sebanyak 1 Lembar ditempel di formulir.",
   "Foto full body dan close up ukuran 4R (kualitas foto studio)",
   "Fotokopi KHS semester terakhir atau SKHUN (bagi mahasiswa baru).",
+  "Melampirkan bukti screenshot telah terdaftar di PDDIKTI",
   "Fotokopi Sertifikat (bila ada).",
   "Membayar uang pendaftaran Rp 100.000.",
   "Berkas dimasukkan kedalam map berwarna biru (Bujang) dan merah (Gadis).",

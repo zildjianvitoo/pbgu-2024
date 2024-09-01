@@ -19,7 +19,7 @@ export default function History() {
       <div className="flex-[3] space-y-6">
         <h2 className="text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
           Sejarah
-          <span className="text-secondary"> IBG UNSRI</span>
+          <span className="text-secondary"> IBGU</span>
         </h2>
         <p className="md:text-[17px]/26">
           Musyawarah Besar pertama diadakan pada tanggal 24 Januari 2014 dengan

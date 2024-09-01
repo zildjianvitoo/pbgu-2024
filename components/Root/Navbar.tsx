@@ -92,9 +92,7 @@ export default function Navbar() {
           />
         </Link>
       </div>
-      <p className="font-nexaScript text-3xl text-secondary lg:hidden">
-        IBG Unsri
-      </p>
+      <p className="font-nexaScript text-3xl text-secondary lg:hidden">IBGU</p>
       <div className="block lg:hidden">
         <NavbarMobile links={links} />
       </div>

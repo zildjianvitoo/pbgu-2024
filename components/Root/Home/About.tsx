@@ -10,8 +10,7 @@ export default function About({}: Props) {
     >
       <div className="order-2 flex-1 space-y-6 lg:order-1">
         <h2 className="text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
-          Perkenalkan Kami Dari{" "}
-          <span className="text-secondary">IBG UNSRI!</span>
+          Perkenalkan Kami Dari <span className="text-secondary">IBGU!</span>
         </h2>
         <p className="md:text-lg">
           Ikatan Bujang Gadis Universitas Sriwijaya merupakan organisasi yang

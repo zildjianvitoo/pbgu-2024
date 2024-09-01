@@ -85,7 +85,7 @@ export default function Sidebar() {
             />
           </Link>
           <p className="text-2xl font-bold text-primary-foreground lg:text-3xl">
-            IBG Unsri
+            IBGU
           </p>
           <X
             onClick={() => setIsOpen(!isOpen)}
