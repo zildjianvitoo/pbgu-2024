@@ -825,86 +825,62 @@ export default function ParticipantFile({
           </View>
         </Page>
         <Page size="A4" style={styles.page}>
-          <View style={styles.head} fixed>
-            <Image style={styles.unsri} src="/images/logo-unsri.png" />
-            <View
-              style={{
-                width: "84%",
-              }}
-            >
-              <Text style={styles.header}>
-                KEMENTERIAN RISET, TEKNOLOGI, DAN PENDIDIKAN TINGGI
-              </Text>
-              <Text style={styles.header}>UNIVERSITAS SRIWIJAYA</Text>
-              <Text style={styles.header}>
-                IKATAN BUJANG GADIS UNIVERSITAS SRIWIJAYA
-              </Text>
-              <Text style={styles.subHeader}>Contact Person:</Text>
-              <Text style={styles.subHeader}>
-                M. Sultan Asfari (081377748943) / Shafira Junisar (085720116361)
-              </Text>
-            </View>
-            <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
-          </View>
-          <View
-            style={{
-              width: "100%",
-              height: 8,
-              backgroundColor: "orange",
-            }}
-          />
-          <View
-            style={{
-              width: "100%",
-              height: 5,
-              backgroundColor: "yellow",
-            }}
-          />
-          <View
-            style={{
-              marginTop: 24,
-              paddingHorizontal: 48,
-              width: "100%",
-            }}
-          >
-            <View
-              style={{
-                paddingHorizontal: 48,
-                width: "100%",
-              }}
-            ></View>
-            <Text style={{ ...styles.label, fontWeight: 800 }}>
-              Prestasi yang Pernah Diraih
-            </Text>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-              }}
-            >
-              <View style={{ ...styles.tableHeader, width: "10%" }}>
-                <Text>No</Text>
-              </View>
-              <View style={{ ...styles.tableHeader, width: "35%" }}>
-                <Text>Nama Penghargaan</Text>
-              </View>
-              <View style={{ ...styles.tableHeader, width: "35%" }}>
-                <Text>Instansi Pemberi Penghargaan</Text>
+          <View style={{ maxHeight: "100%", minHeight: "100%" }}>
+            <View style={{ flexDirection: "column" }}>
+              <View fixed style={{ ...styles.head, paddingBottom: 24 }}>
+                <Image style={styles.unsri} src="/images/logo-unsri.png" />
+                <View
+                  style={{
+                    width: "84%",
+                  }}
+                >
+                  <Text style={styles.header}>
+                    KEMENTERIAN RISET, TEKNOLOGI, DAN PENDIDIKAN TINGGI
+                  </Text>
+                  <Text style={styles.header}>UNIVERSITAS SRIWIJAYA</Text>
+                  <Text style={styles.header}>
+                    IKATAN BUJANG GADIS UNIVERSITAS SRIWIJAYA
+                  </Text>
+                  <Text style={styles.subHeader}>Contact Person:</Text>
+                  <Text style={styles.subHeader}>
+                    M. Sultan Asfari (081377748943) / Shafira Junisar
+                    (085720116361)
+                  </Text>
+                </View>
+                <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
               </View>
               <View
                 style={{
-                  ...styles.tableHeader,
-                  width: "20%",
-                  textAlign: "center",
+                  width: "100%",
+                  height: 8,
+                  backgroundColor: "orange",
                 }}
-              >
-                <Text>Tahun</Text>
-              </View>
-            </View>
-            {achievements.map((item, index) => (
+              />
               <View
-                key={item.id}
+                style={{
+                  width: "100%",
+                  height: 5,
+                  backgroundColor: "yellow",
+                }}
+              />
+            </View>
+            <View
+              style={{
+                marginTop: 24,
+                paddingHorizontal: 48,
+                width: "100%",
+              }}
+            >
+              <View
+                style={{
+                  paddingHorizontal: 48,
+                  width: "100%",
+                }}
+              ></View>
+              <Text style={{ ...styles.label, fontWeight: 800 }}>
+                Prestasi yang Pernah Diraih
+              </Text>
+              <View
                 style={{
                   display: "flex",
                   flexDirection: "row",
@@ -912,55 +888,27 @@ export default function ParticipantFile({
                 }}
               >
                 <View style={{ ...styles.tableHeader, width: "10%" }}>
-                  <Text>{index + 1}</Text>
+                  <Text>No</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "35%" }}>
-                  <Text>{item.achievement}</Text>
+                <View style={{ ...styles.tableHeader, width: "35%" }}>
+                  <Text>Nama Penghargaan</Text>
                 </View>
-                <View style={{ ...styles.tableData, width: "35%" }}>
-                  <Text>{item.instance}</Text>
+                <View style={{ ...styles.tableHeader, width: "35%" }}>
+                  <Text>Instansi Pemberi Penghargaan</Text>
                 </View>
                 <View
                   style={{
-                    ...styles.tableData,
+                    ...styles.tableHeader,
                     width: "20%",
                     textAlign: "center",
                   }}
                 >
-                  <Text>{item.year}</Text>
+                  <Text>Tahun</Text>
                 </View>
               </View>
-            ))}
-
-            <Text
-              style={{
-                ...styles.label,
-                fontWeight: 800,
-                marginTop: 24,
-                width: "100%",
-              }}
-            >
-              Motivasi mengikuti Pemilihan Bujang Gadis Unsri 2024
-            </Text>
-            <View
-              style={{
-                borderColor: "black",
-                borderWidth: 1,
-                width: "100%",
-                height: 100,
-              }}
-            />
-
-            <View
-              style={{
-                marginTop: 16,
-                display: "flex",
-                justifyContent: "space-between",
-                flexDirection: "row",
-              }}
-            >
-              <View style={{ width: "50%" }}>
+              {achievements.map((item, index) => (
                 <View
+                  key={item.id}
                   style={{
                     display: "flex",
                     flexDirection: "row",
@@ -968,173 +916,234 @@ export default function ParticipantFile({
                   }}
                 >
                   <View style={{ ...styles.tableHeader, width: "10%" }}>
-                    <Text>No</Text>
+                    <Text>{index + 1}</Text>
                   </View>
-                  <View style={{ ...styles.tableHeader, width: "60%" }}>
-                    <Text>Berkas</Text>
+                  <View style={{ ...styles.tableData, width: "35%" }}>
+                    <Text>{item.achievement}</Text>
                   </View>
-                  <View style={{ ...styles.tableHeader, width: "15%" }}>
-                    <Text>Ada</Text>
+                  <View style={{ ...styles.tableData, width: "35%" }}>
+                    <Text>{item.instance}</Text>
                   </View>
-                  <View style={{ ...styles.tableHeader, width: "15%" }}>
-                    <Text>Tidak</Text>
-                  </View>
-                </View>
-                {papers.map((item, index) => (
                   <View
-                    key={item.files}
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      width: "100%",
+                      ...styles.tableData,
+                      width: "20%",
+                      textAlign: "center",
                     }}
                   >
-                    <View
-                      style={{
-                        ...styles.tableHeader,
-                        width: "10%",
-                        fontSize: 10,
-                      }}
-                    >
-                      <Text>{index + 1}</Text>
-                    </View>
-                    <View
-                      style={{
-                        ...styles.tableData,
-                        width: "60%",
-                        fontSize: 10,
-                      }}
-                    >
-                      <Text>{item.files}</Text>
-                    </View>
-                    <View
-                      style={{
-                        ...styles.tableData,
-                        width: "15%",
-                        fontSize: 10,
-                      }}
-                    ></View>
-                    <View
-                      style={{
-                        ...styles.tableData,
-                        width: "15%",
-                        fontSize: 10,
-                      }}
-                    ></View>
+                    <Text>{item.year}</Text>
                   </View>
-                ))}
-                <View
+                </View>
+              ))}
+              <View break>
+                <Text
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    ...styles.label,
+                    fontWeight: 800,
+                    marginTop: 24,
                     width: "100%",
                   }}
                 >
-                  <View style={{ ...styles.tableHeader, width: "70%" }}>
-                    <Text>Nama Pemeriksa</Text>
-                  </View>
-                  <View style={{ ...styles.tableData, width: "30%" }}></View>
-                </View>
-              </View>
-              <View style={{ width: "40%" }}>
-                <Text>Tanda Tangan,</Text>
-                <View
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    alignItems: "flex-end",
-                    flexDirection: "row",
-                  }}
-                >
-                  <View
-                    style={{
-                      borderColor: "black",
-                      borderBottomWidth: "1px",
-                      borderStyle: "dotted",
-                      width: "100%",
-                      height: 10,
-                    }}
-                  />
-                  <Text>2024</Text>
-                </View>
+                  Motivasi mengikuti Pemilihan Bujang Gadis Unsri 2024
+                </Text>
                 <View
                   style={{
                     borderColor: "black",
-                    borderBottomWidth: "1px",
+                    borderWidth: 1,
                     width: "100%",
-                    height: 80,
+                    height: 100,
                   }}
                 />
-                <Text
+
+                <View
                   style={{
                     marginTop: 16,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexDirection: "row",
                   }}
                 >
-                  NIM.
-                </Text>
+                  <View style={{ width: "50%" }}>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                      }}
+                    >
+                      <View style={{ ...styles.tableHeader, width: "10%" }}>
+                        <Text>No</Text>
+                      </View>
+                      <View style={{ ...styles.tableHeader, width: "60%" }}>
+                        <Text>Berkas</Text>
+                      </View>
+                      <View style={{ ...styles.tableHeader, width: "15%" }}>
+                        <Text>Ada</Text>
+                      </View>
+                      <View style={{ ...styles.tableHeader, width: "15%" }}>
+                        <Text>Tidak</Text>
+                      </View>
+                    </View>
+                    {papers.map((item, index) => (
+                      <View
+                        key={item.files}
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          width: "100%",
+                        }}
+                      >
+                        <View
+                          style={{
+                            ...styles.tableHeader,
+                            width: "10%",
+                            fontSize: 10,
+                          }}
+                        >
+                          <Text>{index + 1}</Text>
+                        </View>
+                        <View
+                          style={{
+                            ...styles.tableData,
+                            width: "60%",
+                            fontSize: 10,
+                          }}
+                        >
+                          <Text>{item.files}</Text>
+                        </View>
+                        <View
+                          style={{
+                            ...styles.tableData,
+                            width: "15%",
+                            fontSize: 10,
+                          }}
+                        ></View>
+                        <View
+                          style={{
+                            ...styles.tableData,
+                            width: "15%",
+                            fontSize: 10,
+                          }}
+                        ></View>
+                      </View>
+                    ))}
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                      }}
+                    >
+                      <View style={{ ...styles.tableHeader, width: "70%" }}>
+                        <Text>Nama Pemeriksa</Text>
+                      </View>
+                      <View
+                        style={{ ...styles.tableData, width: "30%" }}
+                      ></View>
+                    </View>
+                  </View>
+                  <View style={{ width: "40%" }}>
+                    <Text>Tanda Tangan,</Text>
+                    <View
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        alignItems: "flex-end",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <View
+                        style={{
+                          borderColor: "black",
+                          borderBottomWidth: "1px",
+                          borderStyle: "dotted",
+                          width: "100%",
+                          height: 10,
+                        }}
+                      />
+                      <Text>2024</Text>
+                    </View>
+                    <View
+                      style={{
+                        borderColor: "black",
+                        borderBottomWidth: "1px",
+                        width: "100%",
+                        height: 80,
+                      }}
+                    />
+                    <Text
+                      style={{
+                        marginTop: 16,
+                      }}
+                    >
+                      NIM.
+                    </Text>
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
-          <View
-            style={{
-              width: "100%",
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-            }}
-          >
             <View
+              fixed
               style={{
                 width: "100%",
-                height: 5,
-                backgroundColor: "yellow",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
                 marginTop: 24,
-              }}
-            />
-            <View
-              style={{
-                width: "100%",
-                height: 80,
-                backgroundColor: "orange",
-                paddingHorizontal: 48,
               }}
             >
               <View
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: 6,
-                  marginTop: 12,
-                  alignItems: "center",
+                  width: "100%",
+                  height: 5,
+                  backgroundColor: "yellow",
                 }}
-              >
-                <Image
-                  style={{
-                    width: 18,
-                    height: 18,
-                  }}
-                  src="/images/insta-icon.png"
-                />
-                <Text>: @bgunsri</Text>
-              </View>
+              />
               <View
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: 6,
-                  marginTop: 12,
-                  alignItems: "center",
+                  width: "100%",
+                  height: 80,
+                  backgroundColor: "orange",
+                  paddingHorizontal: 48,
                 }}
               >
-                <Image
+                <View
                   style={{
-                    width: 18,
-                    height: 18,
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 6,
+                    marginTop: 12,
+                    alignItems: "center",
                   }}
-                  src="/images/mail-icon.png"
-                />
+                >
+                  <Image
+                    style={{
+                      width: 18,
+                      height: 18,
+                    }}
+                    src="/images/insta-icon.png"
+                  />
+                  <Text>: @bgunsri</Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 6,
+                    marginTop: 12,
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    style={{
+                      width: 18,
+                      height: 18,
+                    }}
+                    src="/images/mail-icon.png"
+                  />
 
-                <Text>: bgu.unsri@gmail.com</Text>
+                  <Text>: bgu.unsri@gmail.com</Text>
+                </View>
               </View>
             </View>
           </View>

@@ -48,6 +48,7 @@ export default function CreateAchievement() {
       queryClient.invalidateQueries({
         queryKey: ["user-achievements", userId],
       });
+      form.reset();
       toast.success("Berhasil Menambahkan Data Prestasi!");
     },
     onError: (error) => {
