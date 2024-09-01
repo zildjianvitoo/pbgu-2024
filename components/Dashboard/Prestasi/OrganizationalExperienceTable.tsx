@@ -21,7 +21,7 @@ export default function OrganizationalExperienceTable() {
   const userId = session?.user.id || "";
 
   const { data: organizationalExperiences } = useQuery({
-    queryFn: () => getAllUserOrganizationalExperiences(),
+    queryFn: () => getUserOrganizationalExperiencesByUserId(userId),
     queryKey: ["user-organizational-experiences", userId],
   });
 
