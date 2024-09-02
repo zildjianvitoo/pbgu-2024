@@ -239,7 +239,9 @@ export default function ParticipantFile({
                   </View>
                   <View style={styles.form}>
                     <Text style={styles.label}>Alamat Tempat Tinggal</Text>
-                    <Text>: {generalInfo?.address}</Text>
+                    <Text style={{ fontSize: 10 }}>
+                      : {generalInfo?.address}
+                    </Text>
                   </View>
                 </View>
                 <View
@@ -316,7 +318,16 @@ export default function ParticipantFile({
                 </View>
                 <View style={styles.form}>
                   <Text style={styles.label}>Alamat Orang Tua</Text>
-                  <Text>: {personalInfo?.parents_address}</Text>
+                  <Text
+                    style={{
+                      fontSize:
+                        personalInfo?.parents_address?.length || 0 > 50
+                          ? 10
+                          : 12,
+                    }}
+                  >
+                    : {personalInfo?.parents_address}
+                  </Text>
                 </View>
               </View>
             </View>
