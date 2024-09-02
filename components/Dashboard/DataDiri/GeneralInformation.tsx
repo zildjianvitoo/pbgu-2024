@@ -63,6 +63,8 @@ export default function GeneralInformation() {
     queryKey: ["user-general-infos", userId],
   });
 
+  console.log(userGeneralInfo);
+
   const form = useForm<z.infer<typeof generalSchema>>({
     resolver: zodResolver(generalSchema),
     values: {
@@ -257,7 +259,8 @@ export default function GeneralInformation() {
                 <FormLabel className="font-semibold">Jenis Kelamin</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  defaultValue={userGeneralInfo?.gender ?? field.value}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger className="border-foreground disabled:border-foreground/5 disabled:opacity-100">

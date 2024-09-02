@@ -948,6 +948,7 @@ export default function ParticipantFile({
 
                 <View
                   style={{
+                    paddingBottom: 85,
                     marginTop: 16,
                     display: "flex",
                     justifyContent: "space-between",
