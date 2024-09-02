@@ -19,6 +19,7 @@ import { CreateUserInformalEducationType } from "@/lib/types/user-informal-educa
 import { createUserInformalEducation } from "@/lib/network/user-informal-education";
 import { useSession } from "next-auth/react";
 import "@/lib/zodCustomError";
+import { useRouter } from "next/navigation";
 
 const formalEducationSchema = z.object({
   userId: z.string().min(1),
@@ -28,10 +29,17 @@ const formalEducationSchema = z.object({
   year_end: z.string().min(1),
 });
 
-export default function CreateInformalEducation() {
+type Props = {
+  userInformalEducationsLength: number;
+};
+
+export default function CreateInformalEducation({
+  userInformalEducationsLength,
+}: Props) {
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formalEducationSchema>>({
     resolver: zodResolver(formalEducationSchema),
@@ -48,6 +56,7 @@ export default function CreateInformalEducation() {
     mutationFn: (values: CreateUserInformalEducationType) =>
       createUserInformalEducation(values),
     onSuccess: () => {
+      router.refresh();
       toast.success("Berhasil Menambahkan Data Pendidikan Informal!");
       queryClient.invalidateQueries({
         queryKey: ["user-informal-educations", userId],
@@ -122,7 +131,10 @@ export default function CreateInformalEducation() {
               )}
             />
           </div>
-          <Button className="flex items-center gap-3">
+          <Button
+            disabled={userInformalEducationsLength >= 5}
+            className="flex items-center gap-3"
+          >
             <Plus className="size-5" /> Tambah
           </Button>
         </div>

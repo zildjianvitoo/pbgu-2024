@@ -47,6 +47,7 @@ export async function updateUserInformalEducation(
 }
 
 export async function deleteUserInformalEducation(id: string) {
+
   const { data } = await axiosInstance.delete(
     "/user-informal-educations/" + id,
   );

@@ -8,23 +8,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  deleteUserInformalEducation,
-  getUserInformalEducationsByUserId,
-} from "@/lib/network/user-informal-education";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
+import { deleteUserInformalEducation } from "@/lib/network/user-informal-education";
+
 import DeleteModal from "../DeleteModal";
+import { UserInformalEducationType } from "@/lib/types/user-informal-education";
 
-export default function InformalEducationTable() {
-  const { data: session } = useSession();
-  const userId = session?.user.id || "";
+type Props = {
+  userInformalEducations: UserInformalEducationType[];
+  userId: string;
+};
 
-  const { data: userInformalEducations } = useQuery({
-    queryFn: () => getUserInformalEducationsByUserId(userId),
-    queryKey: ["user-informal-educations", userId],
-  });
-
+export default function InformalEducationTable({
+  userInformalEducations,
+  userId,
+}: Props) {
   if (userInformalEducations) {
     return (
       <Table className="border">

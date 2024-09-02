@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -6,23 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  deleteUserAchievement,
-  getUserAchievementsByUserId,
-} from "@/lib/network/user-achievement";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
+import { deleteUserAchievement } from "@/lib/network/user-achievement";
+
 import DeleteModal from "../DeleteModal";
+import { UserAchievementType } from "@/lib/types/user-achievement";
 
-export default function AchievementTable() {
-  const { data: session } = useSession();
-  const userId = session?.user.id || "";
+type Props = {
+  userAchievements: UserAchievementType[];
+  userId: string;
+};
 
-  const { data: userAchievements } = useQuery({
-    queryFn: () => getUserAchievementsByUserId(userId),
-    queryKey: ["user-achievements", userId],
-  });
-
+export default function AchievementTable({ userAchievements, userId }: Props) {
   if (userAchievements) {
     return (
       <Table className="border">

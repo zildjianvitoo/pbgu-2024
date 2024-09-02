@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { CreateUserOrganizationalExperienceType } from "@/lib/types/user-organizational-experience";
 import { createUserOrganizationalExperience } from "@/lib/network/user-organizational-experience";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   userId: z.string().min(1),
@@ -26,10 +27,17 @@ const formSchema = z.object({
   period: z.string().min(1),
 });
 
-export default function CreateOrganizationalExperience() {
+type Props = {
+  organizationalExperiencesLength: number;
+};
+
+export default function CreateOrganizationalExperience({
+  organizationalExperiencesLength,
+}: Props) {
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,6 +53,7 @@ export default function CreateOrganizationalExperience() {
     mutationFn: (values: CreateUserOrganizationalExperienceType) =>
       createUserOrganizationalExperience(values),
     onSuccess: () => {
+      router.refresh();
       queryClient.invalidateQueries({
         queryKey: ["user-organizational-experiences", userId],
       });
@@ -105,7 +114,10 @@ export default function CreateOrganizationalExperience() {
             )}
           />
 
-          <Button className="flex items-center gap-3">
+          <Button
+            disabled={organizationalExperiencesLength >= 5}
+            className="flex items-center gap-3"
+          >
             <Plus className="size-5" /> Tambah
           </Button>
         </div>

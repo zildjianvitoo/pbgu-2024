@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -15,16 +16,17 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import DeleteModal from "../DeleteModal";
+import { UserOrganizationalExperienceType } from "@/lib/types/user-organizational-experience";
 
-export default function OrganizationalExperienceTable() {
-  const { data: session } = useSession();
-  const userId = session?.user.id || "";
+type Props = {
+  organizationalExperiences: UserOrganizationalExperienceType[];
+  userId: string;
+};
 
-  const { data: organizationalExperiences } = useQuery({
-    queryFn: () => getUserOrganizationalExperiencesByUserId(userId),
-    queryKey: ["user-organizational-experiences", userId],
-  });
-
+export default function OrganizationalExperienceTable({
+  organizationalExperiences,
+  userId,
+}: Props) {
   if (organizationalExperiences) {
     return (
       <Table className="border">

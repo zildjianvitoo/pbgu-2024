@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { CreateUserCompetenceType } from "@/lib/types/user-competence";
 import { createUserCompetence } from "@/lib/network/user-competence";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const createCompetenceSchema = z.object({
   userId: z.string().min(1),
@@ -25,11 +26,15 @@ const createCompetenceSchema = z.object({
   skill: z.string().min(1),
 });
 
-export default function CreateCompetence() {
+type Props = {
+  competenceLength: number;
+};
+
+export default function CreateCompetence({ competenceLength }: Props) {
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const queryClient = useQueryClient();
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof createCompetenceSchema>>({
     resolver: zodResolver(createCompetenceSchema),
     values: {
@@ -43,6 +48,7 @@ export default function CreateCompetence() {
     mutationFn: (values: CreateUserCompetenceType) =>
       createUserCompetence(values),
     onSuccess: () => {
+      router.refresh();
       queryClient.invalidateQueries({ queryKey: ["user-competences", userId] });
       toast.success("Berhasil Menambahkan Data Kemampuan dan Kompet,ensi!");
       form.reset();
@@ -90,7 +96,10 @@ export default function CreateCompetence() {
             )}
           />
 
-          <Button className="flex items-center gap-3">
+          <Button
+            disabled={competenceLength >= 5}
+            className="flex items-center gap-3"
+          >
             <Plus className="size-5" /> Tambah
           </Button>
         </div>

@@ -15,6 +15,7 @@ import {
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 type DeleteDialogProps = {
   params: string;
@@ -27,11 +28,14 @@ export default function DeleteModal({
   deleteFunction,
   queryKey,
 }: DeleteDialogProps) {
+  const router = useRouter();
+
   const queryClient = useQueryClient();
 
   const { mutate: onDelete } = useMutation({
     mutationFn: () => deleteFunction(params),
     onSuccess: () => {
+      router.refresh();
       queryClient.invalidateQueries({ queryKey: queryKey });
       toast.success("Data Berhasil Dihapus!");
     },
@@ -48,9 +52,9 @@ export default function DeleteModal({
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Button className="p-1" size="icon">
+        <div className="inline-flex h-10 w-10 items-center justify-center whitespace-nowrap rounded-md bg-primary text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
           <Trash className="size-5" />
-        </Button>
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent className="font-inter">
         <AlertDialogHeader>

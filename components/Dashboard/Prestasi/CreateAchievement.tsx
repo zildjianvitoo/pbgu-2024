@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { CreateUserAchievementType } from "@/lib/types/user-achievement";
 import { createUserAchievement } from "@/lib/network/user-achievement";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   userId: z.string().min(1),
@@ -26,10 +27,16 @@ const formSchema = z.object({
   year: z.string().min(1),
 });
 
-export default function CreateAchievement() {
+type Props = {
+  userAchievementsLength: number;
+};
+
+export default function CreateAchievement({ userAchievementsLength }: Props) {
   const { data: session } = useSession();
   const userId = session?.user.id || "";
   const queryClient = useQueryClient();
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,6 +52,7 @@ export default function CreateAchievement() {
     mutationFn: (values: CreateUserAchievementType) =>
       createUserAchievement(values),
     onSuccess: () => {
+      router.refresh();
       queryClient.invalidateQueries({
         queryKey: ["user-achievements", userId],
       });
@@ -109,7 +117,10 @@ export default function CreateAchievement() {
             )}
           />
 
-          <Button className="flex items-center gap-3">
+          <Button
+            disabled={userAchievementsLength >= 5}
+            className="flex items-center gap-3"
+          >
             <Plus className="size-5" /> Tambah
           </Button>
         </div>

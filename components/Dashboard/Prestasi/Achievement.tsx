@@ -1,9 +1,13 @@
-"use client";
-
+import { auth } from "@/auth";
 import AchievementTable from "./AchievementTable";
 import CreateAchievement from "./CreateAchievement";
+import { getUserAchievementsByUserId } from "@/lib/network/user-achievement";
 
-export default function Achievement() {
+export default async function Achievement() {
+  const session = await auth();
+  const userId = session?.user.id;
+  const data = await getUserAchievementsByUserId(userId!);
+
   return (
     <div className="flex flex-col gap-6 rounded-xl bg-white p-6">
       <div className="space-y-2">
@@ -15,9 +19,9 @@ export default function Achievement() {
         </p>
       </div>
 
-      <AchievementTable />
+      <AchievementTable userAchievements={data} userId={userId!} />
 
-      <CreateAchievement />
+      <CreateAchievement userAchievementsLength={data.length} />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -6,23 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  deleteUserCompetence,
-  getUserCompetencesByUserId,
-} from "@/lib/network/user-competence";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
+import { deleteUserCompetence } from "@/lib/network/user-competence";
+
 import DeleteModal from "../DeleteModal";
+import { UserCompetenceType } from "@/lib/types/user-competence";
 
-export default function CompetenceTable() {
-  const { data: session } = useSession();
-  const userId = session?.user.id || "";
+type Props = {
+  userCompetences: UserCompetenceType[];
+  userId: string;
+};
 
-  const { data: userCompetences } = useQuery({
-    queryFn: () => getUserCompetencesByUserId(userId),
-    queryKey: ["user-competences", userId],
-  });
-
+export default function CompetenceTable({ userCompetences, userId }: Props) {
   if (userCompetences) {
     return (
       <Table className="border">
