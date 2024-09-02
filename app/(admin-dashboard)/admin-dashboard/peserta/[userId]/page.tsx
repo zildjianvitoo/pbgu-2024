@@ -12,6 +12,9 @@ import { getUserPersonalInfoByUserId } from "@/lib/network/user-personal-info";
 import { getUserCompetencesByUserId } from "@/lib/network/user-competence";
 import { getUserOrganizationalExperiencesByUserId } from "@/lib/network/user-organizational-experience";
 import { getUserAchievementsByUserId } from "@/lib/network/user-achievement";
+import { PDFViewer } from "@react-pdf/renderer";
+import ParticipantFile from "@/components/Dashboard/UnduhFormulir/ParticipantFile";
+import ViewPDF from "@/components/AdminDashboard/ViewPDF";
 
 export default async function UserDetail({
   params,
@@ -58,6 +61,15 @@ export default async function UserDetail({
         organizationalExperiences={organizationalExperiences}
       />
       <Achievement achievements={achievements} />
+      <ViewPDF
+        generalInfo={generalInfo}
+        personalInfo={personalInfo}
+        formalEducation={formalEducation}
+        informalEducations={informalEducations}
+        competences={competences}
+        organizationalExperiences={organizationalExperiences}
+        achievements={achievements}
+      />
     </section>
   );
 }
