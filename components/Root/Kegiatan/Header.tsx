@@ -12,7 +12,7 @@ export default function Header({}: Props) {
           Kegiatan <span className="text-secondary">BGU</span>
         </h1>
         <p className="text-background">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          Berikut Kegiatan Bujang Gadis Universitas Sriwijaya
         </p>
       </div>
 

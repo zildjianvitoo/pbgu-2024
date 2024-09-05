@@ -32,7 +32,7 @@ export default async function ActivityDetail({
             {activity.title}
           </h2>
           <div className="mt-2 text-primary">
-            {formatDate(activity.createdAt)}
+            {activity && formatDate(activity.createdAt ?? new Date())}
           </div>
           <div className="mt-3 flex items-center gap-4">
             <div className="text-sm">Bagikan : </div>
@@ -44,15 +44,15 @@ export default async function ActivityDetail({
           <div className="flex-[3] pb-6 lg:pb-0 lg:pe-12">
             <figure className="relative aspect-video w-full overflow-hidden">
               <Image
-                src={activity.image as string}
+                src={activity?.image as string}
                 fill
-                alt={activity.title}
+                alt={activity?.title}
                 className="object-cover object-center"
               />
             </figure>
             <div
-              className="prose lg:prose-lg mt-3 lg:mt-12"
-              dangerouslySetInnerHTML={{ __html: activity.content }}
+              className="prose mt-3 lg:prose-lg lg:mt-12"
+              dangerouslySetInnerHTML={{ __html: activity?.content }}
             />
             <div className="mt-8 flex items-center gap-4">
               <div className="text-sm">Bagikan : </div>
@@ -66,7 +66,7 @@ export default async function ActivityDetail({
                 Berita Terbaru
               </div>
               <div className="max-w- mb-3 h-1 w-full bg-primary" />
-              {firstActivity.title !== activity.title && (
+              {firstActivity.title !== activity?.title && (
                 <Link href={`/kegiatan/${firstActivity.slug}`} className="mb-5">
                   <div className="relative mb-1 aspect-video w-full overflow-hidden rounded-md">
                     <Image

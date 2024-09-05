@@ -26,13 +26,13 @@ export default function RecentActivity({
         </div>
       </div>
       <Link
-        href={`/kegiatan/${recentActivity.slug}`}
+        href={`/kegiatan/${recentActivity?.slug}`}
         className="group mt-4 flex cursor-pointer flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12"
       >
         <figure className="relative aspect-video w-full lg:flex-[3]">
           <Image
-            src={recentActivity.image as string}
-            alt={recentActivity.title + "Image"}
+            src={recentActivity?.image as string}
+            alt={recentActivity?.title + "Image"}
             fill
             className="z-10 object-cover object-center transition-all duration-500 group-hover:-translate-y-4 group-hover:translate-x-4"
           />
@@ -40,15 +40,17 @@ export default function RecentActivity({
         </figure>
         <div className="w-full space-y-2 lg:flex-[2] lg:space-y-6">
           <p className="font-semibold text-secondary lg:text-lg">
-            {formatDate(recentActivity.createdAt)}
+            {formatDate(recentActivity?.createdAt)}
           </p>
 
           <h3 className="text-2xl font-semibold capitalize text-background lg:text-4xl/tight">
-            {recentActivity.title}
+            {recentActivity?.title}
           </h3>
           <p
             className="line-clamp-3 text-background/80 lg:text-lg"
-            dangerouslySetInnerHTML={{ __html: recentActivity.content }}
+            dangerouslySetInnerHTML={{
+              __html: recentActivity?.content ?? <div></div>,
+            }}
           />
         </div>
       </Link>

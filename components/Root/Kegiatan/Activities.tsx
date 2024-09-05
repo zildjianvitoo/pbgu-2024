@@ -57,7 +57,7 @@ export default function Activities({
               </h3>
               <p
                 className="line-clamp-2 text-sm text-background/80"
-                dangerouslySetInnerHTML={{ __html: activity.content }}
+                dangerouslySetInnerHTML={{ __html: activity?.content }}
               />
               <p className="font-semibold text-secondary">
                 {formatDate(activity.createdAt)}
