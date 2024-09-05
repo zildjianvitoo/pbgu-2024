@@ -16,17 +16,20 @@ import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { ReactNode } from "react";
 
 type DeleteDialogProps = {
   params: string;
   deleteFunction: (params: string) => Promise<string>;
   queryKey: any;
+  children?: ReactNode;
 };
 
 export default function DeleteModal({
   params,
   deleteFunction,
   queryKey,
+  children,
 }: DeleteDialogProps) {
   const router = useRouter();
 
@@ -52,9 +55,13 @@ export default function DeleteModal({
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <div className="inline-flex h-10 w-10 items-center justify-center whitespace-nowrap rounded-md bg-primary text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-          <Trash className="size-5" />
-        </div>
+        {children ? (
+          children
+        ) : (
+          <div className="inline-flex h-10 w-10 items-center justify-center whitespace-nowrap rounded-md bg-primary text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+            <Trash className="size-5" />
+          </div>
+        )}
       </AlertDialogTrigger>
       <AlertDialogContent className="font-inter">
         <AlertDialogHeader>

@@ -1,10 +1,3 @@
-import FormalEducation from "@/components/AdminDashboard/Peserta/FormalEducation";
-import GeneralInfo from "@/components/AdminDashboard/Peserta/GeneralInfo";
-import PersonalInfo from "@/components/AdminDashboard/Peserta/PersonalInfo";
-import InformalEducation from "@/components/AdminDashboard/Peserta/InformalEducation";
-import Competence from "@/components/AdminDashboard/Peserta/Competence";
-import OrganizationalExperience from "@/components/AdminDashboard/Peserta/OrganizationalExperience";
-import Achievement from "@/components/AdminDashboard/Peserta/Achievement";
 import { getUserFormalEducationByUserId } from "@/lib/network/user-formal-education";
 import { getUserGeneralInfoByUserId } from "@/lib/network/user-general-info";
 import { getUserInformalEducationsByUserId } from "@/lib/network/user-informal-education";
@@ -12,9 +5,15 @@ import { getUserPersonalInfoByUserId } from "@/lib/network/user-personal-info";
 import { getUserCompetencesByUserId } from "@/lib/network/user-competence";
 import { getUserOrganizationalExperiencesByUserId } from "@/lib/network/user-organizational-experience";
 import { getUserAchievementsByUserId } from "@/lib/network/user-achievement";
-import { PDFViewer } from "@react-pdf/renderer";
-import ParticipantFile from "@/components/Dashboard/UnduhFormulir/ParticipantFile";
+
 import ViewPDF from "@/components/AdminDashboard/ViewPDF";
+import GeneralInfo from "@/components/AdminDashboard/Peserta/GeneralInfo";
+import PersonalInfo from "@/components/AdminDashboard/Peserta/PersonalInfo";
+import FormalEducation from "@/components/AdminDashboard/Peserta/FormalEducation";
+import InformalEducation from "@/components/AdminDashboard/Peserta/InformalEducation";
+import Achievement from "@/components/AdminDashboard/Peserta/Achievement";
+import Competence from "@/components/AdminDashboard/Peserta/Competence";
+import OrganizationalExperience from "@/components/AdminDashboard/Peserta/OrganizationalExperience";
 
 export default async function UserDetail({
   params,

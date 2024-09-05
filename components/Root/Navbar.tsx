@@ -23,7 +23,7 @@ const links = [
   },
   {
     name: "Kegiatan",
-    path: "#",
+    path: "/kegiatan",
   },
 ];
 

@@ -1,9 +1,6 @@
 "use client";
-import { BarChart2 } from "lucide-react";
 
 import RegistrantTable from "@/components/AdminDashboard/RegistrantTable";
-
-import { getAllUsers } from "@/lib/network/user";
 import { registrantColumn } from "@/lib/columns/registrant-column";
 import { getAllUserGeneralInfos } from "@/lib/network/user-general-info";
 import { useQuery } from "@tanstack/react-query";

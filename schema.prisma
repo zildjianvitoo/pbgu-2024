@@ -69,10 +69,10 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
-model News {
+model Activities {
   id        String   @id @unique @default(cuid())
-  name      String
-  slug      String
+  title     String
+  slug      String   @unique
   image     String
   content   String
   createdAt DateTime @default(now())
@@ -82,7 +82,7 @@ model News {
 model UserGeneralInfo {
   id           String   @id @unique @default(cuid())
   userId       String   @unique
-  User         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   fullname     String
   alias        String
   nim          String

@@ -5,14 +5,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import {
-  Award,
   ChevronRight,
-  FileDown,
-  GraduationCap,
   Home,
   ListChecks,
   LogOut,
-  SquareUserRound,
+  Newspaper,
   User2Icon,
   X,
 } from "lucide-react";
@@ -49,6 +46,11 @@ const sidebarLink = [
     name: "Finalis",
     url: "/admin-dashboard/finalis",
     Icon: User2Icon,
+  },
+  {
+    name: "Kegiatan",
+    url: "/admin-dashboard/kegiatan",
+    Icon: Newspaper,
   },
 ];
 

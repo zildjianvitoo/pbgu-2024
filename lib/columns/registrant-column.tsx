@@ -6,6 +6,7 @@ import TableSorter from "@/components/AdminDashboard/TableSorter";
 import Link from "next/link";
 import { UserGeneralInfoType } from "../types/user-general-info";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "../formatDate";
 
 export const registrantColumn: ColumnDef<UserGeneralInfoType>[] = [
   {
@@ -33,6 +34,12 @@ export const registrantColumn: ColumnDef<UserGeneralInfoType>[] = [
     accessorFn: (row) => row.major,
     header: ({ column }) => <TableSorter column={column} header="JURUSAN" />,
     cell: ({ getValue }) => <div>{getValue() as string}</div>,
+  },
+  {
+    accessorKey: "createdAt",
+    accessorFn: (row) => row.createdAt,
+    header: ({ column }) => <TableSorter column={column} header="TANGGAL" />,
+    cell: ({ getValue }) => <div>{formatDate(getValue() as string)}</div>,
   },
   {
     accessorKey: "action",
