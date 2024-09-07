@@ -45,7 +45,7 @@ export default function Activities({
           >
             <figure className="relative aspect-video w-full overflow-hidden rounded-sm">
               <Image
-                src={activity.image as string}
+                src={activity.ActivityImages[0].image as string}
                 alt="kegiatan"
                 fill
                 className="z-10 object-cover object-center"

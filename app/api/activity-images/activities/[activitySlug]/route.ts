@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: Request,
@@ -7,12 +6,9 @@ export async function GET(
 ) {
   try {
     const activitySlug = params.activitySlug;
-    const result = await prisma.activities.findUnique({
-      include: {
-        ActivityImages: true,
-      },
+    const result = await prisma.activityImages.findMany({
       where: {
-        slug: activitySlug,
+        activitySlug: activitySlug,
       },
     });
     return NextResponse.json(result, { status: 200 });

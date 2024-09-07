@@ -1,8 +1,18 @@
+"use client";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { formatDate } from "@/lib/formatDate";
 import { ActivityType } from "@/lib/types/activity";
 import Image from "next/image";
 import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
 
 interface RecentActivityProps {
   recentActivity: ActivityType;
@@ -29,15 +39,33 @@ export default function RecentActivity({
         href={`/kegiatan/${recentActivity?.slug}`}
         className="group mt-4 flex cursor-pointer flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12"
       >
-        <figure className="relative aspect-video w-full lg:flex-[3]">
-          <Image
-            src={recentActivity?.image as string}
-            alt={recentActivity?.title + "Image"}
-            fill
-            className="z-10 object-cover object-center transition-all duration-500 group-hover:-translate-y-4 group-hover:translate-x-4"
-          />
-          <div className="absolute -bottom-4 -left-4 z-0 h-full w-full flex-[3] border-4 border-secondary" />
-        </figure>
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+          className="z-10 w-full lg:flex-[3]"
+        >
+          <CarouselContent className="">
+            {recentActivity?.ActivityImages.map((image, index) => (
+              <CarouselItem key={index}>
+                <figure className="relative aspect-video w-full">
+                  <Image
+                    src={image.image as string}
+                    alt={image?.image + "Image"}
+                    fill
+                    className="object-cover object-center"
+                  />
+                </figure>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 border-none bg-transparent text-white" />
+          <CarouselNext className="right-0 border-none bg-transparent text-white" />
+          <div className="absolute -bottom-4 -left-4 -z-10 h-full w-full flex-[3] border-4 border-secondary" />
+        </Carousel>
+
         <div className="w-full space-y-2 lg:flex-[2] lg:space-y-6">
           <p className="font-semibold text-secondary lg:text-lg">
             {formatDate(recentActivity?.createdAt)}

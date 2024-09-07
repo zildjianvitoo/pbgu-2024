@@ -9,6 +9,9 @@ export async function GET(
   try {
     const activityId = params.activityId;
     const result = await prisma.activities.findUnique({
+      include: {
+        ActivitiyImages: true,
+      },
       where: {
         id: activityId,
       },
@@ -29,37 +32,13 @@ export async function PUT(
 ) {
   try {
     const activityId = params.activityId;
-    const formData = await req.formData();
-    console.log(formData);
+    const data = await req.json();
 
-    const title = formData.get("title") as string;
-    const slug = formData.get("slug") as string;
-    const content = formData.get("content") as string;
-    const image = formData.get("image") as File;
-
-    if (!image) {
-      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
-    }
-
-    let filePath;
-
-    if (image instanceof File) {
-      await fileUpload(image, "activities");
-      filePath = `/activities/${image.name}`;
-    } else {
-      filePath = image;
-    }
-
-    const result = await prisma.activities.update({
+    const result = await prisma.userAcheivement.update({
       where: {
         id: activityId,
       },
-      data: {
-        title: title,
-        slug: slug,
-        content: content,
-        image: filePath,
-      },
+      data: data,
     });
 
     return NextResponse.json(result, { status: 201 });

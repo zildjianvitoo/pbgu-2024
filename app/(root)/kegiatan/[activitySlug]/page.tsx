@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getActivityBySlug, getAllActivities } from "@/lib/network/activity";
 import { formatDate } from "@/lib/formatDate";
 import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
+import PictureCarousel from "@/components/Root/Kegiatan/PictureCarousel";
 
 export default async function ActivityDetail({
   params,
@@ -12,12 +12,13 @@ export default async function ActivityDetail({
   params: { activitySlug: string };
 }) {
   const { activitySlug } = params;
+
   const activity = await getActivityBySlug(activitySlug);
   const activities = await getAllActivities();
 
-  const exceptionActivities = activities.filter(
-    (activity) => activity.slug !== activitySlug,
-  );
+  const exceptionActivities =
+    activities.filter((activity) => activity.slug !== activitySlug) || [];
+
   const firstActivity = exceptionActivities[0];
   const activitiesexceptFirst = exceptionActivities.slice(1);
 
@@ -42,14 +43,7 @@ export default async function ActivityDetail({
         </div>
         <div className="mt-6 flex flex-col max-lg:divide-y-2 lg:flex-row lg:divide-x-2">
           <div className="flex-[3] pb-6 lg:pb-0 lg:pe-12">
-            <figure className="relative aspect-video w-full overflow-hidden">
-              <Image
-                src={activity?.image as string}
-                fill
-                alt={activity?.title}
-                className="object-cover object-center"
-              />
-            </figure>
+            <PictureCarousel activity={activity} />
             <div
               className="prose mt-3 lg:prose-lg lg:mt-12"
               dangerouslySetInnerHTML={{ __html: activity?.content }}
@@ -70,7 +64,7 @@ export default async function ActivityDetail({
                 <Link href={`/kegiatan/${firstActivity.slug}`} className="mb-5">
                   <div className="relative mb-1 aspect-video w-full overflow-hidden rounded-md">
                     <Image
-                      src={firstActivity.image as string}
+                      src={firstActivity.ActivityImages[0].image as string}
                       alt={firstActivity.title + "Image"}
                       fill
                       className="object-cover object-center"
@@ -93,7 +87,7 @@ export default async function ActivityDetail({
                   >
                     <figure className="relative aspect-[6/5] flex-[2] overflow-hidden rounded-sm">
                       <Image
-                        src={activity.image as string}
+                        src={activity.ActivityImages[0].image as string}
                         alt={activity.title + "Image"}
                         fill
                         className="object-cover object-center"

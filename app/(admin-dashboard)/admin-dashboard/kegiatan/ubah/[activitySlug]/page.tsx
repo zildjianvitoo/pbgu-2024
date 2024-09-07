@@ -16,14 +16,24 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
 import { Plus, Upload, XCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import sluggify from "slugify";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { CreateActivityType } from "@/lib/types/activity";
-import { getActivityBySlug, updateActivity } from "@/lib/network/activity";
+import {
+  createActivity,
+  getActivityBySlug,
+  updateActivity,
+} from "@/lib/network/activity";
 import Image from "next/image";
+import {
+  createActivityImage,
+  getActivityImageBySlug,
+  updateActivityImage,
+} from "@/lib/network/activity-image";
+import { CreateActivityImage } from "@/lib/types/activity-image";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -31,51 +41,22 @@ const formSchema = z.object({
   content: z.string().min(1),
 });
 
-export default function UpdateActivity({
-  params,
-}: {
-  params: { activitySlug: string };
-}) {
-  const [picture, setPicture] = useState<File | string | undefined>();
-  const [pictureUrl, setPictureUrl] = useState<string | undefined>();
-  const router = useRouter();
-  const queryClient = useQueryClient();
-  const activitySlug = params.activitySlug;
+export default function UpdateActivity() {
+  const { activitySlug } = useParams();
 
   const { data: activity } = useQuery({
-    queryFn: () => getActivityBySlug(activitySlug),
+    queryFn: () => getActivityBySlug(activitySlug as string),
     queryKey: ["activities", activitySlug],
-    enabled: !!activitySlug,
   });
 
-  useEffect(() => {
-    if (activity) {
-      setPicture(activity.image);
-      setPictureUrl(activity.image as string);
-    }
-  }, [activity]);
+  const router = useRouter();
+  const queryClient = useQueryClient();
 
-  const { mutate: onUpdateActivity } = useMutation({
+  const { mutate: onCreateActivity } = useMutation({
     mutationFn: (values: CreateActivityType) =>
       updateActivity(activity!.id, values),
-    onSuccess: () => {
-      toast.success("Kegiatan berhasil dimodifikasi!");
-      queryClient.invalidateQueries({ queryKey: ["activities", activity!.id] });
-      router.push("/admin-dashboard/kegiatan");
-    },
-    onError: () => toast.error("Terjadi Kesalahan saat memodifikasi Kegiatan"),
+    onError: () => toast.error("Terjadi Kesalahan saat menambahkan Kegiatan"),
   });
-
-  function handlePicture(e: React.ChangeEvent<HTMLInputElement>) {
-    const picture = e.target.files?.[0];
-    setPicture(picture);
-    setPictureUrl(URL.createObjectURL(picture!));
-  }
-
-  function removePicture() {
-    setPicture(undefined);
-    setPictureUrl(undefined);
-  }
 
   function makeSlug() {
     const slugValue = sluggify(form.getValues("title"), { lower: true });
@@ -92,15 +73,11 @@ export default function UpdateActivity({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!picture) {
-      toast.error("Sampul Kegiatan tidak boleh kosong");
-      return;
-    }
+    onCreateActivity(values);
 
-    onUpdateActivity({
-      image: picture,
-      ...values,
-    });
+    toast.success("Kegiatan berhasil dimodifikasi!");
+    queryClient.invalidateQueries({ queryKey: ["activities"] });
+    router.push("/admin-dashboard/kegiatan");
   }
 
   return (
@@ -108,7 +85,7 @@ export default function UpdateActivity({
       <div className="flex gap-1 text-2xl capitalize">
         <span className="text-gray-400">Admin Dashboard / </span>
         <span className="text-gray-400">Kegiatan / </span>
-        <span>Tambah</span>
+        <span>Ubah</span>
       </div>
       <Form {...form}>
         <form
@@ -117,9 +94,9 @@ export default function UpdateActivity({
         >
           <header className="items-center justify-between lg:flex">
             <div className="">
-              <h1 className="text-2xl font-medium">Tambah Kegiatan</h1>
+              <h1 className="text-2xl font-medium">Ubah Kegiatan</h1>
               <p className="mt-1 text-gray-400">
-                Tambahkan Kegiatan yang akan dipublikasikan
+                Modifikasi Kegiatan yang akan dipublikasikan
               </p>
             </div>
             <div className="mt-6 flex justify-end gap-4 lg:mt-0 lg:justify-start">
@@ -156,60 +133,14 @@ export default function UpdateActivity({
                   <FormItem>
                     <FormLabel>Slug (otomatis)</FormLabel>
                     <FormControl>
-                      <Input disabled placeholder="ex: John Doe" {...field} />
+                      <Input placeholder="ex: John Doe" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <div className="box-shadow flex flex-col gap-6 rounded-md bg-white p-6 lg:flex-[3]">
-              <h2 className="text-xl font-medium">Sampul Kegiatan</h2>
-              {pictureUrl ? (
-                <div className="relative flex h-60 w-full flex-col rounded-md border-[3px] border-dashed">
-                  <div className="relative h-5/6 w-full items-center justify-center p-1">
-                    <Image
-                      fill
-                      src={pictureUrl}
-                      className="border-2 border-double object-contain object-center p-1"
-                      alt={pictureUrl}
-                    />
-                  </div>
-                  <div
-                    onClick={removePicture}
-                    className="flex w-full cursor-pointer items-center justify-end gap-2 p-2 text-red-400"
-                  >
-                    <XCircle size={18} />
-                    <span className="text-lg font-medium">Hapus File</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="relative flex h-52 w-full flex-col items-center justify-center rounded-md border-[3px] border-dashed">
-                  <div className="flex size-12 items-center justify-center rounded-md bg-muted text-muted-foreground">
-                    <Upload size={28} strokeWidth={1.75} />
-                  </div>
-                  <div className="mt-8 flex flex-col items-center gap-2 text-center">
-                    <Button
-                      type="button"
-                      className="max-w-fit bg-sky-100 text-primary"
-                    >
-                      Upload Gambar
-                      <FormLabel className="absolute left-0 top-0 h-full w-full border opacity-0">
-                        {"'"}
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          className="absolute left-0 top-0 opacity-0"
-                          type="file"
-                          accept="image/*"
-                          onChange={handlePicture}
-                        />
-                      </FormControl>
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
+
             <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6">
               <h2 className="text-xl font-medium">Konten/Isi Kegiatan</h2>
 

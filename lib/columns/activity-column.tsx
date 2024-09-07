@@ -15,6 +15,14 @@ import DeleteModal from "@/components/Dashboard/DeleteModal";
 import { deleteActivity } from "../network/activity";
 import { ActivityType } from "../types/activity";
 import TableSorter from "@/components/AdminDashboard/TableSorter";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 export const activityColumn: ColumnDef<ActivityType>[] = [
   {
@@ -29,18 +37,41 @@ export const activityColumn: ColumnDef<ActivityType>[] = [
   },
   {
     accessorKey: "image",
-    accessorFn: (row) => row.image,
+    accessorFn: (row) => row.ActivityImages,
     header: ({ column }) => <TableSorter column={column} header="SAMPUL" />,
-    cell: ({ getValue }) => (
-      <div className="relative aspect-video w-40 overflow-hidden rounded-md">
-        <Image
-          src={getValue() as string}
-          className="object-cover object-center"
-          alt={getValue() as string}
-          fill
-        />
-      </div>
-    ),
+    cell: ({ row }) => {
+      const images = row.original.ActivityImages;
+      console.log(images);
+
+      return (
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+          className="w-40"
+        >
+          <CarouselContent>
+            {images.map((image, index) => (
+              <CarouselItem key={index}>
+                <div className="relative aspect-video w-40 overflow-hidden rounded-md">
+                  <Image
+                    src={image.image}
+                    className="object-cover object-center"
+                    alt={image.image}
+                    fill
+                  />
+                  <p>{image.image}</p>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 border-none bg-transparent text-white" />
+          <CarouselNext className="right-0 border-none bg-transparent text-white" />
+        </Carousel>
+      );
+    },
   },
   {
     accessorKey: "title",
@@ -56,7 +87,6 @@ export const activityColumn: ColumnDef<ActivityType>[] = [
   },
   {
     accessorKey: "action",
-
     header: ({ column }) => <TableSorter column={column} header="ACT" />,
     cell: ({ row }) => (
       <div className="relative max-w-fit">

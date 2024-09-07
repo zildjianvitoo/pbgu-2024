@@ -24,6 +24,8 @@ import { useRouter } from "next/navigation";
 import { CreateActivityType } from "@/lib/types/activity";
 import { createActivity } from "@/lib/network/activity";
 import Image from "next/image";
+import { createActivityImage } from "@/lib/network/activity-image";
+import { CreateActivityImage } from "@/lib/types/activity-image";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -32,30 +34,33 @@ const formSchema = z.object({
 });
 
 export default function CreateActivity() {
-  const [picture, setPicture] = useState<File>();
-  const [pictureUrl, setPictureUrl] = useState<string>();
+  const [pictures, setPictures] = useState<File[]>([]);
+  const [pictureUrls, setPictureUrls] = useState<string[]>([]);
   const router = useRouter();
   const queryClient = useQueryClient();
 
   const { mutate: onCreateActivity } = useMutation({
     mutationFn: (values: CreateActivityType) => createActivity(values),
-    onSuccess: () => {
-      toast.success("Kegiatan berhasil dibuat!");
-      queryClient.invalidateQueries({ queryKey: ["activities"] });
-      router.push("/admin-dashboard/kegiatan");
-    },
     onError: () => toast.error("Terjadi Kesalahan saat menambahkan Kegiatan"),
+  });
+
+  const { mutate: onCreateActivityImage } = useMutation({
+    mutationFn: (values: CreateActivityImage) => createActivityImage(values),
+    onError: () => toast.error("Terjadi Kesalahan saat menambahkan Sampul"),
   });
 
   function handlePicture(e: React.ChangeEvent<HTMLInputElement>) {
     const picture = e.target.files?.[0];
-    setPicture(picture);
-    setPictureUrl(URL.createObjectURL(picture!));
+
+    if (picture) {
+      setPictures([...pictures, picture]);
+      setPictureUrls([...pictureUrls, URL.createObjectURL(picture)]);
+    }
   }
 
-  function removePicture() {
-    setPicture(undefined);
-    setPictureUrl(undefined);
+  function removePicture(index: number) {
+    setPictures((prevItems) => prevItems.filter((_, i) => i !== index));
+    setPictureUrls((prevItems) => prevItems.filter((_, i) => i !== index));
   }
 
   function makeSlug() {
@@ -73,15 +78,23 @@ export default function CreateActivity() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!picture) {
+    if (pictures.length === 0) {
       toast.error("Sampul Kegiatan tidak boleh kosong");
       return;
     }
 
-    onCreateActivity({
-      image: picture,
-      ...values,
-    });
+    onCreateActivity(values);
+
+    pictures.forEach((picture) =>
+      onCreateActivityImage({
+        activitySlug: values.slug,
+        image: picture,
+      }),
+    );
+
+    toast.success("Kegiatan berhasil dibuat!");
+    queryClient.invalidateQueries({ queryKey: ["activities"] });
+    router.push("/admin-dashboard/kegiatan");
   }
 
   return (
@@ -143,54 +156,61 @@ export default function CreateActivity() {
                   </FormItem>
                 )}
               />
-            </div>
-            <div className="box-shadow flex flex-col gap-6 rounded-md bg-white p-6 lg:flex-[3]">
-              <h2 className="text-xl font-medium">Sampul Kegiatan</h2>
-              {pictureUrl ? (
-                <div className="relative flex h-60 w-full flex-col rounded-md border-[3px] border-dashed">
-                  <div className="relative h-5/6 w-full items-center justify-center p-1">
-                    <Image
-                      fill
-                      src={pictureUrl}
-                      className="border-2 border-double object-contain object-center p-1"
-                      alt={pictureUrl}
-                    />
-                  </div>
-                  <div
-                    onClick={removePicture}
-                    className="flex w-full cursor-pointer items-center justify-end gap-2 p-2 text-red-400"
-                  >
-                    <XCircle size={18} />
-                    <span className="text-lg font-medium">Hapus File</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="relative flex h-52 w-full flex-col items-center justify-center rounded-md border-[3px] border-dashed">
-                  <div className="flex size-12 items-center justify-center rounded-md bg-muted text-muted-foreground">
-                    <Upload size={28} strokeWidth={1.75} />
-                  </div>
-                  <div className="mt-8 flex flex-col items-center gap-2 text-center">
-                    <Button
-                      type="button"
-                      className="max-w-fit bg-sky-100 text-primary"
+              <div className="space-y-2">
+                <h2 className="font-medium">Sampul Kegiatan</h2>
+
+                <div className="flex flex-col gap-6 lg:flex-row">
+                  {pictureUrls.map((pictureUrl, index) => (
+                    <div
+                      key={pictureUrl}
+                      className="relative flex size-52 flex-col rounded-md border-[3px] border-dashed"
                     >
-                      Upload Gambar
-                      <FormLabel className="absolute left-0 top-0 h-full w-full border opacity-0">
-                        {"'"}
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          className="absolute left-0 top-0 opacity-0"
-                          type="file"
-                          accept="image/*"
-                          onChange={handlePicture}
+                      <p className="font-primary text-xl">{index + 1}</p>
+                      <div className="relative h-5/6 w-full items-center justify-center">
+                        <Image
+                          fill
+                          src={pictureUrl}
+                          className="border-2 border-double object-contain object-center p-1"
+                          alt={pictureUrl}
                         />
-                      </FormControl>
-                    </Button>
+                      </div>
+                      <div
+                        onClick={() => removePicture(index)}
+                        className="flex w-full cursor-pointer items-center justify-end gap-2 p-2 text-red-400"
+                      >
+                        <XCircle size={18} />
+                        <span className="text-lg font-medium">Hapus File</span>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="relative flex size-52 flex-col items-center justify-center rounded-md border-[3px] border-dashed">
+                    <div className="flex size-12 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                      <Plus size={28} strokeWidth={1.75} />
+                    </div>
+                    <div className="mt-8 flex flex-col items-center gap-2 text-center">
+                      <Button
+                        type="button"
+                        className="max-w-fit bg-sky-100 text-primary"
+                      >
+                        Upload Gambar
+                        <FormLabel className="absolute left-0 top-0 h-full w-full border opacity-0">
+                          {"'"}
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            className="absolute left-0 top-0 opacity-0"
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePicture}
+                          />
+                        </FormControl>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
+
             <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6">
               <h2 className="text-xl font-medium">Konten/Isi Kegiatan</h2>
 

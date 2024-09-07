@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { fileUpload } from "@/lib/fileUpload";
 
 export async function GET(req: NextRequest) {
   try {
-    const result = await prisma.activities.findMany({
-      include: {
-        ActivityImages: true,
-      },
+    const result = await prisma.activityImages.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -23,10 +21,24 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
+    const formData = await req.formData();
+    console.log(formData);
 
-    const result = await prisma.activities.create({
-      data,
+    const activitySlug = formData.get("activitySlug") as string;
+    const image = formData.get("image") as File;
+
+    if (!image) {
+      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    }
+
+    await fileUpload(image, "activities");
+    const filePath = `/activities/${image.name}`;
+
+    const result = await prisma.activityImages.create({
+      data: {
+        activitySlug: activitySlug,
+        image: filePath,
+      },
     });
 
     return NextResponse.json(result, { status: 201 });

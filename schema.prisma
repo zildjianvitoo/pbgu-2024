@@ -70,13 +70,22 @@ model VerificationToken {
 }
 
 model Activities {
-  id        String   @id @unique @default(cuid())
-  title     String
-  slug      String   @unique
-  image     String
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String            @id @unique @default(cuid())
+  title           String
+  slug            String            @unique
+  content         String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  ActivityImages ActivityImages[]
+}
+
+model ActivityImages {
+  id           String     @id @unique @default(cuid())
+  activitySlug String
+  Acitivity    Activities @relation(fields: [activitySlug], references: [slug], onDelete: Cascade)
+  image        String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model UserGeneralInfo {
