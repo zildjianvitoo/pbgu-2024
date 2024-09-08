@@ -55,7 +55,7 @@ export default function UpdateActivity() {
   const { mutate: onCreateActivity } = useMutation({
     mutationFn: (values: CreateActivityType) =>
       updateActivity(activity!.id, values),
-    onError: () => toast.error("Terjadi Kesalahan saat menambahkan Kegiatan"),
+    onError: (error) => console.log(error),
   });
 
   function makeSlug() {
@@ -78,6 +78,7 @@ export default function UpdateActivity() {
     toast.success("Kegiatan berhasil dimodifikasi!");
     queryClient.invalidateQueries({ queryKey: ["activities"] });
     router.push("/admin-dashboard/kegiatan");
+    router.refresh();
   }
 
   return (

@@ -10,7 +10,7 @@ export async function GET(
     const activityId = params.activityId;
     const result = await prisma.activities.findUnique({
       include: {
-        ActivitiyImages: true,
+        ActivityImages: true,
       },
       where: {
         id: activityId,
@@ -34,7 +34,7 @@ export async function PUT(
     const activityId = params.activityId;
     const data = await req.json();
 
-    const result = await prisma.userAcheivement.update({
+    const result = await prisma.activities.update({
       where: {
         id: activityId,
       },

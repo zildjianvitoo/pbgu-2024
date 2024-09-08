@@ -95,6 +95,7 @@ export default function CreateActivity() {
     toast.success("Kegiatan berhasil dibuat!");
     queryClient.invalidateQueries({ queryKey: ["activities"] });
     router.push("/admin-dashboard/kegiatan");
+    router.refresh();
   }
 
   return (
