@@ -40,7 +40,7 @@ export default function Activities({
         {activities.map((activity) => (
           <div
             key={activity.id}
-            className="cursor-pointer space-y-3 rounded-md outline outline-offset-8 outline-transparent transition-all duration-300 hover:outline-secondary"
+            className="space-y-3 rounded-md outline outline-offset-8 outline-transparent transition-all duration-300 hover:outline-secondary"
           >
             <figure className="relative aspect-video w-full overflow-hidden rounded-sm">
               <Image
@@ -51,11 +51,11 @@ export default function Activities({
               />
             </figure>
             <div className="space-y-2 lg:space-y-3">
-              <h3 className="line-clamp-2 text-xl font-semibold text-background lg:text-2xl">
+              <h3 className="text-xl font-semibold text-background lg:text-2xl">
                 {activity.title}
               </h3>
               <div
-                className="line-clamp-2 text-sm text-background/80"
+                className="text-sm text-background/80"
                 dangerouslySetInnerHTML={{ __html: activity?.content }}
               />
               <p className="font-semibold text-secondary">

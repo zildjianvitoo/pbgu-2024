@@ -35,7 +35,7 @@ export default function RecentActivity({
           <Separator className="h-1 bg-secondary" />
         </div>
       </div>
-      <div className="group mt-4 flex cursor-pointer flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12">
+      <div className="group mt-4 flex flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12">
         <Carousel
           plugins={[
             Autoplay({
@@ -72,7 +72,7 @@ export default function RecentActivity({
             {recentActivity?.title}
           </h3>
           <div
-            className="line-clamp-3 text-background/80 lg:text-lg"
+            className="text-background/80 lg:text-lg"
             dangerouslySetInnerHTML={{
               __html: recentActivity?.content ?? <div></div>,
             }}
