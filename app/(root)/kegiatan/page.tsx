@@ -37,7 +37,9 @@ export default async function Kegiatan({
         loading="eager"
       />
       <Header />
-      {!titleFilter && <RecentActivity recentActivity={recentActivity} />}{" "}
+      {titleFilter.length === 0 && (
+        <RecentActivity recentActivity={recentActivity} />
+      )}
       <Activities
         searchTitle={titleFilter}
         activities={titleFilter ? filteredActivities : allActivitiesExceptFirst}

@@ -35,10 +35,7 @@ export default function RecentActivity({
           <Separator className="h-1 bg-secondary" />
         </div>
       </div>
-      <Link
-        href={`/kegiatan/${recentActivity?.slug}`}
-        className="group mt-4 flex cursor-pointer flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12"
-      >
+      <div className="group mt-4 flex cursor-pointer flex-col items-center gap-6 lg:mt-12 lg:flex-row lg:gap-12">
         <Carousel
           plugins={[
             Autoplay({
@@ -74,14 +71,14 @@ export default function RecentActivity({
           <h3 className="text-2xl font-semibold capitalize text-background lg:text-4xl/tight">
             {recentActivity?.title}
           </h3>
-          <p
+          <div
             className="line-clamp-3 text-background/80 lg:text-lg"
             dangerouslySetInnerHTML={{
               __html: recentActivity?.content ?? <div></div>,
             }}
           />
         </div>
-      </Link>
+      </div>
     </section>
   );
 }

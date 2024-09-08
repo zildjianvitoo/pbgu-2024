@@ -47,7 +47,7 @@ export default async function ActivityDetail({
             <div
               className="prose mt-3 lg:prose-lg lg:mt-12"
               dangerouslySetInnerHTML={{ __html: activity?.content }}
-            />
+            ></div>
             <div className="mt-8 flex items-center gap-4">
               <div className="text-sm">Bagikan : </div>
               <BsFacebook className="text-2xl text-blue-500" />
@@ -60,21 +60,24 @@ export default async function ActivityDetail({
                 Berita Terbaru
               </div>
               <div className="max-w- mb-3 h-1 w-full bg-primary" />
-              {firstActivity.title !== activity?.title && (
-                <Link href={`/kegiatan/${firstActivity.slug}`} className="mb-5">
+              {firstActivity?.title !== activity?.title && (
+                <Link
+                  href={`/kegiatan/${firstActivity?.slug}`}
+                  className="mb-5"
+                >
                   <div className="relative mb-1 aspect-video w-full overflow-hidden rounded-md">
                     <Image
-                      src={firstActivity.ActivityImages[0].image as string}
-                      alt={firstActivity.title + "Image"}
+                      src={firstActivity?.ActivityImages[0].image as string}
+                      alt={firstActivity?.title + "Image"}
                       fill
                       className="object-cover object-center"
                     />
                   </div>
                   <div className="text-[15px] font-[500] leading-5">
-                    {firstActivity.title}
+                    {firstActivity?.title}
                   </div>
                   <div className="mb-5 text-sm text-primary">
-                    {formatDate(firstActivity.createdAt)}
+                    {formatDate(firstActivity?.createdAt)}
                   </div>
                 </Link>
               )}

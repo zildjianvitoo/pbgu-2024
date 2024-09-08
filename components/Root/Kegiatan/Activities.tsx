@@ -38,8 +38,7 @@ export default function Activities({
       </div>
       <div className="grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-24">
         {activities.map((activity) => (
-          <Link
-            href={`/kegiatan/${activity.slug}`}
+          <div
             key={activity.id}
             className="cursor-pointer space-y-3 rounded-md outline outline-offset-8 outline-transparent transition-all duration-300 hover:outline-secondary"
           >
@@ -55,7 +54,7 @@ export default function Activities({
               <h3 className="line-clamp-2 text-xl font-semibold text-background lg:text-2xl">
                 {activity.title}
               </h3>
-              <p
+              <div
                 className="line-clamp-2 text-sm text-background/80"
                 dangerouslySetInnerHTML={{ __html: activity?.content }}
               />
@@ -63,7 +62,7 @@ export default function Activities({
                 {formatDate(activity.createdAt)}
               </p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>
