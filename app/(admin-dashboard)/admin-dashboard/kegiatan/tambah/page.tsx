@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
-import { Plus, Upload, XCircle } from "lucide-react";
+import { Plus, XCircle } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";

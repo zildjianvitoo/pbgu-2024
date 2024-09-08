@@ -15,25 +15,13 @@ import { Input } from "@/components/ui/input";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
-import { Plus, Upload, XCircle } from "lucide-react";
-import { useState } from "react";
+import { Plus } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import sluggify from "slugify";
 import { useParams, useRouter } from "next/navigation";
 import { CreateActivityType } from "@/lib/types/activity";
-import {
-  createActivity,
-  getActivityBySlug,
-  updateActivity,
-} from "@/lib/network/activity";
-import Image from "next/image";
-import {
-  createActivityImage,
-  getActivityImageBySlug,
-  updateActivityImage,
-} from "@/lib/network/activity-image";
-import { CreateActivityImage } from "@/lib/types/activity-image";
+import { getActivityBySlug, updateActivity } from "@/lib/network/activity";
 
 const formSchema = z.object({
   title: z.string().min(1),
