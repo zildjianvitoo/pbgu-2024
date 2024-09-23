@@ -24,6 +24,7 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Pagination from "./Pagination";
 import { Input } from "../ui/input";
+import ExcelExport from "../ExcelExport";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -68,6 +69,7 @@ export default function UserListTable<TData, TValue>({
         <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center md:gap-0">
           <h2 className="w-full text-lg">Tabel Daftar Pendaftar</h2>
           <div className="flex flex-col justify-end gap-4 md:w-full lg:flex-row">
+            <ExcelExport filename="data-peserta-pbgu2024.xlsx" data={data} />
             <Input
               className="border-shadow h-10 w-full rounded md:w-56"
               onChange={(e) => nameColumn?.setFilterValue(e.target.value)}
