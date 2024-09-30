@@ -131,7 +131,7 @@ export default function Sidebar() {
               >
                 <div
                   onClick={handleLogout}
-                  className={`"justify-center flex cursor-pointer items-center gap-5`}
+                  className={`"justify-center flex w-full cursor-pointer items-center gap-5`}
                 >
                   <LogOut strokeWidth={1.8} size={24} />
                   <div className="text-xl">Log Out</div>
