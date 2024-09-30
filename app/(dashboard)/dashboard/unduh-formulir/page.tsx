@@ -75,13 +75,7 @@ export default function UnduhFormulir() {
         achievements={userAchievements}
       />,
     ).toBlob();
-    // saveAs(blob, fileName);
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    saveAs(blob, fileName);
   };
 
   const isLoading =
@@ -119,7 +113,7 @@ export default function UnduhFormulir() {
           ) : (
             <Button disabled className="flex items-center gap-3">
               <RotateCcw className="size-5" />
-              Generating File
+              Generating File...
             </Button>
           )}
         </div>
