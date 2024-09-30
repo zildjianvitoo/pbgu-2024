@@ -75,7 +75,13 @@ export default function UnduhFormulir() {
         achievements={userAchievements}
       />,
     ).toBlob();
-    saveAs(blob, fileName);
+    // saveAs(blob, fileName);
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const isLoading =
