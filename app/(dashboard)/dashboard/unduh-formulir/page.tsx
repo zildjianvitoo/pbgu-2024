@@ -12,6 +12,8 @@ import { getUserOrganizationalExperiencesByUserId } from "@/lib/network/user-org
 import { getUserPersonalInfoByUserId } from "@/lib/network/user-personal-info";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { useQuery } from "@tanstack/react-query";
+import { saveAs } from "file-saver";
+import { pdf } from "@react-pdf/renderer";
 
 import { Download, RotateCcw } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -60,6 +62,22 @@ export default function UnduhFormulir() {
     queryKey: ["user-achievements", userId],
   });
 
+  const downloadPdf = async () => {
+    const fileName = "Pemilihan Bujang Gadis UNSRi 2024.pdf";
+    const blob = await pdf(
+      <ParticipantFile
+        generalInfo={userGeneralInfo}
+        personalInfo={userPersonalInfo}
+        formalEducation={userFormalEducation}
+        informalEducations={userInformalEducations}
+        competences={userCompetences}
+        organizationalExperiences={userOrganizationalExperiences}
+        achievements={userAchievements}
+      />,
+    ).toBlob();
+    saveAs(blob, fileName);
+  };
+
   const isLoading =
     generalInfoLoading ||
     personalInfoLoading ||
@@ -88,26 +106,10 @@ export default function UnduhFormulir() {
         </h1>
         <div className="relative mt-4 flex justify-end gap-6 lg:mt-0 lg:justify-start">
           {!isLoading ? (
-            <PDFDownloadLink
-              document={
-                <ParticipantFile
-                  generalInfo={userGeneralInfo}
-                  personalInfo={userPersonalInfo}
-                  formalEducation={userFormalEducation}
-                  informalEducations={userInformalEducations}
-                  competences={userCompetences}
-                  organizationalExperiences={userOrganizationalExperiences}
-                  achievements={userAchievements}
-                />
-              }
-              fileName="Formulir Pendaftaran PBGU 2024"
-              className="flex items-center gap-3"
-            >
-              <Button className="flex gap-3">
-                <Download />
-                Unduh File
-              </Button>
-            </PDFDownloadLink>
+            <Button onClick={downloadPdf} className="flex items-center gap-3">
+              <Download />
+              Unduh File
+            </Button>
           ) : (
             <Button disabled className="flex items-center gap-3">
               <RotateCcw className="size-5" />
