@@ -88,26 +88,26 @@ export default function UnduhFormulir() {
         </h1>
         <div className="relative mt-4 flex justify-end gap-6 lg:mt-0 lg:justify-start">
           {!isLoading ? (
-            <Button>
-              <PDFDownloadLink
-                document={
-                  <ParticipantFile
-                    generalInfo={userGeneralInfo}
-                    personalInfo={userPersonalInfo}
-                    formalEducation={userFormalEducation}
-                    informalEducations={userInformalEducations}
-                    competences={userCompetences}
-                    organizationalExperiences={userOrganizationalExperiences}
-                    achievements={userAchievements}
-                  />
-                }
-                fileName="Formulir Pendaftaran PBGU 2024"
-                className="flex items-center gap-3"
-              >
+            <PDFDownloadLink
+              document={
+                <ParticipantFile
+                  generalInfo={userGeneralInfo}
+                  personalInfo={userPersonalInfo}
+                  formalEducation={userFormalEducation}
+                  informalEducations={userInformalEducations}
+                  competences={userCompetences}
+                  organizationalExperiences={userOrganizationalExperiences}
+                  achievements={userAchievements}
+                />
+              }
+              fileName="Formulir Pendaftaran PBGU 2024"
+              className="flex items-center gap-3"
+            >
+              <Button className="flex gap-3">
                 <Download />
                 Unduh File
-              </PDFDownloadLink>
-            </Button>
+              </Button>
+            </PDFDownloadLink>
           ) : (
             <Button disabled className="flex items-center gap-3">
               <RotateCcw className="size-5" />
