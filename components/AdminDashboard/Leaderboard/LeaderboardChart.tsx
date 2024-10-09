@@ -18,7 +18,6 @@ import {
 import { getAllVouchers } from "@/lib/network/voucher";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Value } from "@radix-ui/react-select";
 
 export function LeaderboardChart({
   gender,
@@ -114,9 +113,10 @@ export function LeaderboardChart({
             tickMargin={10}
             axisLine={false}
             tickFormatter={(value) => value.slice(0, 3)}
+            interval={0}
             hide
           />
-          <XAxis dataKey="percentage" type="number" hide />
+          <XAxis dataKey="percentage" type="number" domain={[0, 100]} hide />
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent indicator="line" />}
