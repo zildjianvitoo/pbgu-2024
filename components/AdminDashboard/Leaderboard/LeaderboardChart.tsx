@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/chart";
 import { getAllVouchers } from "@/lib/network/voucher";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { Value } from "@radix-ui/react-select";
 
 export function LeaderboardChart({
   gender,
@@ -25,6 +27,8 @@ export function LeaderboardChart({
   gender: string;
   finalists: FinalistType[];
 }) {
+  const [value, setValue] = useState(0);
+
   const { data: votes } = useQuery({
     queryFn: getAllVouchers,
     queryKey: ["vouchers"],
@@ -127,7 +131,9 @@ export function LeaderboardChart({
               dataKey="finalist"
               position="insideLeft"
               offset={8}
-              className={cn("fill-black/60 font-semibold")}
+              className={cn("fill-black/60 font-semibold", {
+                "translate-x-10": value === 0,
+              })}
               fontSize={16}
             />
             <LabelList
@@ -136,7 +142,10 @@ export function LeaderboardChart({
               offset={8}
               className="fill-primary text-xl font-semibold"
               fontSize={12}
-              formatter={(value: number) => (value > 0 ? `${value}%` : "0%")}
+              formatter={(value: number) => {
+                setValue(value);
+                return value > 0 ? `${value}%` : "0%";
+              }}
             />
           </Bar>
         </BarChart>
