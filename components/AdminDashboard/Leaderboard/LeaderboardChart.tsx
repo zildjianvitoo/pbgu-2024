@@ -33,8 +33,17 @@ export function LeaderboardChart({
     queryKey: ["vouchers"],
   });
 
-  const getFinalistVotes = (finalistId: string) =>
-    votes?.filter((vote) => vote.finalistId === finalistId).length || 0;
+  const getFinalistVotes = (finalistId: string) => {
+    const finalistVotes =
+      votes?.filter((vote) => vote.finalistId === finalistId) || [];
+
+    if (finalistVotes.length === 0) return 0;
+
+    return finalistVotes.reduce(
+      (total, finalist) => total + Number(finalist.price),
+      0,
+    );
+  };
 
   const calculateRealPercentage = (
     finalistId: string,
