@@ -101,7 +101,19 @@ export default function Navbar() {
         </Link>
       </div>
       {/* <p className="font-nexaScript text-3xl text-secondary lg:hidden">IBGU</p> */}
-      <div className="block lg:hidden">
+      <div className="flex gap-3 lg:hidden">
+        <Link href="/vote">
+          <Button
+            variant="outline"
+            className={cn(
+              "flex items-center gap-3 rounded-full border-2 border-white bg-transparent px-9 text-base text-primary text-white hover:bg-primary hover:text-background",
+              { "border-primary bg-primary": afterHero },
+            )}
+          >
+            Vote
+            {/* <LogIn size={20} /> */}
+          </Button>
+        </Link>
         <NavbarMobile links={links} />
       </div>
 
@@ -126,7 +138,7 @@ export default function Navbar() {
           </Link>
         ))}
         <div className="hidden items-center gap-3 lg:flex">
-          {data?.user ? (
+          {/* {data?.user ? (
             <>
               <Link href="/dashboard/data-diri">
                 <Button
@@ -164,7 +176,20 @@ export default function Navbar() {
                 <LogIn size={20} />
               </Button>
             </Link>
-          )}
+          )} */}
+
+          <Link href="/vote">
+            <Button
+              variant="outline"
+              className={cn(
+                "flex items-center gap-3 rounded-full border-2 border-white bg-transparent px-9 text-base text-primary text-white hover:bg-primary hover:text-background",
+                { "border-primary bg-primary": afterHero },
+              )}
+            >
+              Vote
+              {/* <LogIn size={20} /> */}
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>

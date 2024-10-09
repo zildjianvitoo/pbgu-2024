@@ -2,9 +2,11 @@
 
 import { getAllFinalists } from "@/lib/network/finalist";
 import { FinalistType } from "@/lib/types/finalist";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useQuery } from "@tanstack/react-query";
 import { VoteFinalistCard } from "./VoteFinalistCard";
+import { Input } from "@/components/ui/input";
+import { ChangeEvent, useEffect, useState } from "react";
 
 function FinalistByGender({
   gender,
@@ -14,7 +16,7 @@ function FinalistByGender({
   finalist: FinalistType[];
 }) {
   return (
-    <div className="mx-auto w-full space-y-3 max-md:pb-12 lg:space-y-6">
+    <div className="mx-auto w-full space-y-3 pb-12 lg:space-y-6">
       <div className="font-evogria flex flex-col items-center gap-3 text-center capitalize">
         <h2 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
           VOTE {gender}
@@ -44,20 +46,88 @@ export default function FinalistList() {
     queryKey: ["finalist"],
   });
 
-  const calonPutera = peserta?.filter(
-    (alumni) => alumni.gender === "laki-laki",
-  );
-  const calonPuteri = peserta?.filter(
-    (alumni) => alumni.gender === "perempuan",
-  );
+  const [filteredPutera, setFilteredPutera] = useState<
+    FinalistType[] | undefined
+  >();
+  const [filteredPuteri, setFilteredPuteri] = useState<
+    FinalistType[] | undefined
+  >();
+
+  useEffect(() => {
+    if (peserta) {
+      setFilteredPutera(
+        peserta.filter((alumni) => alumni.gender === "laki-laki") || [],
+      );
+      setFilteredPuteri(
+        peserta.filter((alumni) => alumni.gender === "perempuan"),
+      );
+    }
+  }, [peserta]);
+
+  const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.toLocaleLowerCase();
+    if (value) {
+      const filteredPutera = peserta?.filter(
+        (alumni) =>
+          alumni.gender === "laki-laki" &&
+          alumni.name.toLocaleLowerCase().includes(value),
+      );
+      const filteredPuteri = peserta?.filter(
+        (alumni) =>
+          alumni.gender === "perempuan" &&
+          alumni.name.toLocaleLowerCase().includes(value),
+      );
+
+      setFilteredPutera(filteredPutera || []);
+      setFilteredPuteri(filteredPuteri || []);
+    }
+  };
 
   return (
-    <section
-      id="alumni-bgu"
-      className="mx-auto w-full px-6 py-14 lg:space-y-24 lg:px-24"
-    >
-      <FinalistByGender gender={"BUJANG"} finalist={calonPutera || []} />
-      <FinalistByGender gender={"GADIS"} finalist={calonPuteri || []} />
+    <section id="vote-bgu" className="mx-auto w-full px-6 py-14 lg:px-24">
+      <div className="flex w-full flex-col gap-12">
+        <Input
+          type="text"
+          placeholder="Cari peserta berdasarkan nama"
+          className="bfocus:outline-primary w-full border-primary md:w-1/3 lg:w-1/5"
+          onChange={handleFilterChange}
+        />
+        <Tabs defaultValue="semua" className="w-full">
+          <TabsList className="flex w-full justify-around bg-white pb-8 md:pb-14">
+            <TabsTrigger className="w-full text-xl md:text-2xl" value="semua">
+              Semua
+            </TabsTrigger>
+            <TabsTrigger className="w-full text-xl md:text-2xl" value="bujang">
+              Bujang
+            </TabsTrigger>
+            <TabsTrigger className="w-full text-xl md:text-2xl" value="gadis">
+              Gadis
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="semua">
+            <FinalistByGender
+              gender={"BUJANG"}
+              finalist={filteredPutera || []}
+            />
+            <FinalistByGender
+              gender={"GADIS"}
+              finalist={filteredPuteri || []}
+            />
+          </TabsContent>
+          <TabsContent value="bujang">
+            <FinalistByGender
+              gender={"BUJANG"}
+              finalist={filteredPutera || []}
+            />
+          </TabsContent>
+          <TabsContent value="gadis">
+            <FinalistByGender
+              gender={"GADIS"}
+              finalist={filteredPuteri || []}
+            />
+          </TabsContent>
+        </Tabs>
+      </div>
     </section>
   );
 }
