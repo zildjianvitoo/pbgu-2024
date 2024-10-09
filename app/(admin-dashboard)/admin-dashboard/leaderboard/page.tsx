@@ -26,7 +26,7 @@ export default function PersertaDashboard() {
         <span>Leaderboard</span>
       </div>
 
-      <div className="mt-6 flex gap-12">
+      <div className="mt-6 flex flex-col gap-12 lg:flex-row">
         <LeaderboardChart gender={"laki-laki"} finalists={calonPutera || []} />
         <LeaderboardChart gender={"perempuan"} finalists={calonPuteri || []} />
       </div>

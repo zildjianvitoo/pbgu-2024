@@ -6,6 +6,11 @@ export async function getAllVouchers() {
   return data;
 }
 
+export async function getSecureVouchers() {
+  const { data } = await axiosInstance.get<VoucherType[]>("/vouchers/secure");
+  return data;
+}
+
 export async function getVoucherById(id: string) {
   const { data } = await axiosInstance.get<VoucherType>("/vouchers/" + id);
   return data;
