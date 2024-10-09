@@ -65,7 +65,7 @@ export async function PUT(
         percentage: percentage,
         detail: detail,
         faculty: faculty,
-        prodi: detail,
+        prodi: prodi,
         image: filePath,
       },
     });
