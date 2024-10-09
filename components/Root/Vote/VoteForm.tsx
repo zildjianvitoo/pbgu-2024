@@ -81,25 +81,28 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-9">
-        <figure className="relative aspect-[3/4] h-80 flex-shrink-0 overflow-hidden rounded-lg bg-primary/20">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5 lg:flex-row lg:gap-9"
+      >
+        <figure className="relative h-40 flex-shrink-0 overflow-hidden rounded-lg bg-primary/20 sm:h-48 md:h-56 lg:aspect-[3/4] lg:h-80">
           <Image
             src={finalist.image}
             fill
-            className="object-cover object-bottom"
+            className="object-cover lg:object-bottom"
             alt={finalist.name}
           />
         </figure>
-        <div className="relative h-80 flex-grow pb-8">
-          <p className="font-evogria text-tertiary text-xl">
+        <div className="relative h-64 flex-grow lg:h-80 lg:pb-8">
+          <p className="font-evogria text-tertiary text-lg lg:text-xl">
             VOTE CALON {gender}
           </p>
-          <p className="mt-2 text-3xl font-semibold text-primary">
+          <p className="mt-2 text-2xl font-semibold text-primary lg:text-3xl">
             <span className="text-tertiary">{finalist.number}.</span>{" "}
             {finalist.name}
           </p>
-          <div className="mt-4 flex h-full flex-col">
-            <div className="flex h-full flex-col">
+          <div className="mt-4 flex flex-col">
+            <div className="flex flex-col">
               <FormField
                 control={form.control}
                 name="code"
@@ -120,7 +123,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                 onChange={onReCAPTCHAChange}
               /> */}
-              <div className="mt-auto flex h-full items-center justify-between gap-3">
+              <div className="mt-6 flex flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
                 <Button type="submit" className="w-full lg:w-1/2">
                   Vote
                 </Button>
