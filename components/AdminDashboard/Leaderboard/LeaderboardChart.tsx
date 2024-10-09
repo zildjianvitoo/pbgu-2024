@@ -19,52 +19,49 @@ import { getAllVouchers } from "@/lib/network/voucher";
 
 export function LeaderboardChart({
   gender,
-  participants,
+  finalists,
 }: {
   gender: string;
-  participants: FinalistType[];
+  finalists: FinalistType[];
 }) {
   const { data: votes } = useQuery({
     queryFn: getAllVouchers,
     queryKey: ["vouchers"],
   });
 
-  const getParticipantVotes = (participantId: string) =>
-    votes?.filter((vote) => vote.participantId === participantId).length || 0;
+  const getFinalistVotes = (finalistId: string) =>
+    votes?.filter((vote) => vote.finalistId === finalistId).length || 0;
 
   const calculateRealPercentage = (
-    participantId: string,
+    finalistId: string,
     votePercentage: string,
   ) => {
-    const participantVotes = getParticipantVotes(participantId);
-    return (participantVotes / 100) * Number(votePercentage);
+    const finalistVotes = getFinalistVotes(finalistId);
+    return (finalistVotes / 100) * Number(votePercentage);
   };
 
-  const participantData = participants.map((participant) => ({
-    name: `${participant.number}. ${participant.name}`,
-    votes: getParticipantVotes(participant.id),
-    manipulatedVotes: calculateRealPercentage(
-      participant.id,
-      participant.percentage,
-    ),
+  const finalistData = finalists.map((finalist) => ({
+    name: `${finalist.number}. ${finalist.name}`,
+    votes: getFinalistVotes(finalist.id),
+    manipulatedVotes: calculateRealPercentage(finalist.id, finalist.percentage),
   }));
 
-  const totalManipulatedVotes = participantData.reduce(
-    (total, participant) => total + participant.manipulatedVotes,
+  const totalManipulatedVotes = finalistData.reduce(
+    (total, finalist) => total + finalist.manipulatedVotes,
     0,
   );
 
-  const calculateManipulatedPercentage = (participantVotes: number) =>
+  const calculateManipulatedPercentage = (finalistVotes: number) =>
     Math.round(
       totalManipulatedVotes > 0
-        ? (participantVotes / totalManipulatedVotes) * 100
+        ? (finalistVotes / totalManipulatedVotes) * 100
         : 0,
     );
 
-  const chartData = participantData
-    .map((participant) => ({
-      participant: participant.name,
-      percentage: calculateManipulatedPercentage(participant.manipulatedVotes),
+  const chartData = finalistData
+    .map((finalist) => ({
+      finalist: finalist.name,
+      percentage: calculateManipulatedPercentage(finalist.manipulatedVotes),
     }))
     .sort((a, b) => b.percentage - a.percentage);
 
@@ -89,7 +86,7 @@ export function LeaderboardChart({
         </h3>
         <p>
           Total Real Votes :{" "}
-          {votes?.filter((vote) => vote?.participant?.gender === gender).length}
+          {votes?.filter((vote) => vote?.finalist?.gender === gender).length}
         </p>
 
         <p>Total Manipulated Votes : {totalManipulatedVotes}</p>
@@ -106,7 +103,7 @@ export function LeaderboardChart({
         >
           <CartesianGrid horizontal={false} />
           <YAxis
-            dataKey="participant"
+            dataKey="finalist"
             type="category"
             tickLine={false}
             tickMargin={10}
@@ -126,7 +123,7 @@ export function LeaderboardChart({
             radius={4}
           >
             <LabelList
-              dataKey="participant"
+              dataKey="finalist"
               position="insideLeft"
               offset={8}
               className="fill-white"

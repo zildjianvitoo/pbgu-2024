@@ -5,8 +5,8 @@ export interface VoucherType {
   code: string;
   status: string;
   price: string;
-  participantId?: string;
-  participant?: FinalistType;
+  finalistId?: string;
+  finalist?: FinalistType;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,6 +15,6 @@ export interface CreateVoucherType {
   code?: string;
   status?: string;
   price?: string;
-  participantId?: string;
+  finalistId?: string;
   quantity?: string;
 }

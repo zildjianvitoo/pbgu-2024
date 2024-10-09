@@ -18,24 +18,24 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
             src={finalist.image}
             fill
             alt={finalist.name + " Picture"}
-            className="object-contain object-bottom"
+            className="object-cover object-center"
           />
         </figure>
         <div className="absolute flex h-full w-full -translate-y-full flex-col items-center justify-center bg-primary transition-all duration-300 group-hover:translate-y-0">
           <p className="text-lg text-slate-200">CLICK TO VOTE</p>
-          <p className="font-evogria text-tertiary text-center text-2xl">
+          <p className="font-evogria text-center text-2xl text-secondary">
             {finalist.name}
           </p>
         </div>
 
         <div className="absolute left-0 top-0 z-10 rounded-br-xl bg-primary px-2 py-2">
-          <span className="font-evogria text-tertiary text-2xl transition-all duration-300 group-hover:rotate-6 group-hover:text-white md:text-3xl">
+          <span className="font-evogria text-2xl text-secondary transition-all duration-300 group-hover:rotate-6 group-hover:text-white md:text-3xl">
             {finalist.number}
           </span>
         </div>
 
         <div className="w-full flex-shrink-0 bg-primary px-3 py-3 text-start">
-          <p className="font-evogria text-tertiary text-center text-lg">
+          <p className="font-evogria text-center text-lg text-secondary">
             {finalist.name}
           </p>
         </div>

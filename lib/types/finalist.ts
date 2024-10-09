@@ -8,6 +8,8 @@ export interface FinalistType {
   percentage: string;
   image: string;
   detail?: string;
+  faculty: string;
+  prodi: string;
   Voucher: VoucherType[];
   createdAt: Date;
   updatedAt: Date;
@@ -20,4 +22,6 @@ export interface CreateFinalistType {
   percentage?: string;
   image: string | File;
   detail?: string;
+  faculty: string;
+  prodi: string;
 }

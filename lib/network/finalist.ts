@@ -19,6 +19,8 @@ export async function createFinalist(values: CreateFinalistType) {
   formData.append("gender", values.gender);
   formData.append("percentage", values.percentage as string);
   formData.append("detail", values.detail || "");
+  formData.append("faculty", values.faculty);
+  formData.append("prodi", values.prodi);
   formData.append("image", values.image);
 
   const { data } = await axiosInstance.post("/finalist", formData, {
@@ -37,6 +39,8 @@ export async function updateFinalist(id: string, values: CreateFinalistType) {
   formData.append("gender", values.gender);
   formData.append("percentage", values.percentage as string);
   formData.append("detail", values.detail || "");
+  formData.append("faculty", values.faculty);
+  formData.append("prodi", values.prodi);
   formData.append("image", values.image);
 
   const { data } = await axiosInstance.put("/finalist/" + id, formData, {

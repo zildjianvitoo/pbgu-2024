@@ -196,6 +196,8 @@ model Finalist {
   percentage String    @default("100")
   image      String
   detail     String?
+  faculty    String
+  prodi      String
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   Voucher    Voucher[]

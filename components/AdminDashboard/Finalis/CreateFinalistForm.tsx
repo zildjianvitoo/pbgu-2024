@@ -36,6 +36,8 @@ const finalistSchema = z.object({
   name: z.string().min(1),
   gender: z.string().min(1),
   number: z.string().min(1),
+  faculty: z.string().min(1),
+  prodi: z.string().min(1),
   percentage: z.string(),
   detail: z.string().optional(),
 });
@@ -73,6 +75,8 @@ export default function CreateFinalistForm() {
       name: "",
       gender: "",
       number: "",
+      faculty: "",
+      prodi: "",
       percentage: "100",
       detail: "",
     },
@@ -117,9 +121,9 @@ export default function CreateFinalistForm() {
           </div>
         </header>
 
-        {/* Finalis Data */}
         <div className="flex flex-col flex-wrap gap-6 lg:flex-row">
-          <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6 lg:h-96 lg:flex-[3]">
+          {/* Finalis Data */}
+          <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6 lg:flex-[3]">
             <h2 className="text-xl font-medium">Data Finalis</h2>
 
             <FormField
@@ -179,12 +183,48 @@ export default function CreateFinalistForm() {
                 )}
               />
             </div>
+            <div className="flex flex-col gap-6 lg:flex-row">
+              <FormField
+                control={form.control}
+                name="faculty"
+                render={({ field }) => (
+                  <FormItem className="flex-[1]">
+                    <FormLabel>Fakultas</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="ex: FT
+"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="prodi"
+                render={({ field }) => (
+                  <FormItem className="flex-[1]">
+                    <FormLabel>Prodi</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="ex: S1 Teknik Elektro
+"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="percentage"
               render={({ field }) => (
                 <FormItem className="flex-[1]">
-                  <FormLabel>Poin per Voting</FormLabel>
+                  <FormLabel>Persentase per Voting</FormLabel>
                   <FormControl>
                     <Input placeholder="ex: 1" {...field} />
                   </FormControl>
@@ -194,7 +234,7 @@ export default function CreateFinalistForm() {
             />
           </div>
 
-          {/* Finalis Detail */}
+          {/* Finalis Photo */}
           <div className="box-shadow flex flex-col gap-6 rounded-md bg-white p-6 lg:flex-[1]">
             <h2 className="text-xl font-medium">Foto Finalis</h2>
             {pictureUrl ? (

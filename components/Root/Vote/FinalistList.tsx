@@ -38,7 +38,7 @@ function FinalistByGender({
   );
 }
 
-export default function ParticipantList() {
+export default function FinalistList() {
   const { data: peserta } = useQuery({
     queryFn: getAllFinalists,
     queryKey: ["finalist"],

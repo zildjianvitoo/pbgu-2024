@@ -36,7 +36,9 @@ const finalistSchema = z.object({
   name: z.string().min(1),
   gender: z.string().min(1),
   number: z.string().min(1),
-  percentage: z.string().min(1),
+  faculty: z.string().min(1),
+  prodi: z.string().min(1),
+  percentage: z.string(),
   detail: z.string().optional(),
 });
 
@@ -89,6 +91,8 @@ export default function UpdateFinalistForm() {
       name: finalist?.name || "",
       gender: finalist?.gender || "",
       number: finalist?.number || "",
+      faculty: finalist?.faculty || "",
+      prodi: finalist?.prodi || "",
       percentage: finalist?.percentage || "",
       detail: finalist?.detail || "",
     },
@@ -135,7 +139,7 @@ export default function UpdateFinalistForm() {
 
         {/* Finalis Data */}
         <div className="flex flex-col flex-wrap gap-6 lg:flex-row">
-          <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6 lg:h-96 lg:flex-[3]">
+          <div className="box-shadow flex w-full flex-col gap-6 rounded-md bg-white p-6 lg:flex-[3]">
             <h2 className="text-xl font-medium">Data Finalis</h2>
 
             <FormField
@@ -186,6 +190,42 @@ export default function UpdateFinalistForm() {
                     <FormControl>
                       <Input
                         placeholder="ex: Nomor Finalis
+"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex flex-col gap-6 lg:flex-row">
+              <FormField
+                control={form.control}
+                name="faculty"
+                render={({ field }) => (
+                  <FormItem className="flex-[1]">
+                    <FormLabel>Fakultas</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="ex: FT
+"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="prodi"
+                render={({ field }) => (
+                  <FormItem className="flex-[1]">
+                    <FormLabel>Prodi</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="ex: S1 Teknik Elektro
 "
                         {...field}
                       />

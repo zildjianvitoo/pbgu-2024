@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
     const gender = formData.get("gender") as string;
     const number = formData.get("number") as string;
     const detail = formData.get("detail") as string;
+    const faculty = formData.get("faculty") as string;
+    const prodi = formData.get("prodi") as string;
     const percentage = formData.get("percentage") as string;
     const image = formData.get("image") as File;
 
@@ -45,6 +47,8 @@ export async function POST(req: NextRequest) {
         number: number,
         percentage: percentage,
         detail: detail,
+        faculty: faculty,
+        prodi: prodi,
         image: filePath,
       },
     });

@@ -36,6 +36,8 @@ export async function PUT(
     const gender = formData.get("gender") as string;
     const number = formData.get("number") as string;
     const detail = formData.get("detail") as string;
+    const faculty = formData.get("faculty") as string;
+    const prodi = formData.get("prodi") as string;
     const percentage = formData.get("percentage") as string;
     const image = formData.get("image") as File | string;
 
@@ -62,6 +64,8 @@ export async function PUT(
         number: number,
         percentage: percentage,
         detail: detail,
+        faculty: faculty,
+        prodi: detail,
         image: filePath,
       },
     });

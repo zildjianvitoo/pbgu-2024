@@ -35,8 +35,8 @@ export const voucherColumn: ColumnDef<VoucherType>[] = [
     ),
   },
   {
-    accessorKey: "participant",
-    accessorFn: (row) => row.participant?.name,
+    accessorKey: "finalist",
+    accessorFn: (row) => row.finalist?.name,
     header: ({ column }) => <TableSorter column={column} header="TERVOTING" />,
     cell: ({ getValue }) => (
       <div>{getValue() ? (getValue() as string) : "-"}</div>
