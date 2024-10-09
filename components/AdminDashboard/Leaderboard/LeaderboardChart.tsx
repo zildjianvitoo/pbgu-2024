@@ -125,7 +125,7 @@ export function LeaderboardChart({
             interval={0}
             hide
           />
-          <XAxis dataKey="percentage" type="number" domain={[0, 100]} hide />
+          <XAxis dataKey="percentage" type="number" domain={[0, 115]} hide />
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent indicator="line" />}

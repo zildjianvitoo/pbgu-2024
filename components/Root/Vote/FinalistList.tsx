@@ -66,21 +66,20 @@ export default function FinalistList() {
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLocaleLowerCase();
-    if (value) {
-      const filteredPutera = peserta?.filter(
-        (alumni) =>
-          alumni.gender === "laki-laki" &&
-          alumni.name.toLocaleLowerCase().includes(value),
-      );
-      const filteredPuteri = peserta?.filter(
-        (alumni) =>
-          alumni.gender === "perempuan" &&
-          alumni.name.toLocaleLowerCase().includes(value),
-      );
 
-      setFilteredPutera(filteredPutera || []);
-      setFilteredPuteri(filteredPuteri || []);
-    }
+    const filteredPutera = peserta?.filter(
+      (alumni) =>
+        alumni.gender === "laki-laki" &&
+        alumni.name.toLocaleLowerCase().includes(value),
+    );
+    const filteredPuteri = peserta?.filter(
+      (alumni) =>
+        alumni.gender === "perempuan" &&
+        alumni.name.toLocaleLowerCase().includes(value),
+    );
+
+    setFilteredPutera(filteredPutera || []);
+    setFilteredPuteri(filteredPuteri || []);
   };
 
   return (
