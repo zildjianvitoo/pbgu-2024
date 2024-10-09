@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const nanoid = customAlphabet("ABCDEFGHIKLMNOPQRSTUVWXYZ1234567890", 8);
 
     const vouchers = Array.from({ length: quantity }, () => ({
-      code: "PPUMP" + nanoid(),
+      code: "BGU" + nanoid(),
       price: price,
     }));
 

@@ -103,6 +103,7 @@ export default function CreateVoucherModal({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
+                        <SelectItem value="20000">Rp. 20.000</SelectItem>
                         <SelectItem value="50000">Rp. 50.000</SelectItem>
                         <SelectItem value="100000">Rp. 100.000</SelectItem>
                       </SelectContent>

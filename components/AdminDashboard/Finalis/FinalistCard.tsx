@@ -14,7 +14,7 @@ interface FinalistCardProps {
 }
 
 export function FinalistCard({ participant }: FinalistCardProps) {
-  const position = participant.gender === "laki-laki" ? "putera" : "puteri";
+  const position = participant.gender === "laki-laki" ? "Bujang" : "Gadis";
 
   return (
     <Dialog key={participant.id}>

@@ -17,7 +17,7 @@ function FinalistByGender({
     <div className="mx-auto w-full space-y-3 lg:space-y-6">
       <div className="font-evogria flex flex-col items-center gap-3 text-center capitalize">
         <h2 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
-          CALON {gender}
+          VOTE {gender}
         </h2>
         <div className="flex items-center gap-2">
           <div className="h-0.5 w-20 bg-secondary lg:w-40" />
@@ -56,8 +56,8 @@ export default function FinalistList() {
       id="alumni-ppump"
       className="mx-auto w-full px-6 py-14 lg:space-y-24 lg:px-24"
     >
-      <FinalistByGender gender={"PUTERA"} finalist={calonPutera || []} />
-      <FinalistByGender gender={"PUTERI"} finalist={calonPuteri || []} />
+      <FinalistByGender gender={"BUJANG"} finalist={calonPutera || []} />
+      <FinalistByGender gender={"GADIS"} finalist={calonPuteri || []} />
     </section>
   );
 }
