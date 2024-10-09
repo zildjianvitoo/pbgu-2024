@@ -48,15 +48,15 @@ export const voucherColumn: ColumnDef<VoucherType>[] = [
     header: ({ column }) => <TableSorter column={column} header="TANGGAL" />,
     cell: ({ getValue }) => <div>{formatDate(getValue() as string)}</div>,
   },
-  {
-    accessorKey: "action",
-    header: ({ column }) => <TableSorter column={column} header="ACT" />,
-    cell: ({ row }) => (
-      <DeleteModal
-        params={row.original.id}
-        deleteFunction={deleteVoucher}
-        queryKey={["vouchers"]}
-      />
-    ),
-  },
+  // {
+  //   accessorKey: "action",
+  //   header: ({ column }) => <TableSorter column={column} header="ACT" />,
+  //   cell: ({ row }) => (
+  //     <DeleteModal
+  //       params={row.original.id}
+  //       deleteFunction={deleteVoucher}
+  //       queryKey={["vouchers"]}
+  //     />
+  //   ),
+  // },
 ];
