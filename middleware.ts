@@ -11,7 +11,7 @@ export default auth(
     const dashboardUrl = new URL("/dashboard/data-diri", req.nextUrl.origin);
     const homeUrl = new URL("/", req.nextUrl.origin);
 
-    const protectedApiRoutes = ["/api/vouchers", "/api/vouchers/:path*"];
+    const protectedApiRoutes = ["/api/vouchers"];
 
     if (!session) {
       return Response.redirect(loginUrl);
