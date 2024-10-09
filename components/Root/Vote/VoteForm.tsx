@@ -101,8 +101,8 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
             <span className="text-tertiary">{finalist.number}.</span>{" "}
             {finalist.name}
           </p>
-          <div className="mt-4 flex flex-col">
-            <div className="flex flex-col">
+          <div className="mt-4 flex flex-col lg:h-full">
+            <div className="flex flex-col lg:h-full">
               <FormField
                 control={form.control}
                 name="code"
@@ -123,7 +123,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                 onChange={onReCAPTCHAChange}
               /> */}
-              <div className="mt-6 flex flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
+              <div className="mt-6 flex h-full flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
                 <Button type="submit" className="w-full lg:w-1/2">
                   Vote
                 </Button>

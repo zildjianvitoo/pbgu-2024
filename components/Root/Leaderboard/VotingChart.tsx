@@ -119,7 +119,6 @@ export function VotingChart({
             axisLine={false}
             tickFormatter={(value) => value.slice(0, 3)}
             interval={0}
-            hide
           />
           <XAxis dataKey="percentage" type="number" domain={[0, 120]} hide />
           <ChartTooltip
