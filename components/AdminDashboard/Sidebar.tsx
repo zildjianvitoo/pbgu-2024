@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 import {
   ChevronRight,
   Home,
-  ListChecks,
   LogOut,
   Newspaper,
+  SquareChartGantt,
+  Ticket,
   User2Icon,
   X,
 } from "lucide-react";
@@ -28,24 +29,19 @@ const sidebarLink = [
     Icon: Home,
   },
   {
-    name: "Voting",
-    url: "/admin-dashboard/voting",
-    Icon: ListChecks,
-    children: [
-      {
-        name: "Voting",
-        url: "/admin-dashboard/voting",
-      },
-      {
-        name: "Voting",
-        url: "/admin-dashboard/voting",
-      },
-    ],
-  },
-  {
     name: "Finalis",
     url: "/admin-dashboard/finalis",
     Icon: User2Icon,
+  },
+  {
+    name: "Voucher",
+    url: "/admin-dashboard/voucher",
+    Icon: Ticket,
+  },
+  {
+    name: "Leaderboard",
+    url: "/admin-dashboard/leaderboard",
+    Icon: SquareChartGantt,
   },
   {
     name: "Kegiatan",

@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { fileUpload } from "@/lib/fileUpload";
+import { PrismaClient } from "@prisma/client";
+import { fileUpload } from "@/lib/file-upload";
+export const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const result = await prisma.activityImages.findMany({
+    const result = await prisma.finalist.findMany({
       orderBy: {
-        createdAt: "desc",
+        number: "asc",
       },
     });
 
@@ -22,9 +23,12 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    console.log(formData);
 
-    const activitySlug = formData.get("activitySlug") as string;
+    const name = formData.get("name") as string;
+    const gender = formData.get("gender") as string;
+    const number = formData.get("number") as string;
+    const detail = formData.get("detail") as string;
+    const percentage = formData.get("percentage") as string;
     const image = formData.get("image") as File;
 
     if (!image) {
@@ -34,9 +38,13 @@ export async function POST(req: NextRequest) {
     await fileUpload(image, "uploads");
     const filePath = `${process.env.NEXT_PUBLIC_BASE_URL}/api/images/${image.name}`;
 
-    const result = await prisma.activityImages.create({
+    const result = await prisma.finalist.create({
       data: {
-        activitySlug: activitySlug,
+        name: name,
+        gender: gender,
+        number: number,
+        percentage: percentage,
+        detail: detail,
         image: filePath,
       },
     });

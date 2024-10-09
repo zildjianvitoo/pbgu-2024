@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { fileUpload } from "@/lib/fileUpload";
+import { fileUpload } from "@/lib/file-upload";
 
 export async function GET(
   request: Request,
-  { params }: { params: { activityImageId: string } },
+  { params }: { params: { finalistId: string } },
 ) {
   try {
-    const activityImageId = params.activityImageId;
-    const result = await prisma.activityImages.findUnique({
+    const finalistId = params.finalistId;
+    const result = await prisma.finalist.findUnique({
       where: {
-        id: activityImageId,
+        id: finalistId,
       },
     });
     return NextResponse.json(result, { status: 200 });
@@ -25,14 +25,19 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { activityImageId: string } },
+  { params }: { params: { finalistId: string } },
 ) {
   try {
-    const activityImageId = params.activityImageId;
+    const finalistId = params.finalistId;
+
     const formData = await req.formData();
 
-    const activitySlug = formData.get("activitySlug") as string;
-    const image = formData.get("image") as File;
+    const name = formData.get("name") as string;
+    const gender = formData.get("gender") as string;
+    const number = formData.get("number") as string;
+    const detail = formData.get("detail") as string;
+    const percentage = formData.get("percentage") as string;
+    const image = formData.get("image") as File | string;
 
     if (!image) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
@@ -47,12 +52,16 @@ export async function PUT(
       filePath = image;
     }
 
-    const result = await prisma.activityImages.update({
+    const result = await prisma.finalist.update({
       where: {
-        id: activityImageId,
+        id: finalistId,
       },
       data: {
-        activitySlug: activitySlug,
+        name: name,
+        gender: gender,
+        number: number,
+        percentage: percentage,
+        detail: detail,
         image: filePath,
       },
     });
@@ -69,13 +78,13 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { activityImageId: string } },
+  { params }: { params: { finalistId: string } },
 ) {
   try {
-    const activityImageId = params.activityImageId;
-    const result = await prisma.activityImages.delete({
+    const finalistId = params.finalistId;
+    const result = await prisma.finalist.delete({
       where: {
-        id: activityImageId,
+        id: finalistId,
       },
     });
     return NextResponse.json(result, { status: 200 });

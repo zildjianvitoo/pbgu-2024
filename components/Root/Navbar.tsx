@@ -18,6 +18,14 @@ const links = [
     path: "/",
   },
   {
+    name: "Vote",
+    path: "/vote",
+  },
+  {
+    name: "Leaderboard",
+    path: "/leaderboard",
+  },
+  {
     name: "Tentang BGU",
     path: "/#tentang-bgu",
   },
@@ -97,7 +105,7 @@ export default function Navbar() {
         <NavbarMobile links={links} />
       </div>
 
-      <div className="hidden items-center gap-6 lg:flex">
+      <div className="hidden items-center gap-9 lg:flex">
         {links.map((link) => (
           <Link
             key={link.name}
