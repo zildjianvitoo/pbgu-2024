@@ -67,10 +67,10 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
   });
 
   async function onSubmit(values: z.infer<typeof ticketSchema>) {
-    if (!recaptchaToken) {
-      toast.error("Please complete the CAPTCHA");
-      return;
-    }
+    // if (!recaptchaToken) {
+    //   toast.error("Please complete the CAPTCHA");
+    //   return;
+    // }
 
     onUpdateVoucher(values);
   }
@@ -98,8 +98,8 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
             <span className="text-tertiary">{finalist.number}.</span>{" "}
             {finalist.name}
           </p>
-          <div className="mt-4 flex flex-col">
-            <div className="flex flex-col">
+          <div className="mt-4 flex h-full flex-col">
+            <div className="flex h-full flex-col">
               <FormField
                 control={form.control}
                 name="code"
@@ -114,13 +114,13 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
                 )}
               />
 
-              <ReCAPTCHA
+              {/* <ReCAPTCHA
                 className="py-3"
                 ref={recaptchaRef}
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                 onChange={onReCAPTCHAChange}
-              />
-              <div className="mt-2 flex items-center justify-between gap-3">
+              /> */}
+              <div className="mt-auto flex h-full items-center justify-between gap-3">
                 <Button type="submit" className="w-full lg:w-1/2">
                   Vote
                 </Button>
