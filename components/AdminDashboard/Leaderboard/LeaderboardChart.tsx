@@ -97,12 +97,12 @@ export function LeaderboardChart({
         <h3 className="text-tertiary text-end text-3xl font-medium md:text-4xl lg:text-start lg:text-4xl">
           VOTING {gender === "perempuan" ? "GADIS" : "BUJANG"}
         </h3>
-        <p>
+        {/* <p>
           Total Real Votes :{" "}
           {votes?.filter((vote) => vote?.finalist?.gender === gender).length}
         </p>
 
-        <p>Total Manipulated Votes : {totalManipulatedVotes}</p>
+        <p>Total Manipulated Votes : {totalManipulatedVotes}</p> */}
       </div>
 
       <ChartContainer config={chartConfig}>
