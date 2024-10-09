@@ -32,7 +32,7 @@ export function VotingChart({
 
   const { data: votes } = useQuery({
     queryFn: getSecureVouchers,
-    queryKey: ["vouchers"],
+    queryKey: ["vouchers-secure"],
   });
 
   const getFinalistVotes = (finalistId: string) => {
@@ -121,7 +121,7 @@ export function VotingChart({
             interval={0}
             hide
           />
-          <XAxis dataKey="percentage" type="number" domain={[0, 100]} hide />
+          <XAxis dataKey="percentage" type="number" domain={[0, 120]} hide />
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent indicator="line" />}
