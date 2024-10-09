@@ -1,11 +1,12 @@
 "use client";
+import { VoucherStatistic } from "@/components/AdminDashboard/Voucher/VoucherStatistic";
 import VoucherTable from "@/components/AdminDashboard/Voucher/VoucherTable";
 import { voucherColumn } from "@/lib/columns/voucher-column";
 import { getAllVouchers } from "@/lib/network/voucher";
 import { useQuery } from "@tanstack/react-query";
 
 export default function VoucherDashboard() {
-  const { data: voucher } = useQuery({
+  const { data: vouchers } = useQuery({
     queryKey: ["vouchers"],
     queryFn: getAllVouchers,
   });
@@ -16,8 +17,8 @@ export default function VoucherDashboard() {
         <span className="text-gray-400">Dashboard /</span>
         <span>Voucher</span>
       </div>
-
-      <VoucherTable columns={voucherColumn} data={voucher || []} />
+      <VoucherStatistic vouchers={vouchers || []} />
+      <VoucherTable columns={voucherColumn} data={vouchers || []} />
     </section>
   );
 }

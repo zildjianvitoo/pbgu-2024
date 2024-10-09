@@ -31,14 +31,11 @@ export default function DeleteModal({
   queryKey,
   children,
 }: DeleteDialogProps) {
-  const router = useRouter();
-
   const queryClient = useQueryClient();
 
   const { mutate: onDelete } = useMutation({
     mutationFn: () => deleteFunction(params),
     onSuccess: () => {
-      router.refresh();
       queryClient.invalidateQueries({ queryKey: queryKey });
       toast.success("Data Berhasil Dihapus!");
     },

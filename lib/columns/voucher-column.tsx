@@ -55,7 +55,7 @@ export const voucherColumn: ColumnDef<VoucherType>[] = [
       <DeleteModal
         params={row.original.id}
         deleteFunction={deleteVoucher}
-        queryKey={["vouchers", row.original.id]}
+        queryKey={["vouchers"]}
       />
     ),
   },

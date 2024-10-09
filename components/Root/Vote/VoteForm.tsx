@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateVoucherByCode } from "@/lib/network/voucher";
 import { CreateVoucherType } from "@/lib/types/voucher";
@@ -36,22 +35,22 @@ interface ErrorResponse {
 
 interface VoteFormProps {
   finalist: FinalistType;
+  setOpenChange: (value: boolean) => void;
 }
 
-export default function VoteForm({ finalist }: VoteFormProps) {
-  const router = useRouter();
+export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
   const queryClient = useQueryClient();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
-  const gender = finalist.gender === "laki-laki" ? "PUTERA" : "PUTERI";
+  const gender = finalist.gender === "laki-laki" ? "BUJANG" : "GADIS";
 
   const { mutate: onUpdateVoucher } = useMutation({
     mutationFn: (values: CreateVoucherType) => updateVoucherByCode(values),
     onSuccess: () => {
-      toast.success("Berhasil mem-voting peserta pilihan anda!");
-      queryClient.invalidateQueries({ queryKey: ["vouchers"] });
-      router.refresh();
+      toast.success("Berhasil voting peserta pilihan anda!");
+      queryClient.invalidateQueries({ queryKey: ["finalist"] });
+      setOpenChange(false);
     },
     onError: (error: AxiosError<ErrorResponse>) => {
       toast.error(error.response?.data?.error);
@@ -108,7 +107,7 @@ export default function VoteForm({ finalist }: VoteFormProps) {
                   <FormItem>
                     <FormLabel>Kode Voucher</FormLabel>
                     <FormControl>
-                      <Input placeholder="PPUMPXXXXXXXXX" {...field} />
+                      <Input placeholder="BGUXXXXXXXXX" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

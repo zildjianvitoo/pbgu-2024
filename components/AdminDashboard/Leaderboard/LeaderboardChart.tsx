@@ -16,6 +16,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { getAllVouchers } from "@/lib/network/voucher";
+import { cn } from "@/lib/utils";
 
 export function LeaderboardChart({
   gender,
@@ -82,7 +83,7 @@ export function LeaderboardChart({
         <div className="h-0.5 w-80 bg-secondary" />
 
         <h3 className="text-tertiary text-end text-3xl font-medium md:text-4xl lg:text-start lg:text-4xl">
-          VOTING {gender}
+          VOTING {gender === "perempuan" ? "GADIS" : "BUJANG"}
         </h3>
         <p>
           Total Real Votes :{" "}
@@ -126,16 +127,16 @@ export function LeaderboardChart({
               dataKey="finalist"
               position="insideLeft"
               offset={8}
-              className="fill-white"
+              className={cn("fill-black/60 font-semibold")}
               fontSize={16}
             />
             <LabelList
               dataKey="percentage"
               position="right"
               offset={8}
-              className="fill-primary text-xl"
+              className="fill-primary text-xl font-semibold"
               fontSize={12}
-              formatter={(value: number) => `${value}%`}
+              formatter={(value: number) => (value > 0 ? `${value}%` : "0%")}
             />
           </Bar>
         </BarChart>

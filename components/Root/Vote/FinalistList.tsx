@@ -53,7 +53,7 @@ export default function FinalistList() {
 
   return (
     <section
-      id="alumni-ppump"
+      id="alumni-bgu"
       className="mx-auto w-full px-6 py-14 lg:space-y-24 lg:px-24"
     >
       <FinalistByGender gender={"BUJANG"} finalist={calonPutera || []} />

@@ -4,14 +4,17 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import { FinalistType } from "@/lib/types/finalist";
 import VoteForm from "./VoteForm";
+import { useState } from "react";
 
 interface VoteFinalistCardProps {
   finalist: FinalistType;
 }
 
 export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog key={finalist.id}>
+    <Dialog key={finalist.id} open={open} onOpenChange={setOpen}>
       <DialogTrigger className="group relative flex aspect-[3/4] w-full origin-bottom flex-col overflow-hidden rounded-xl border-2 border-primary transition-all duration-300 hover:scale-[102%] hover:shadow-xl">
         <figure className="relative h-full w-full">
           <Image
@@ -41,7 +44,7 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
         </div>
       </DialogTrigger>
       <DialogContent className="bg-orange-100 lg:min-w-[680px]">
-        <VoteForm finalist={finalist} />
+        <VoteForm finalist={finalist} setOpenChange={setOpen} />
       </DialogContent>
     </Dialog>
   );

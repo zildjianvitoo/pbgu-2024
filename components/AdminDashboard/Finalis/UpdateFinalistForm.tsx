@@ -119,7 +119,7 @@ export default function UpdateFinalistForm() {
           <div className="">
             <h1 className="text-xl font-medium lg:text-2xl">Data Finalis</h1>
             <p className="mt-1 text-sm text-gray-400 lg:text-base">
-              Tambahkan Finalis PPUMP
+              Tambahkan Finalis BGU
             </p>
           </div>
           <div className="mt-6 flex justify-end gap-4 lg:mt-0 lg:justify-start">

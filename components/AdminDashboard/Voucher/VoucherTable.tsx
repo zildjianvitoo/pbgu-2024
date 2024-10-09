@@ -120,8 +120,13 @@ export default function VoucherTable<TData, TValue>({
 
             <SelectContent>
               <SelectItem value="default">Semua Tarif</SelectItem>
-              <SelectItem value="100000">Rp. 100,000</SelectItem>
-              <SelectItem value="50000">Rp. 50,000</SelectItem>
+              <SelectItem value="20000">Rp. 20.000</SelectItem>
+              <SelectItem value="50000">Rp. 50.000</SelectItem>
+              <SelectItem value="75000">Rp. 75.000</SelectItem>
+              <SelectItem value="100000">Rp. 100.000</SelectItem>
+              <SelectItem value="250000">Rp. 250.000</SelectItem>
+              <SelectItem value="500000">Rp. 100.000</SelectItem>
+              <SelectItem value="1000000">Rp. 1.000.000</SelectItem>
             </SelectContent>
           </Select>
         </div>
