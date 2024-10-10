@@ -183,7 +183,7 @@ export function VotingChart({
                   </p>
                   <p className="text-sm lg:text-base">
                     {data.finalist.split(".")[1]}{" "}
-                    <span className="hidden md:block">-</span>{" "}
+                    <span className="hidden md:flex">-</span>{" "}
                   </p>
                 </div>
                 <p className="hidden text-sm md:block lg:text-base">
