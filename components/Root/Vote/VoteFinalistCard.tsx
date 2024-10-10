@@ -21,7 +21,7 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
             src={finalist.image}
             fill
             alt={finalist.name + " Picture"}
-            className="object-cover object-top"
+            className="object-cover object-center"
           />
         </figure>
         <div className="absolute flex h-full w-full -translate-y-full flex-col items-center justify-center bg-primary transition-all duration-300 group-hover:translate-y-0">

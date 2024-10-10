@@ -89,7 +89,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
           <Image
             src={finalist.image}
             fill
-            className="object-cover lg:object-bottom"
+            className="object-cover object-top lg:object-bottom"
             alt={finalist.name}
           />
         </figure>
