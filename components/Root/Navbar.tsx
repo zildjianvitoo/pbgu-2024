@@ -127,7 +127,11 @@ export default function Navbar() {
               {
                 "text-foreground": afterHero,
                 "font-medium text-secondary": pathname === link.path,
-                "text-white": pathname !== "/" && pathname !== link.path,
+                "!text-white":
+                  pathname !== "/" &&
+                  pathname !== link.path &&
+                  !isScrolled &&
+                  !afterHero,
                 "text-black": pathname !== "/" && pathname !== link.path,
               },
             )}
