@@ -85,14 +85,14 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-5 lg:flex-row lg:gap-9"
       >
-        <figure className="relative h-40 flex-shrink-0 overflow-hidden rounded-lg bg-primary/20 sm:h-48 md:h-56 lg:aspect-[3/4] lg:h-80">
+        {/* <figure className="relative h-40 flex-shrink-0 overflow-hidden rounded-lg bg-primary/20 sm:h-48 md:h-56 lg:aspect-[3/4] lg:h-80">
           <Image
             src={finalist.image}
             fill
             className="object-cover object-top lg:object-bottom"
             alt={finalist.name}
           />
-        </figure>
+        </figure> */}
         <div className="relative h-64 flex-grow lg:h-80 lg:pb-8">
           <p className="font-evogria text-tertiary text-lg lg:text-xl">
             VOTE CALON {gender}
