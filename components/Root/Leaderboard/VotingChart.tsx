@@ -182,7 +182,8 @@ export function VotingChart({
                     {data.number}.{" "}
                   </p>
                   <p className="text-sm lg:text-base">
-                    {data.finalist.split(".")[1]} -{" "}
+                    {data.finalist.split(".")[1]}{" "}
+                    <span className="hidden md:block">-</span>{" "}
                   </p>
                 </div>
                 <p className="hidden text-sm md:block lg:text-base">
