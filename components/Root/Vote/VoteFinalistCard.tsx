@@ -38,7 +38,7 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
         </div>
 
         <div className="w-full flex-shrink-0 bg-primary px-3 py-3 text-start">
-          <p className="font-evogria text-center text-lg text-secondary">
+          <p className="font-evogria text-center text-secondary lg:text-lg">
             {finalist.name}
           </p>
         </div>
