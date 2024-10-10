@@ -1,3 +1,22 @@
+// `/** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   typescript: {
+//     ignoreBuildErrors: true,
+//   },
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: "http",
+//         hostname: "localhost",
+//         port: "3001", // Your API port
+//         pathname: "/api/images/**", // Path to your images served via the API
+//       },
+//     ],
+//   },
+// };
+
+// export default nextConfig;`
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
@@ -6,9 +25,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3001", // Your API port
+        protocol: "https",
+        hostname: "bgunsri.com",
         pathname: "/api/images/**", // Path to your images served via the API
       },
     ],
@@ -16,21 +34,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   typescript: {
-//     ignoreBuildErrors: true,
-//   },
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: "https",
-//         hostname: "bgunsri.com",
-//         pathname: "/api/images/**", // Path to your images served via the API
-//       },
-//     ],
-//   },
-// };
-
-// export default nextConfig;
