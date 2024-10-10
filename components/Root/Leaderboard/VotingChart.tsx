@@ -180,7 +180,7 @@ export function VotingChart({
                 <p className="text-lg font-semibold text-primary">
                   {data.number}.{" "}
                 </p>
-                <p>{data.finalist} - </p>
+                <p>{data.finalist.split(".")[1]} - </p>
                 <p>{data.prodi}</p>
               </div>
             </div>

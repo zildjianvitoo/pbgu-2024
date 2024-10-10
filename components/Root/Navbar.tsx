@@ -123,15 +123,13 @@ export default function Navbar() {
             key={link.name}
             href={link.path}
             className={cn(
-              "border-b-2 border-transparent text-xl text-white/80 transition hover:border-secondary",
-              { "text-foreground": afterHero },
-              pathname === link.path
-                ? "font-medium text-secondary"
-                : "font-medium",
-              pathname !== "/" &&
-                pathname !== link.path &&
-                !isScrolled &&
-                "text-white",
+              "border-b-2 border-transparent text-xl font-medium text-white/80 transition hover:border-secondary",
+              {
+                "text-foreground": afterHero,
+                "font-medium text-secondary": pathname === link.path,
+                "text-white": pathname !== "/" && pathname !== link.path,
+                "text-black": pathname !== "/" && pathname !== link.path,
+              },
             )}
           >
             {link.name}
