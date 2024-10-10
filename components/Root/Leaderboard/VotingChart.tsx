@@ -177,10 +177,12 @@ export function VotingChart({
                 />
               </div>
               <div className="flex items-center gap-2">
-                <p className="text-lg font-semibold text-primary">
+                <p className="text-base font-semibold text-primary lg:text-lg">
                   {data.number}.{" "}
                 </p>
-                <p>{data.finalist.split(".")[1]} - </p>
+                <p className="text-sm lg:text-base">
+                  {data.finalist.split(".")[1]} -{" "}
+                </p>
                 <p>{data.prodi}</p>
               </div>
             </div>
