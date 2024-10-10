@@ -21,7 +21,7 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
             src={finalist.image}
             fill
             alt={finalist.name + " Picture"}
-            className="object-cover object-center"
+            className="object-cover object-top lg:object-center"
           />
         </figure>
         <div className="absolute flex h-full w-full -translate-y-full flex-col items-center justify-center bg-primary transition-all duration-300 group-hover:translate-y-0">
@@ -38,7 +38,7 @@ export function VoteFinalistCard({ finalist }: VoteFinalistCardProps) {
         </div>
 
         <div className="w-full flex-shrink-0 bg-primary px-3 py-3 text-start">
-          <p className="font-evogria text-center text-lg text-secondary">
+          <p className="font-evogria text-center text-secondary lg:text-lg">
             {finalist.name}
           </p>
         </div>

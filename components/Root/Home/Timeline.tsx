@@ -23,7 +23,7 @@ const timelineData = [
     title: "Tes Tertulis",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        11 Oktober
+        10 Oktober
       </p>
     ),
   },
@@ -31,7 +31,7 @@ const timelineData = [
     title: "Walk in Interview",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        12 Oktober
+        14 Oktober
       </p>
     ),
   },

@@ -98,6 +98,8 @@ export default function UpdateFinalistForm() {
     },
   });
 
+  console.log(finalist);
+
   async function onSubmit(values: z.infer<typeof finalistSchema>) {
     if (!picture) {
       toast.error("Foto Finalis harus diinput");
@@ -166,6 +168,7 @@ export default function UpdateFinalistForm() {
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
+                      value={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -224,11 +227,7 @@ export default function UpdateFinalistForm() {
                   <FormItem className="flex-[1]">
                     <FormLabel>Prodi</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="ex: S1 Teknik Elektro
-"
-                        {...field}
-                      />
+                      <Input placeholder="ex: S1 Teknik Elektro" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
