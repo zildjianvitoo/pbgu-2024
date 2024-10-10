@@ -177,7 +177,7 @@ export function VotingChart({
                 />
               </div>
               <div className="flex flex-col items-center gap-2 md:flex-row">
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2">
                   <p className="text-base font-semibold text-primary lg:text-lg">
                     {data.number}.{" "}
                   </p>
