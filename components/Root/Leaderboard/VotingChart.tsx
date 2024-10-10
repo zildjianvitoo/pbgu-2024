@@ -167,7 +167,7 @@ export function VotingChart({
       <div className="space-y-8">
         {chartData.map((data) => (
           <div key={data.finalist} className="space-y-3">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 lg:gap-6">
               <div className="relative size-12 overflow-hidden rounded-full border-2 border-primary">
                 <Image
                   src={data.picture}
@@ -183,7 +183,7 @@ export function VotingChart({
                 <p className="text-sm lg:text-base">
                   {data.finalist.split(".")[1]} -{" "}
                 </p>
-                <p>{data.prodi}</p>
+                <p className="text-sm lg:text-base">{data.prodi}</p>
               </div>
             </div>
             <div className="relative">
