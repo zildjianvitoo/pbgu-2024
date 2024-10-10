@@ -20,6 +20,8 @@ import {
 import { getSecureVouchers } from "@/lib/network/voucher";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
 
 export function VotingChart({
   gender,
@@ -58,6 +60,10 @@ export function VotingChart({
   const finalistData = finalists.map((finalist) => ({
     name: `${finalist.number}. ${finalist.name}`,
     votes: getFinalistVotes(finalist.id),
+    picture: finalist.image,
+    prodi: finalist.prodi,
+    faculty: finalist.faculty,
+    number: finalist.number,
     manipulatedVotes: calculateRealPercentage(finalist.id, finalist.percentage),
   }));
 
@@ -76,6 +82,10 @@ export function VotingChart({
   const chartData = finalistData
     .map((finalist) => ({
       finalist: finalist.name,
+      picture: finalist.picture,
+      prodi: finalist.prodi,
+      faculty: finalist.faculty,
+      number: finalist.number,
       percentage: calculateManipulatedPercentage(finalist.manipulatedVotes),
     }))
     .sort((a, b) => b.percentage - a.percentage);
@@ -101,7 +111,7 @@ export function VotingChart({
         </h3>
       </div>
 
-      <ChartContainer config={chartConfig}>
+      {/* <ChartContainer config={chartConfig}>
         <BarChart
           accessibilityLayer
           data={chartData}
@@ -154,7 +164,36 @@ export function VotingChart({
             />
           </Bar>
         </BarChart>
-      </ChartContainer>
+      </ChartContainer> */}
+      <div className="space-y-8">
+        {chartData.map((data) => (
+          <div key={data.finalist} className="space-y-3">
+            <div className="flex items-center gap-6">
+              <div className="relative size-12 overflow-hidden rounded-full border-2 border-primary">
+                <Image
+                  src={data.picture}
+                  alt={data.finalist}
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <p className="text-lg font-semibold text-primary">
+                  {data.number}.{" "}
+                </p>
+                <p>{data.finalist} - </p>
+                <p>{data.prodi}</p>
+              </div>
+            </div>
+            <div className="relative">
+              <Progress value={data.percentage} className="w-full" />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-semibold text-primary">
+                {data.percentage} %
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
