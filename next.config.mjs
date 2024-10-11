@@ -29,6 +29,12 @@ const nextConfig = {
         hostname: "bgunsri.com",
         pathname: "/api/images/**", // Path to your images served via the API
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3001", // Your API port
+        pathname: "/api/images/**", // Path to your images served via the API
+      },
     ],
   },
 };

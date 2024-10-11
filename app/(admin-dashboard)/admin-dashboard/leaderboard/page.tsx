@@ -1,19 +1,19 @@
 "use client";
 
 import { LeaderboardChart } from "@/components/AdminDashboard/Leaderboard/LeaderboardChart";
-import { getAllFinalists } from "@/lib/network/finalist";
+import { getAllLeaderboard } from "@/lib/network/leaderboard";
 import { useQuery } from "@tanstack/react-query";
 
 export default function PersertaDashboard() {
-  const { data: peserta } = useQuery({
-    queryFn: getAllFinalists,
-    queryKey: ["participants"],
+  const { data: leaderboards } = useQuery({
+    queryFn: getAllLeaderboard,
+    queryKey: ["leaderboard"],
   });
 
-  const calonPutera = peserta?.filter(
+  const calonBujang = leaderboards?.filter(
     (alumni) => alumni.gender === "laki-laki",
   );
-  const calonPuteri = peserta?.filter(
+  const calonGadis = leaderboards?.filter(
     (alumni) => alumni.gender === "perempuan",
   );
 
@@ -27,8 +27,11 @@ export default function PersertaDashboard() {
       </div>
 
       <div className="mt-6 flex flex-col gap-12 lg:flex-row">
-        <LeaderboardChart gender={"laki-laki"} finalists={calonPutera || []} />
-        <LeaderboardChart gender={"perempuan"} finalists={calonPuteri || []} />
+        <LeaderboardChart
+          gender={"laki-laki"}
+          leaderboard={calonBujang || []}
+        />
+        <LeaderboardChart gender={"perempuan"} leaderboard={calonGadis || []} />
       </div>
     </section>
   );
