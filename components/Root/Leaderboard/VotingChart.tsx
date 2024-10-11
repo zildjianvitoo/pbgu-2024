@@ -17,7 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { getSecureVouchers } from "@/lib/network/voucher";
+import { getAllVouchers, getSecureVouchers } from "@/lib/network/voucher";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
@@ -35,8 +35,8 @@ export function VotingChart({
   const [value, setValue] = useState(0);
 
   const { data: votes } = useQuery({
-    queryFn: getSecureVouchers,
-    queryKey: ["vouchers-secure"],
+    queryFn: getAllVouchers,
+    queryKey: ["vouchers"],
   });
 
   const getFinalistVotes = (finalistId: string) => {
