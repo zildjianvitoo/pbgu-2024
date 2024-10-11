@@ -43,7 +43,7 @@ export async function PUT(
       );
     }
 
-    if (voucher.status === "sudah terpakai") {
+    if (voucher.status === "sudah-terpakai") {
       return NextResponse.json(
         { error: "Kode Voucher Sudah Pernah Digunakan!" },
         { status: 400 },

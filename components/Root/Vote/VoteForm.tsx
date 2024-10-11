@@ -61,7 +61,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
     resolver: zodResolver(ticketSchema),
     values: {
       code: "",
-      status: "sudah terpakai",
+      status: "sudah-terpakai",
       finalistId: finalist.id,
     },
   });

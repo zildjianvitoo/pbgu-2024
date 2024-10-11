@@ -206,7 +206,7 @@ model Finalist {
 model Voucher {
   id         String    @id @unique @default(cuid())
   code       String    @unique
-  status     String    @default("belum terpakai")
+  status     String    @default("belum-terpakai")
   price      String
   finalistId String?
   finalist   Finalist? @relation(fields: [finalistId], references: [id], onDelete: Cascade)

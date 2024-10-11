@@ -39,13 +39,13 @@ export function VoucherStatistic({ vouchers }: VoucherStatisticProps) {
     0,
   );
   const totalUsedVouchers = vouchers
-    .filter((item) => item.status === "sudah terpakai")
+    .filter((item) => item.status === "sudah-terpakai")
     .reduce((acc, currentValue) => acc + +currentValue.price, 0);
 
   const totalUsedVouchersMale = vouchers
     .filter(
       (item) =>
-        item.status === "sudah terpakai" &&
+        item.status === "sudah-terpakai" &&
         item.finalist?.gender === "laki-laki",
     )
     .reduce((acc, { price }) => acc + Number(price), 0);
@@ -53,7 +53,7 @@ export function VoucherStatistic({ vouchers }: VoucherStatisticProps) {
   const totalUsedVouchersFemale = vouchers
     .filter(
       (item) =>
-        item.status === "sudah terpakai" &&
+        item.status === "sudah-terpakai" &&
         item.finalist?.gender === "perempuan",
     )
     .reduce((acc, { price }) => acc + Number(price), 0);

@@ -146,8 +146,8 @@ export default function VoucherTable<TData, TValue>({
 
             <SelectContent>
               <SelectItem value="default">Semua Status</SelectItem>
-              <SelectItem value="belum terpakai">Belum Terpakai</SelectItem>
-              <SelectItem value="sudah terpakai">Sudah Terpakai</SelectItem>
+              <SelectItem value="belum-terpakai">Belum Terpakai</SelectItem>
+              <SelectItem value="sudah-terpakai">Sudah Terpakai</SelectItem>
             </SelectContent>
           </Select>
         </div>
