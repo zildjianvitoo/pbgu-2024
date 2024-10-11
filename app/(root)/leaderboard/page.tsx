@@ -2,22 +2,23 @@
 
 import Header from "@/components/Root/Leaderboard/Header";
 import { VotingChart } from "@/components/Root/Leaderboard/VotingChart";
-import { getAllLeaderboard } from "@/lib/network/leaderboard";
+import {
+  getAllLeaderboardBujang,
+  getAllLeaderboardGadis,
+} from "@/lib/network/leaderboard";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 export default function Leaderboard() {
-  const { data: leaderboards } = useQuery({
-    queryFn: getAllLeaderboard,
-    queryKey: ["leaderboard"],
+  const { data: leaderboardBujang } = useQuery({
+    queryFn: getAllLeaderboardBujang,
+    queryKey: ["leaderboard-bujangs"],
   });
 
-  const calonBujang = leaderboards?.filter(
-    (alumni) => alumni.gender === "laki-laki",
-  );
-  const calonGadis = leaderboards?.filter(
-    (alumni) => alumni.gender === "perempuan",
-  );
+  const { data: leaderboardGadis } = useQuery({
+    queryFn: getAllLeaderboardGadis,
+    queryKey: ["leaderboard-gadis"],
+  });
 
   return (
     <>
@@ -39,8 +40,14 @@ export default function Leaderboard() {
         <Header />
       </section>
       <div className="mt-6 flex flex-col gap-12 px-6 py-12 lg:flex-row lg:gap-y-0 lg:px-24">
-        <VotingChart gender={"laki-laki"} leaderboard={calonBujang || []} />
-        <VotingChart gender={"perempuan"} leaderboard={calonGadis || []} />
+        <VotingChart
+          gender={"laki-laki"}
+          leaderboard={leaderboardBujang || []}
+        />
+        <VotingChart
+          gender={"perempuan"}
+          leaderboard={leaderboardGadis || []}
+        />
       </div>
     </>
   );

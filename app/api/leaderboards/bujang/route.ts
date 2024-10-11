@@ -5,7 +5,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const finalists = await prisma.finalist.findMany();
+    const finalists = await prisma.finalist.findMany({
+      where: { gender: "laki-laki" },
+    });
     const voucher = await prisma.voucher.findMany({
       where: {
         status: "sudah-terpakai",

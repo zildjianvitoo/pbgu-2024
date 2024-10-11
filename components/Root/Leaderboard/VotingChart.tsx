@@ -174,17 +174,17 @@ export function VotingChart({
               </div>
               <div className="flex flex-col items-center gap-2 md:flex-row">
                 <div className="flex items-center gap-2">
-                  <p className="text-base font-semibold text-primary lg:text-lg">
+                  <span className="text-base font-semibold text-primary lg:text-lg">
                     {data.number}.{" "}
-                  </p>
-                  <p className="text-sm lg:text-base">
+                  </span>
+                  <span className="text-sm lg:text-base">
                     {data.finalist.split(".")[1]}{" "}
-                  </p>
-                  <div className="hidden md:inline-block">-</div>
+                  </span>
+                  <span className="hidden md:inline-block">-</span>
+                  <span className="hidden text-sm md:block lg:text-base">
+                    {data.prodi}
+                  </span>
                 </div>
-                <p className="hidden text-sm md:block lg:text-base">
-                  {data.prodi}
-                </p>
               </div>
             </div>
             <div className="relative">

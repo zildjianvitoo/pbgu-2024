@@ -153,12 +153,19 @@ export function LeaderboardChart({
                   className="object-cover object-center"
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <p className="text-lg font-semibold text-primary">
-                  {data.number}.{" "}
-                </p>
-                <p>{data.finalist} - </p>
-                <p>{data.prodi}</p>
+              <div className="flex flex-col items-center gap-2 md:flex-row">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-semibold text-primary lg:text-lg">
+                    {data.number}.{" "}
+                  </span>
+                  <span className="text-sm lg:text-base">
+                    {data.finalist.split(".")[1]}{" "}
+                  </span>
+                  <span className="hidden md:inline-block">-</span>
+                  <span className="hidden text-sm md:block lg:text-base">
+                    {data.prodi}
+                  </span>
+                </div>
               </div>
             </div>
             <div className="relative">

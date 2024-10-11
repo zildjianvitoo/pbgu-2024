@@ -53,9 +53,8 @@ export async function PUT(
       // const extension = path.extname(image.name);
 
       // const randomName = crypto.randomBytes(16).toString("hex") + extension;
-
-      await fileUpload(image, "uploads");
-      filePath = `${process.env.NEXT_PUBLIC_BASE_URL}/api/images/${image.name}`;
+      const filename = await fileUpload(image, "uploads");
+      filePath = `${process.env.NEXT_PUBLIC_BASE_URL}/api/images/${filename}`;
     } else {
       filePath = image;
     }
