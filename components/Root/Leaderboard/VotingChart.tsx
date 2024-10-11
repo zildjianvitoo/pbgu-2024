@@ -23,6 +23,8 @@ import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 
+export const revalidate = 0;
+
 export function VotingChart({
   gender,
   finalists,
