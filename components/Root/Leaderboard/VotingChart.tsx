@@ -35,8 +35,8 @@ export function VotingChart({
   const [value, setValue] = useState(0);
 
   const { data: votes } = useQuery({
-    queryFn: getAllVouchers,
-    queryKey: ["vouchers"],
+    queryFn: getSecureVouchers,
+    queryKey: ["secure-vocuhers"],
   });
 
   const getFinalistVotes = (finalistId: string) => {

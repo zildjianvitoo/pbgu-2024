@@ -25,9 +25,9 @@ export default auth(
       req.nextUrl.pathname,
     );
 
-    // if (isAccessingAPIAdmin && session.user.role !== "admin") {
-    //   return Response.redirect(homeUrl);
-    // }
+    if (isAccessingAPIAdmin && session.user.role !== "admin") {
+      return Response.redirect(homeUrl);
+    }
 
     if (isAccessingAdmin && session.user.role !== "admin") {
       return Response.redirect(dashboardUrl);
@@ -43,6 +43,6 @@ export const config = {
     "/dashboard/:path*",
     "/admin-dashboard",
     "/admin-dashboard/:path*",
-    // "/api/vouchers",
+    "/api/vouchers",
   ],
 };
