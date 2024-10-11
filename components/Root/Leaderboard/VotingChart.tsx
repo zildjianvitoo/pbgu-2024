@@ -17,11 +17,13 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { getSecureVouchers } from "@/lib/network/voucher";
+import { getAllVouchers, getSecureVouchers } from "@/lib/network/voucher";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
+
+export const revalidate = 0;
 
 export function VotingChart({
   gender,
@@ -34,10 +36,6 @@ export function VotingChart({
   //   queryFn: getSecureVouchers,
   //   queryKey: ["vouchers-secure"],
   // });
-
-  // const getFinalistVotes = (finalistId: string) => {
-  //   const finalistVotes =
-  //     votes?.filter((vote) => vote.finalistId === finalistId) || [];
 
   //   if (finalistVotes.length === 0) return 0;
 

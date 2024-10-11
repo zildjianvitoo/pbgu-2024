@@ -5,7 +5,9 @@ export async function GET() {
   try {
     const result = await prisma.voucher.findMany({
       where: {
-        status: "sudah-terpakai",
+        status: {
+          equals: "sudah-terpakai",
+        },
       },
       orderBy: {
         createdAt: "desc",

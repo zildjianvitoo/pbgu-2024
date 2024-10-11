@@ -22,6 +22,7 @@ import { useRef, useState } from "react";
 import { FinalistType } from "@/lib/types/finalist";
 import Image from "next/image";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 const ticketSchema = z.object({
   code: z.string().min(1),
@@ -40,6 +41,7 @@ interface VoteFormProps {
 
 export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
@@ -50,6 +52,8 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
     onSuccess: () => {
       toast.success("Berhasil voting peserta pilihan anda!");
       queryClient.invalidateQueries({ queryKey: ["finalist"] });
+      router.refresh();
+      queryClient.invalidateQueries({ queryKey: ["vouchers-secure"] });
       setOpenChange(false);
     },
     onError: (error: AxiosError<ErrorResponse>) => {
