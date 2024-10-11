@@ -50,6 +50,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
     onSuccess: () => {
       toast.success("Berhasil voting peserta pilihan anda!");
       queryClient.invalidateQueries({ queryKey: ["finalist"] });
+      queryClient.invalidateQueries({ queryKey: ["vouchers-secure"] });
       setOpenChange(false);
     },
     onError: (error: AxiosError<ErrorResponse>) => {
