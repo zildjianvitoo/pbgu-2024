@@ -1,99 +1,70 @@
-import { FinalistType } from "@/lib/types/finalist";
-import { useQuery } from "@tanstack/react-query";
-
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  XAxis,
-  YAxis,
-} from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { getAllVouchers } from "@/lib/network/voucher";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 import Image from "next/image";
 import { Progress } from "@radix-ui/react-progress";
 
 export function LeaderboardChart({
   gender,
-  finalists,
+  leaderboard,
 }: {
   gender: string;
-  finalists: FinalistType[];
+  leaderboard: LeaderboardType[];
 }) {
-  const [value, setValue] = useState(0);
+  // const { data: votes } = useQuery({
+  //   queryFn: getAllVouchers,
+  //   queryKey: ["vouchers"],
+  // });
 
-  const { data: votes } = useQuery({
-    queryFn: getAllVouchers,
-    queryKey: ["vouchers"],
-  });
+  // const getFinalistVotes = (finalistId: string) => {
+  //   const finalistVotes =
+  //     votes?.filter((vote) => vote.finalistId === finalistId) || [];
 
-  const getFinalistVotes = (finalistId: string) => {
-    const finalistVotes =
-      votes?.filter((vote) => vote.finalistId === finalistId) || [];
+  //   if (finalistVotes.length === 0) return 0;
 
-    if (finalistVotes.length === 0) return 0;
+  //   return finalistVotes.reduce(
+  //     (total, finalist) => total + Number(finalist.price),
+  //     0,
+  //   );
+  // };
 
-    return finalistVotes.reduce(
-      (total, finalist) => total + Number(finalist.price),
-      0,
-    );
-  };
+  // const calculateRealPercentage = (
+  //   finalistId: string,
+  //   votePercentage: string,
+  // ) => {
+  //   const finalistVotes = getFinalistVotes(finalistId);
+  //   return (finalistVotes / 100) * Number(votePercentage);
+  // };
 
-  const calculateRealPercentage = (
-    finalistId: string,
-    votePercentage: string,
-  ) => {
-    const finalistVotes = getFinalistVotes(finalistId);
-    return (finalistVotes / 100) * Number(votePercentage);
-  };
+  // const finalistData = finalists.map((finalist) => ({
+  //   name: `${finalist.number}. ${finalist.name}`,
+  //   votes: getFinalistVotes(finalist.id),
+  //   picture: finalist.image,
+  //   prodi: finalist.prodi,
+  //   faculty: finalist.faculty,
+  //   number: finalist.number,
+  //   manipulatedVotes: calculateRealPercentage(finalist.id, finalist.percentage),
+  // }));
 
-  const finalistData = finalists.map((finalist) => ({
-    name: `${finalist.number}. ${finalist.name}`,
-    votes: getFinalistVotes(finalist.id),
-    picture: finalist.image,
-    prodi: finalist.prodi,
-    faculty: finalist.faculty,
-    number: finalist.number,
-    manipulatedVotes: calculateRealPercentage(finalist.id, finalist.percentage),
-  }));
+  // const totalManipulatedVotes = finalistData.reduce(
+  //   (total, finalist) => total + finalist.manipulatedVotes,
+  //   0,
+  // );
 
-  const totalManipulatedVotes = finalistData.reduce(
-    (total, finalist) => total + finalist.manipulatedVotes,
-    0,
-  );
+  // const calculateManipulatedPercentage = (finalistVotes: number) =>
+  //   Math.round(
+  //     totalManipulatedVotes > 0
+  //       ? (finalistVotes / totalManipulatedVotes) * 100
+  //       : 0,
+  //   );
 
-  const calculateManipulatedPercentage = (finalistVotes: number) =>
-    Math.round(
-      totalManipulatedVotes > 0
-        ? (finalistVotes / totalManipulatedVotes) * 100
-        : 0,
-    );
-
-  const chartData = finalistData
-    .map((finalist) => ({
-      finalist: finalist.name,
-      picture: finalist.picture,
-      prodi: finalist.prodi,
-      faculty: finalist.faculty,
-      number: finalist.number,
-      percentage: calculateManipulatedPercentage(finalist.manipulatedVotes),
-    }))
-    .sort((a, b) => b.percentage - a.percentage);
-
-  const chartConfig = {
-    percentage: {
-      label: "Percentage",
-      color: "hsl(var(--chart-1))",
-    },
-  } satisfies ChartConfig;
+  // const chartData = finalistData
+  //   .map((finalist) => ({
+  //     finalist: finalist.name,
+  //     picture: finalist.picture,
+  //     prodi: finalist.prodi,
+  //     faculty: finalist.faculty,
+  //     number: finalist.number,
+  //     percentage: calculateManipulatedPercentage(finalist.manipulatedVotes),
+  //   }))
+  //   .sort((a, b) => b.percentage - a.percentage);
 
   return (
     <div className="mx-auto w-full space-y-3 rounded-xl border-2 border-primary px-4 py-6 lg:space-y-6">
@@ -171,7 +142,7 @@ export function LeaderboardChart({
       </ChartContainer> */}
 
       <div className="space-y-8">
-        {chartData.map((data) => (
+        {leaderboard.map((data) => (
           <div key={data.finalist} className="space-y-3">
             <div className="flex items-center gap-6">
               <div className="relative size-12 overflow-hidden rounded-full border-2 border-primary">
