@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { fileUpload } from "@/lib/file-upload";
+import crypto from "crypto";
+import path from "path";
 
 export async function GET(
   request: Request,
@@ -48,8 +50,12 @@ export async function PUT(
     let filePath;
 
     if (image instanceof File) {
+      const extension = path.extname(image.name);
+
+      const randomName = crypto.randomBytes(16).toString("hex") + extension;
+
       await fileUpload(image, "uploads");
-      filePath = `${process.env.NEXT_PUBLIC_BASE_URL}/api/images/${image.name}`;
+      filePath = `${process.env.NEXT_PUBLIC_BASE_URL}/api/images/${randomName}`;
     } else {
       filePath = image;
     }
