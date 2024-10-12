@@ -59,7 +59,7 @@ export default function Hero({}: Props) {
           loading="eager"
         />
         <div className="absolute bottom-[20%] z-[30] mx-auto flex gap-5 sm:bottom-[8%] lg:bottom-[10%]">
-          <Link href={"https://wa.me/6282162642387"}>
+          <Link href={"/beli-voucher"}>
             <Button
               variant={"ghost"}
               className="h-12 rounded-full border border-[#f1f1f1] text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"

@@ -83,12 +83,22 @@ export default function FinalistList() {
   };
 
   return (
-    <section id="vote-bgu" className="mx-auto w-full px-6 py-14 lg:px-24">
-      <div className="flex w-full flex-col gap-12">
+    <section
+      id="vote-bgu"
+      className="mx-auto w-full px-6 py-10 lg:px-24 lg:py-14"
+    >
+      <div className="flex w-full flex-col gap-8 md:gap-12">
+        <div className="rounded-md bg-primary p-4 md:p-8">
+          <p className="text-justify text-base font-medium text-white sm:text-lg md:text-xl lg:max-w-[85%] lg:text-2xl">
+            Setelah melakukan pembelian voucher, mohon untuk konfirmasi kepada
+            kontak yang tertera paling lambat 10 menit setelah melakukan
+            pembayaran
+          </p>
+        </div>
         <Input
           type="text"
           placeholder="Cari peserta berdasarkan nama"
-          className="bfocus:outline-primary w-full border-primary md:w-1/3 lg:w-1/5"
+          className="bfocus:outline-primary w-full border-primary md:w-1/3 lg:mx-auto lg:w-1/5"
           onChange={handleFilterChange}
         />
         <Tabs defaultValue="semua" className="w-full">
