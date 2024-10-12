@@ -128,7 +128,11 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
                 onChange={onReCAPTCHAChange}
               /> */}
               <div className="mt-6 flex h-full flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
-                <Button type="submit" className="w-full lg:w-1/2">
+                <Button
+                  type="submit"
+                  className="w-full disabled:opacity-60 lg:w-1/2"
+                  disabled={form.formState.isSubmitting}
+                >
                   Vote
                 </Button>
                 <p className="text-end text-sm text-primary">
