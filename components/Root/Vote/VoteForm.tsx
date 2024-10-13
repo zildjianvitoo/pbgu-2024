@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { updateVoucherByCode } from "@/lib/network/voucher";
 import { CreateVoucherType } from "@/lib/types/voucher";
 import { toast } from "sonner";
@@ -23,6 +23,7 @@ import { FinalistType } from "@/lib/types/finalist";
 import Image from "next/image";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { getAppStaticByName } from "@/lib/network/app-static";
 
 const ticketSchema = z.object({
   code: z.string().min(1),
@@ -42,8 +43,11 @@ interface VoteFormProps {
 export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+
+  const { data: votingStatus } = useQuery({
+    queryKey: ["voting-status"],
+    queryFn: () => getAppStaticByName("voting"),
+  });
 
   const gender = finalist.gender === "laki-laki" ? "BUJANG" : "GADIS";
 
@@ -71,16 +75,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
   });
 
   async function onSubmit(values: z.infer<typeof ticketSchema>) {
-    // if (!recaptchaToken) {
-    //   toast.error("Please complete the CAPTCHA");
-    //   return;
-    // }
-
     onUpdateVoucher(values);
-  }
-
-  function onReCAPTCHAChange(token: string | null) {
-    setRecaptchaToken(token);
   }
 
   return (
@@ -105,42 +100,46 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
             <span className="text-tertiary">{finalist.number}.</span>{" "}
             {finalist.name}
           </p>
-          <div className="mt-4 flex flex-col lg:h-full">
-            <div className="flex flex-col lg:h-full">
-              <FormField
-                control={form.control}
-                name="code"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Kode Voucher</FormLabel>
-                    <FormControl>
-                      <Input placeholder="BGUXXXXXXXXX" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          {votingStatus?.status === "open" ? (
+            <div className="mt-4 flex flex-col lg:h-full">
+              <div className="flex flex-col lg:h-full">
+                <FormField
+                  control={form.control}
+                  name="code"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Kode Voucher</FormLabel>
+                      <FormControl>
+                        <Input placeholder="BGUXXXXXXXXX" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              {/* <ReCAPTCHA
-                className="py-3"
-                ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                onChange={onReCAPTCHAChange}
-              /> */}
-              <div className="mt-6 flex h-full flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
-                <Button
-                  type="submit"
-                  className="w-full disabled:opacity-60 lg:w-1/2"
-                  disabled={form.formState.isSubmitting}
-                >
-                  Vote
-                </Button>
-                <p className="text-end text-sm text-primary">
-                  Pastikan peserta yang anda pilih sudah tepat!
-                </p>
+                {/* <ReCAPTCHA
+          className="py-3"
+          ref={recaptchaRef}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+          onChange={onReCAPTCHAChange}
+        /> */}
+                <div className="mt-6 flex h-full flex-col items-center justify-between gap-3 lg:mt-auto lg:flex-row">
+                  <Button
+                    type="submit"
+                    className="w-full disabled:opacity-60 lg:w-1/2"
+                    disabled={form.formState.isSubmitting}
+                  >
+                    Vote
+                  </Button>
+                  <p className="text-end text-sm text-primary">
+                    Pastikan peserta yang anda pilih sudah tepat!
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <p className="mt-6 text-xl text-primary">Voting Selesai</p>
+          )}{" "}
         </div>
       </form>
     </Form>
