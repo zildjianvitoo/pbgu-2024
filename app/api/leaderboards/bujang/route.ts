@@ -54,11 +54,9 @@ export async function GET() {
     );
 
     const calculateManipulatedPercentage = (finalistVotes: number) =>
-      Math.round(
-        totalManipulatedVotes > 0
-          ? (finalistVotes / totalManipulatedVotes) * 100
-          : 0,
-      );
+      totalManipulatedVotes > 0
+        ? +((finalistVotes / totalManipulatedVotes) * 100).toFixed(2)
+        : 0;
 
     const chartData = finalistData
       .map((finalist) => ({
