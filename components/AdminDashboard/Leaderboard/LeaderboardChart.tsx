@@ -1,5 +1,5 @@
+import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
-import { Progress } from "@radix-ui/react-progress";
 
 export function LeaderboardChart({
   gender,
