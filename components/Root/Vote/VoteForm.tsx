@@ -97,10 +97,12 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
             VOTE CALON {gender}
           </p>
           <p className="mt-2 text-2xl font-semibold text-primary lg:text-3xl">
-            <span className="text-tertiary">{finalist.number}.</span>{" "}
+            <span className="text-tertiary">{finalist.number}.</span>
             {finalist.name}
           </p>
-          {votingStatus?.status === "open" ? (
+          {votingStatus?.status === "closed" ? (
+            <p className="mt-6 text-xl text-primary">Voting Ditutup</p>
+          ) : (
             <div className="mt-4 flex flex-col lg:h-full">
               <div className="flex flex-col lg:h-full">
                 <FormField
@@ -137,9 +139,7 @@ export default function VoteForm({ finalist, setOpenChange }: VoteFormProps) {
                 </div>
               </div>
             </div>
-          ) : (
-            <p className="mt-6 text-xl text-primary">Voting Selesai</p>
-          )}{" "}
+          )}
         </div>
       </form>
     </Form>

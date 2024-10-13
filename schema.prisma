@@ -213,3 +213,8 @@ model Voucher {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
+
+model AppStatics {
+  name   String @unique
+  status String
+}
