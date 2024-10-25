@@ -4,51 +4,62 @@ import QuestionCard from "./question-card";
 const questions = [
   {
     number: 1,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana cara Anda berencana meningkatkan kesadaran masyarakat tentang pentingnya pendidikan?",
   },
   {
     number: 2,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana Anda akan melibatkan mahasiswa dalam program-program pendidikan?",
   },
   {
     number: 3,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana Anda berencana mendukung pendidikan inklusif bagi semua lapisan masyarakat?",
   },
   {
     number: 4,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Apa peran teknologi dalam rencana Anda untuk memajukan pendidikan?",
   },
   {
     number: 5,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana Anda melihat hubungan antara pendidikan dan pengembangan karakter mahasiswa?",
   },
   {
     number: 6,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question: "How will you address the issue of gender equality in education?",
   },
   {
     number: 7,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Apa yang akan Anda lakukan jika terpilih menjadi bujang/gadis unsri?",
   },
   {
     number: 8,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana respon anda terhadap isu ketidakadilan sosial yang semakin mengemuka?",
   },
   {
     number: 9,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana perkembangan teknologi mempengaruhi cara kita memahami berita dan informasi saat ini?",
   },
   {
     number: 10,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana media sosial berperan dalam menyebarkan informasi tentang isu-isu sosial saat ini?",
   },
   {
     number: 11,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "What are the biggest challenges faced by educational institutions in facing the digital era?",
   },
   {
     number: 12,
-    question: "Siapa Nama Presiden Indonesia Sekarang",
+    question:
+      "Bagaimana upaya penegakan hukum terhadap kejahatan siber yang semakin meningkat?",
   },
 ];
 
