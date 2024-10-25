@@ -21,9 +21,15 @@ export default auth(
       req.nextUrl.pathname.startsWith("/admin-dashboard");
     const isAccessingDashboard = req.nextUrl.pathname.startsWith("/dashboard");
 
+    const isAccessingGF = req.nextUrl.pathname.startsWith("/gf");
+
     const isAccessingAPIAdmin = protectedApiRoutes.includes(
       req.nextUrl.pathname,
     );
+
+    if (isAccessingGF && session.user.role !== "admin") {
+      return Response.redirect(homeUrl);
+    }
 
     if (isAccessingAPIAdmin && session.user.role !== "admin") {
       return Response.redirect(homeUrl);
