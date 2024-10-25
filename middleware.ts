@@ -50,5 +50,6 @@ export const config = {
     "/admin-dashboard",
     "/admin-dashboard/:path*",
     "/api/vouchers",
+    "/gf",
   ],
 };
