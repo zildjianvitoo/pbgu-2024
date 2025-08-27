@@ -147,7 +147,7 @@ export default function Timeline() {
             </span>
           </h2>
           <p className="md:text-lg">
-            Acara Pemilihan Bujang Gadis UNSRI 2024 bertujuan untuk menemukan
+            Acara Pemilihan Bujang Gadis UNSRI 2025 bertujuan untuk menemukan
             dan menghargai mahasiswa-mahasiswa berbakat dan berprestasi di
             Universitas Sriwijaya. Selama acara ini, peserta akan menunjukkan
             kemampuan mereka dalam berbagai bidang, termasuk penampilan,

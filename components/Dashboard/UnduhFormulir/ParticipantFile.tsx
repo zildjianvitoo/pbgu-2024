@@ -186,7 +186,7 @@ export default function ParticipantFile({
               <Text style={styles.header}>
                 PEMILIHAN BUJANG GADIS UNIVERSITAS SRIWIJAYA
               </Text>
-              <Text style={styles.header}>TAHUN 2024</Text>
+              <Text style={styles.header}>TAHUN 2025</Text>
             </View>
             <View
               style={{
@@ -953,7 +953,7 @@ export default function ParticipantFile({
                     width: "100%",
                   }}
                 >
-                  Motivasi mengikuti Pemilihan Bujang Gadis Unsri 2024
+                  Motivasi mengikuti Pemilihan Bujang Gadis Unsri 2025
                 </Text>
                 <View
                   style={{
@@ -1071,7 +1071,7 @@ export default function ParticipantFile({
                           height: 10,
                         }}
                       />
-                      <Text>2024</Text>
+                      <Text>2025</Text>
                     </View>
                     <View
                       style={{

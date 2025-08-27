@@ -63,7 +63,7 @@ export default function UnduhFormulir() {
   });
 
   const downloadPdf = async () => {
-    const fileName = "Formulir Pendaftaran PBGU 2024.pdf";
+    const fileName = "Formulir Pendaftaran PBGU 2025.pdf";
     const blob = await pdf(
       <ParticipantFile
         generalInfo={userGeneralInfo}

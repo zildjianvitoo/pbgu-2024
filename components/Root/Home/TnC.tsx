@@ -11,14 +11,14 @@ const terms = [
 ];
 
 const attachments = [
-  "Formulir Pendaftaran PBGU 2024 yang bisa diunduh di link pada bio Instagram @bgunsri.",
+  "Formulir Pendaftaran PBGU 2025 yang bisa diunduh di link pada bio Instagram @bgunsri.",
   "Fotokopi KPM (Kartu Pengenal Mahasiswa) atau KPM Sementara (bagi mahasiswa baru).",
   "Pas foto berwarna terbaru ukuran 3x4 sebanyak 1 Lembar ditempel di formulir.",
   "Foto full body dan close up ukuran 4R (kualitas foto studio)",
   "Fotokopi KHS semester terakhir atau SKHUN (bagi mahasiswa baru).",
   "Melampirkan bukti screenshot telah terdaftar di PDDIKTI",
   "Fotokopi Sertifikat (bila ada).",
-  "Membayar uang pendaftaran Rp 100.000.",
+  // "Membayar uang pendaftaran Rp 100.000.",
   "Berkas dimasukkan kedalam map berwarna biru (Bujang) dan merah (Gadis).",
   "Map yang berisi berkas dituliskan Nama, Fakultas dan Jurusan peserta.",
 ];
@@ -36,7 +36,7 @@ export default function TnC() {
           <span className="bg-gradient-to-br from-secondary to-yellow-900/60 bg-clip-text text-transparent">
             Pemilihan Bujang Gadis UNSRI
           </span>{" "}
-          2024
+          2025
         </h1>
         <div className="mt-12 flex flex-col gap-6 lg:flex-row lg:gap-8">
           <div className="flex flex-1 flex-col gap-2">

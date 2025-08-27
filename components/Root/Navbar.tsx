@@ -17,17 +17,21 @@ const links = [
     name: "Beranda",
     path: "/",
   },
-  {
-    name: "Vote",
-    path: "/vote",
-  },
-  {
-    name: "Leaderboard",
-    path: "/leaderboard",
-  },
+  // {
+  //   name: "Vote",
+  //   path: "/vote",
+  // },
+  // {
+  //   name: "Leaderboard",
+  //   path: "/leaderboard",
+  // },
   {
     name: "Tentang BGU",
     path: "/#tentang-bgu",
+  },
+  {
+    name: "Timeline PBGU",
+    path: "/#timeline",
   },
   {
     name: "Kegiatan",

@@ -28,7 +28,7 @@ export default function Hero({}: Props) {
       className: "text-secondary  mt-2",
     },
     {
-      text: "2024",
+      text: "2025",
       className: "text-secondary ",
     },
   ];
@@ -59,7 +59,7 @@ export default function Hero({}: Props) {
           loading="eager"
         />
         <div className="absolute bottom-[20%] z-[30] mx-auto flex gap-5 sm:bottom-[8%] lg:bottom-[10%]">
-          <Link href={"/beli-voucher"}>
+          {/* <Link href={"/beli-voucher"}>
             <Button
               variant={"ghost"}
               className="h-12 rounded-full border border-[#f1f1f1] text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
@@ -71,19 +71,34 @@ export default function Hero({}: Props) {
             <Button className="h-12 rounded-full text-lg font-medium max-sm:border max-sm:border-white md:text-xl">
               Vote Sekarang!
             </Button>
+          </Link> */}
+          <div className="mt-3 flex gap-5">
+          <Link href={"/tentang-bgu"}>
+            <Button
+              variant={"ghost"}
+              className="h-12 rounded-full border border-white text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
+            >
+              Tentang BGU
+            </Button>
           </Link>
+          <Link href={"/daftar"}>
+            <Button className="h-12 rounded-full hover:border hover:border-white text-lg font-medium max-sm:border max-sm:border-white md:text-xl">
+              Daftar Sekarang!
+            </Button>
+          </Link>
+        </div>
         </div>
       </figure>
 
       <div className="absolute bottom-[27%] z-10 hidden h-full w-full bg-gradient-to-t from-black to-transparent to-[10%] lg:block" />
       {/* <div className="absolute left-0 top-0 -z-10 h-full w-full bg-primary object-cover" /> */}
       <div className="absolute bottom-0 left-0 z-10 hidden h-[27%] w-full bg-black lg:block" />
-      <figure className="relative z-[5] flex w-fit items-center justify-center max-sm:top-1/4 max-sm:m-auto md:bottom-24 md:mx-auto lg:bottom-44 xl:bottom-52">
+      <figure className="relative z-[5] flex w-full items-center justify-center max-sm:top-10 max-sm:m-auto md:bottom-24 md:mx-auto lg:bottom-40">
         <Image
           src={"/images/bgu23.png"}
           alt="bgu 23"
-          width={1000}
-          height={800}
+          width={900}
+          height={700}
           quality={100}
           loading="eager"
         />

@@ -25,18 +25,22 @@ const resourcesLinks = [
 ];
 
 const categoryLink = [
+  // {
+  //   label: "Vote",
+  //   link: "/vote",
+  // },
+  // {
+  //   label: "Dashboard",
+  //   link: "/dashboard",
+  // },
+  // {
+  //   label: "Finalis",
+  //   link: "/finalis",
+  // },
   {
-    label: "Vote",
-    link: "/vote",
-  },
-  {
-    label: "Dashboard",
-    link: "/dashboard",
-  },
-  {
-    label: "Finalis",
-    link: "/finalis",
-  },
+    label: "Daftar",
+    link: "/daftar",
+  }
 ];
 
 const socialMediaLinks = [
@@ -146,7 +150,7 @@ export default function Footer() {
         <hr />
         <div className="flex w-full justify-between">
           <small className="text-base font-medium text-primary-foreground">
-            &copy; Copyright 2024 Team MindSync . All rights reserved.
+            &copy; Copyright 2025 Team MindSync . All rights reserved.
           </small>
           <small className="cursor-pointer text-base font-medium text-primary-foreground transition hover:opacity-80">
             Terms and Conditions
