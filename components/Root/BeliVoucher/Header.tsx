@@ -21,10 +21,10 @@ export default function Header() {
           </li>
           <li>
             Hubungi contact person yang tertera{" "}
-            <a href="https://wa.me/6282162642387" className="text-secondary">
-              082162642387
+            <a href="https://wa.me/6282382367306" className="text-secondary">
+              082382367306
             </a>{" "}
-            (Gadis Jenni)
+            (Gadis Elviera)
           </li>
           <li>
             Lakukan transaksi dengan transfer melalui rekening <br /> sebagai
