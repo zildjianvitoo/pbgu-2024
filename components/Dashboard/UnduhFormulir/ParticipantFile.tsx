@@ -156,8 +156,7 @@ export default function ParticipantFile({
                   </Text>
                   <Text style={styles.subHeader}>Contact Person:</Text>
                   <Text style={styles.subHeader}>
-                    M. Sultan Asfari (081377748943) / Shafira Junisar
-                    (085720116361)
+                    Muhammad Soleman (085268412041) / Elma Ananda (082377492679)
                   </Text>
                 </View>
                 <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
@@ -422,8 +421,7 @@ export default function ParticipantFile({
                   </Text>
                   <Text style={styles.subHeader}>Contact Person:</Text>
                   <Text style={styles.subHeader}>
-                    M. Sultan Asfari (081377748943) / Shafira Junisar
-                    (085720116361)
+                    Muhammad Soleman (085268412041) / Elma Ananda (082377492679)
                   </Text>
                 </View>
                 <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
@@ -852,8 +850,7 @@ export default function ParticipantFile({
                   </Text>
                   <Text style={styles.subHeader}>Contact Person:</Text>
                   <Text style={styles.subHeader}>
-                    M. Sultan Asfari (081377748943) / Shafira Junisar
-                    (085720116361)
+                    Muhammad Soleman (085268412041) / Elma Ananda (082377492679)
                   </Text>
                 </View>
                 <Image style={styles.pbgu} src="/images/logo-ibgu.png" />
