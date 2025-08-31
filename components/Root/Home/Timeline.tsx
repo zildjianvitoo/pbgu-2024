@@ -4,18 +4,28 @@ import React, { useEffect, useRef, useState } from "react";
 
 const timelineData = [
   {
-    title: "Close Registration",
+    title: "Open Registration",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        8 Oktober
+        1 September <span className="text-[#d0ab44]">s/d</span>
+        <br />
+        30 September
       </p>
     ),
   },
   {
-    title: "Technical Meeting & Foto Composite",
+    title: "Roadshow PBGU 2025",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        10 Oktober
+        2 Oktober
+      </p>
+    ),
+  },
+  {
+    title: "Technical Meeting & Foto Composite ",
+    content: (
+      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
+        12 Oktober
       </p>
     ),
   },
@@ -23,23 +33,15 @@ const timelineData = [
     title: "Tes Tertulis",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        10 Oktober
+        16 Oktober
       </p>
     ),
   },
   {
-    title: "Walk in Interview",
+    title: "Walk In Interview",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        14 Oktober
-      </p>
-    ),
-  },
-  {
-    title: "Pengumuman Hasil Tes Tertulis & WII",
-    content: (
-      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        14 Oktober
+        17 Oktober
       </p>
     ),
   },
@@ -47,8 +49,8 @@ const timelineData = [
     title: "Pra-Semifinal",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        15 Oktober <span className="text-[#d0ab44]">s/d</span>
-        <br /> 18 Oktober
+        20 Oktober <span className="text-[#d0ab44]">s/d</span>
+        <br /> 22 Oktober
       </p>
     ),
   },
@@ -56,15 +58,7 @@ const timelineData = [
     title: "Grand Semifnal",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        19 Oktober
-      </p>
-    ),
-  },
-  {
-    title: "Gathering",
-    content: (
-      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        20 Oktober
+        23 Oktober
       </p>
     ),
   },
@@ -72,17 +66,9 @@ const timelineData = [
     title: "Karantina",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        21 Oktober <span className="text-[#d0ab44]">s/d</span>
+        26 Oktober <span className="text-[#d0ab44]">s/d</span>
         <br />
-        25 Oktober
-      </p>
-    ),
-  },
-  {
-    title: "Latihan Bakat",
-    content: (
-      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        21 Oktober
+        30 Oktober
       </p>
     ),
   },
@@ -90,15 +76,7 @@ const timelineData = [
     title: "Talent Show",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        22 Oktober
-      </p>
-    ),
-  },
-  {
-    title: "Gladi Resik Grandfinal",
-    content: (
-      <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        25 Oktober
+        28 Oktober
       </p>
     ),
   },
@@ -106,7 +84,7 @@ const timelineData = [
     title: "Grandfinal",
     content: (
       <p className="text-xl font-bold text-secondary md:text-end lg:text-2xl">
-        26 Oktober
+        31 Oktober
       </p>
     ),
   },
