@@ -42,13 +42,13 @@ export default function Hero({}: Props) {
         className="absolute -z-20 object-cover"
         loading="eager"
       />
-      <Image
+      {/* <Image
         src="/images/texture.png"
         alt="texture"
         fill
         className="absolute z-[2] object-cover opacity-10"
         loading="eager"
-      />
+      /> */}
       <figure className="flex flex-col items-center justify-center">
         <Image
           src="/images/icon-pbgu-hero.png"
@@ -73,20 +73,20 @@ export default function Hero({}: Props) {
             </Button>
           </Link> */}
           <div className="mt-3 flex gap-5">
-          <Link href={"/tentang-bgu"}>
-            <Button
-              variant={"ghost"}
-              className="h-12 rounded-full border border-white text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
-            >
-              Tentang BGU
-            </Button>
-          </Link>
-          <Link href={"/daftar"}>
-            <Button className="h-12 rounded-full hover:border hover:border-white text-lg font-medium max-sm:border max-sm:border-white md:text-xl">
-              Daftar Sekarang!
-            </Button>
-          </Link>
-        </div>
+            <Link href={"/tentang-bgu"}>
+              <Button
+                variant={"ghost"}
+                className="h-12 rounded-full border border-white text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
+              >
+                Tentang BGU
+              </Button>
+            </Link>
+            <Link href={"/daftar"}>
+              <Button className="h-12 rounded-full text-lg font-medium hover:border hover:border-white max-sm:border max-sm:border-white md:text-xl">
+                Daftar Sekarang!
+              </Button>
+            </Link>
+          </div>
         </div>
       </figure>
 
