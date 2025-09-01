@@ -39,7 +39,14 @@ export default function Hero({}: Props) {
         src="/images/bg-hero.png"
         alt="bg hero"
         fill
-        className="absolute -z-20 object-cover"
+        className="absolute -z-20 hidden object-cover md:flex"
+        loading="eager"
+      />
+      <Image
+        src="/images/bg-mobile.png"
+        alt="bg hero"
+        fill
+        className="absolute -z-20 flex object-cover md:hidden"
         loading="eager"
       />
       {/* <Image
@@ -72,8 +79,8 @@ export default function Hero({}: Props) {
               Vote Sekarang!
             </Button>
           </Link> */}
-          <div className="mt-3 flex gap-5">
-            <Link href={"/tentang-bgu"}>
+          <div className="mt-3 flex gap-5 sm:max-md:mt-10">
+            <Link href={"/#tentang-bgu"}>
               <Button
                 variant={"ghost"}
                 className="h-12 rounded-full border border-white text-lg font-medium text-white hover:bg-primary hover:text-white md:text-xl"
@@ -93,7 +100,7 @@ export default function Hero({}: Props) {
       <div className="absolute bottom-[27%] z-10 hidden h-full w-full bg-gradient-to-t from-black to-transparent to-[10%] lg:block" />
       {/* <div className="absolute left-0 top-0 -z-10 h-full w-full bg-primary object-cover" /> */}
       <div className="absolute bottom-0 left-0 z-10 hidden h-[27%] w-full bg-black lg:block" />
-      <figure className="relative z-[5] flex w-full items-center justify-center max-sm:top-10 max-sm:m-auto md:bottom-24 md:mx-auto lg:bottom-40">
+      <figure className="relative z-[5] flex w-full items-center justify-center max-sm:m-auto md:bottom-24 md:mx-auto lg:bottom-40">
         <Image
           src={"/images/bgu23.png"}
           alt="bgu 23"
