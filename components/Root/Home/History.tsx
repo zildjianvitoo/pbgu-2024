@@ -34,7 +34,7 @@ export default function History() {
           Berdasarkan keputusan Musyawarah Besar IBGU Pelaksanaan Pemilihan
           Bujang Gadis Unsri diadakan setiap 1 tahun sekali dengan jumlah
           anggota terpilih sebanyak 30 orang. Tercatat anggota IBGU berjumlah
-          222 orang dengan total 8 angkatan.
+          282 orang dengan total 10 angkatan.
         </p>
       </div>
     </section>

@@ -22,7 +22,7 @@ export default function RegisterPage() {
         />
 
         <Image
-          src={"/images/hero-image.jpeg"}
+          src={"/images/bg-auth.jpeg"}
           alt="Register Image"
           fill
           className="-z-10 object-cover object-center brightness-[50%]"

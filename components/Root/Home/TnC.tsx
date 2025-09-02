@@ -5,7 +5,7 @@ const terms = [
   "Mahasiswa aktif maksimal semester 5.",
   "IPK minimal 2,75 dan melampirkan SKHUN (bagi mahasiswa baru).",
   "Berusia maksimal 22 tahun dan belum menikah.",
-  "Tinggi badan minimal Bujang 160 cm dan Gadis 150 cm.",
+  "Tinggi badan minimal Bujang 170 cm dan Gadis 160 cm.",
   "Mengikuti akun instagram @bgunsri.",
   "Mengunggah foto bukti pendaftaran di instagram yang didapatkan setelah mengumpulkanseluruh berkas. (note: akun instagram tidak diprivate dan tag @bgunsri).",
 ];

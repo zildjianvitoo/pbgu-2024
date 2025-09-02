@@ -52,7 +52,7 @@ export default function LoginPage() {
         />
 
         <Image
-          src={"/images/hero-image.jpeg"}
+          src={"/images/bg-auth.jpeg"}
           alt="login image"
           fill
           className="-z-10 object-cover object-center brightness-[50%]"
