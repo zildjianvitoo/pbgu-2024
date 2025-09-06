@@ -17,6 +17,7 @@ import { pdf } from "@react-pdf/renderer";
 
 import { Download, RotateCcw } from "lucide-react";
 import { useSession } from "next-auth/react";
+import ContactPersons from "@/components/Dashboard/UnduhFormulir/ContactPersons";
 
 export default function UnduhFormulir() {
   const { data: session } = useSession();
@@ -87,6 +88,8 @@ export default function UnduhFormulir() {
     organizationalsLoading ||
     achievementsLoading;
 
+  const hasRequired = !!userGeneralInfo && !!userPersonalInfo;
+
   return (
     <section className="flex w-full flex-col gap-4 pb-6 lg:gap-6">
       {!isLoading && (
@@ -118,6 +121,8 @@ export default function UnduhFormulir() {
           )}
         </div>
       </div>
+
+      {!isLoading && hasRequired && <ContactPersons />}
 
       {!isLoading && (
         <PDFViewer className="min-h-screen">
